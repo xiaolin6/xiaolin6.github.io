@@ -46,6 +46,30 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Oracle基础知识2]]></title>
+    <url>%2FOracle%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%862%2F</url>
+    <content type="text"><![CDATA[oracle函数学习、SQL分组与筛选 dual表dual是一个虚拟表，用来构成select的语法规则，oracle保证dual里面永远只有一条记录，可以用它来做很多事情。 1、查看当前用户，可以执行下面语句 select user from dual; 2、用来调用系统函数 所以我们经常用该表查看各个函数应该有的效果，如下所示： 1select abs(-1),ceil(2.2),floor(3.3) from dual; Oracle函数学习这是针对oracle中的函数，而不是sql函数，所以只有oracle数据库才能够应用。oracle函数是oracle提供用来进一步修饰或者处理数据的方法，在书写SQL语句时直接使用即可。 单行函数特点（注意与多行函数进行比较）： 针对一行数据进行的操作。 这些函数并不对数据库本身做操作，即不改变真实数据，只是对我们的查询结果做进一步的操作，便于我们阅览。 可以和字段混合使用 使用方式： 1select 字段名,函数名（字段名）,字段名...from 表名; --字段顺序不重要 字符函数1select upper(lower(ename)) from emp; --函数可以嵌套使用 所有常用字符函数如下图： 1length(字段名) --查看字符长度符号 数值函数伪表：真实存在的表，是为了方便进行数据的验证而临时存在的表。表名为dual（下面有介绍） 1select abs(-1),ceil(2.2),floor(3.3) from dual; 数值函数对数值类型的数据进行运算。 日期函数获取系统时间 1select sysdate from dual; --！！！ 日期可以计算，减的数值以天为单位进行计算。 1select ceil(months_between('01-1月-2018','09-5月-2016')) 日期间隔 from dual; 下面对round这个函数作下解释 123456789--按照一年中的月份进行四舍五入 1-6 本年 7-12 下一年select round (todate('05-9月-03'),'YEAR') from dual; --按照一月中的天来做四舍五入 1-15 -&gt; 本月初 16以后 -&gt; 下月初 2月也不例外select round (todate('05-9月-03'),'MONTH') from dual; --按照周来算 周日-周三 -&gt; 本周日 周四-周六 -&gt; 下周日select round (todate('05-9月-03'),'DAY') from dual; --显示满10年服务年限的员工的姓名和受雇日期.select ename,hiredate from emp where floor((sysdate-hiredate)/365)&gt;10; 多行函数常用多行函数如下：max min avg sum count ，可用于对查询的数据进行统计 特点（注意与单行函数进行比较）： 针对多行数据进行的操作 不可以与字段进行混用，除非分组！ 多行函数不可以与单行函数混用，除非分组！ 由于执行优先级的关系，where子句中不可能出现多行函数，因为多行函数都是对结果进行的计算，而在where阶段，where作为筛选条件并没有得到最后的结果。 123456789select max(sal) from emp; --查询该字段最大值 sal为表格中薪资字段select min(sal) from emp; --查询该字段最小值select avg(sal) from emp; --查询该字段平均值select sum(sal) from emp; --查询字段之和select count(*) from emp;--查询字段个数 不包括null 所以查询某个表中有多少数据，一定一定要用count(*)，这样可以保证没有空值select count(comm) from emp; select count(distinct job) from emp; --查询某个字段中不重复的个数select max(sal),min(sal),avg(sal),sum(sal),count(*) from emp; --多行函数可搭配使用 转换函数常用的转换函数有：to_number()、to_char()、to_date() 他们三个以char为基准进行互转。 to_number(数值类型的字符)：将字符转换为数值 to_char(数值或者是日期)：将数值或者是日期转换为字符 to_date(日期格式的字符)：将字符转换为日期 数字、字符互转下面给示例及要点： 12select to_number('789') from dual; -- 一定是数值类型的字符，abc等字符串不被允许select to_char(123) from dual; -- 其中，数字转字符时，可指定显示格式。 9表示位置占位，例如999,999,999会将数字按照三个一组使用逗号隔开，真实数据几位就显示几位。 L表示人民币符号，$表示美元符号。 12select to_char(12345,'$999,999,999') from dual;select to_char(54321,'L999,999,999') from dual; 0也可以进行占位分组，但是如果真实数据位数不足，会使用0进行补位。 另外，数值与字符之间的转换可以隐式转换。to_number()可以省略不写 日期、字符互转使用to_date(&#39;要转换的字符&#39;, 日期格式)函数将字符转换为日期，需要注意以下几点： 字符必须符号日期格式 oracle默认的转换格式为日月年，例如’01-1月-2018’ oralce认为是一个日期 常用日期格式： yyyy-mm-dd yyyy/mm/dd 123select * from emp where hiredate &gt;= to_date('1982-01-01','yyyy-mm-dd');select * from emp where hiredate &gt;= to_date('1982/01/01','yyyy/mm/dd');select * from emp where hiredate &gt;= to_date('01-01-1982','mm-dd-yyyy'); 使用to_char(&#39;要转换的日期&#39;, 日期格式)函数将日期转换为字符，日期格式同上，省略时使用默认格式： 123select to_char(hiredate) from emp; --默认格式select to_char(hiredate,'yyyy-mm-dd') from emp; --指定格式select to_char(hiredate,'yyyy"年"mm"月"dd"日"') from emp; --指定格式 在与Java的配合中，新增数据一般会用to_date()、查询数据用to_char()，当然，也有其他的方式。 其他函数 nvl() 使用格式：nvl(字段名，新的值) 如果字段值不为null，则返回该字段的值；如果为null，则返回新的值。 if else效果 nvl2() 使用格式：nvl2(字段名，处理1，处理2) 如果字段值不为null，则执行处理1，否则执行处理2 if else 效果 decode() 使用格式：decode(字段名, 值1, 处理1, 值2, 处理2, ...,公共处理) 如果字段的值和decode中的条件值相同则执行相应的处理，如果都没有则执行公共处理。 switch case default 效果 上述函数使用效果如下： 123select sal,comm,sal+nvl(comm,0) from emp;select sal,comm,nvl2(comm,comm+sal,sal) from emp;select job,decode(job,'PRESIDENT','董事长','SALESMAN','销售','MANAGER','经理','普通员工') from emp; SQL分组&amp;筛选SQL分组查询使用格式： group by 分组字段名1,分组字段名2...。下面给出注意事项： 使用了分组后，在select与from之间只允许出现分组字段和多行函数。 当你充分理解后就清楚可以使用单行函数和其他函数 如果是多字段分组，则先按照第一字段分组，然后每个小组继续按照第二个字段继续分组，以此类推。 在where子句中不允许出现多行函数！ 12select max(sal+nvl(comm,0)),deptno from emp group by deptno;select deptno,job,count(*) from emp group by deptno,job order by deptno; SQL分组筛选关键字：having，作用为针对分组进行分组后的筛选，允许使用多行函数，下面给出注意事项 having关键字必须和分组结合使用，不允许单独使用。 一定要理解代码执行顺序的问题，where作为筛选条件，是在得出结果（如多行函数）之前就要判定执行，而having是在分组后，也就是在得出结果后才执行，这时，多行函数已经执行完了，所以就可以用多行函数产生的数据了。 1select deptno,job,count(*) from emp group by deptno,job having count(*)&gt;1 order by deptno; where和having where子句不允许使用多行函数，having允许出现多行函数 where子句和having都可以使用普通字段直接进行筛选，但where的效率高于having where执行顺序：from–&gt;where–&gt;group by–&gt;select–&gt;order by having执行顺序：from–&gt;group by–&gt;select–&gt;having–&gt;order by 在分组语句中，使用where进行字段级别的筛选，使用having进行多行函数的筛选]]></content>
+      <categories>
+        <category>数据库筛选</category>
+      </categories>
+      <tags>
+        <tag>dual表</tag>
+        <tag>Oracle函数</tag>
+        <tag>sql分组&amp;筛选</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Oracle基础知识1]]></title>
+    <url>%2FOracle%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861%2F</url>
+    <content type="text"><![CDATA[通过数据库管理系统，完成对单表中的数据简单查询 查询表的所有数据 1select * from 表名; 查询表中指定字段的值（就是列）1select 字段名1,字段名2,... from 表名; 查询结果中的字段使用别名这样可以方便查看查询结果，在字段名后使用关键字: 字段名 as “别名” 1select empno 员工编号,ename "员工姓名",job as 工作, mgr as "领导编号" from emp; 最后面那个是最标准的，向前依次省略，但是都是正确的。要注意的是，第一个方式的别名中不可以存在空格等特殊字符，若存在，需要加双引号包裹。 连接符SQL中||为字符连接符，使用在select和from之间 1select '字符'||字段名||'字符'||字段名 from emp; 一个拼接好的连接在结果集中是作为一个新的字段显示，可以使用别名优化字段显示。 去除重复，使用distinct关键字1select distinct 字段1,字段2,... from 表名； 需要注意的是，加了distinct后，需要后面所有字段名称都相同才可以省略。 排序排序时可使用当前代码定义的别名，来节省代码量。 单字段排序使用order by 字段名 [ASC/DESC]进行排序，asc可省略。 12select * from emp order by empno asc; --默认升序方式select * from emp order by empno desc; --降序 多字段排序先按照第一个字段去排列，如果第一个字段相同，则按照第二个字段去排，以此类推。。。 1select * from 表名 order by 字段1 asc,字段2 desc,... desc; 字段的逻辑运算1select empno,ename,job,sal*5+100,sal+comm from emp; 这里修改的不是数据库里的值，而是将数据库查询出来之后，再修改的值，因此对数据库本身无影响。 使用where子句查询筛选1select 字段名,字段名,... from 表名 where 筛选条件; 单筛选条件（where）使用运算符进行筛选 =,&gt;,&gt;=,&lt;,&lt;=,&lt;&gt; 单个条件中，另外如果条件中的值为字符，必须使用单引号括起来。 oracle默认的日期格式为 日-月-年，示例03-1月-1981 多条件筛选where字句关键字: and, or, not like，like, is null, is not null, in, between and,not between and，其中 and的执行优先级是高于or的，所以组合使用时要合理利用小括号。 1select * from 表名 where 筛选条件1 and 筛选条件2 and ... ; --格式 多个条件使用and关键字进行连接，筛选的是符合所有条件的数据。 1select * from emp where sal&gt;=2000 and sal&lt;3000; 除此之外，还可以使用 between and进行条件连接，包含两头的数据。 1select * from emp where sal between 2000 and 3000; 多个条件使用or关键字进行连接，筛选的是符号单个条件即可的所有数据。 1select * from emp where job='SALESMAN' or job='ANALYST' order by job; 当然，下面这种写法结果同上面相同，但是使用in字段只能筛选同一个字段的值。 1select * from emp where job in('SALEMAN','ANALYST') order by job; ​ 模糊查询1select * from emp where ename like '%S%'; like 关键字： %表示任意多个任意字符。 _下划线表示一个字符，用于查询指定位置为指定字符的数据。 为了真实查询%和_符号，因为他们都被我们赋予了新的含义，所以我们要使用它的本质含义的时候需要用到转义字符；但是在SQL中没有转义字符，所以就需要我们自己定义转义字符。 12--使用escape关键字将普通字符设置成转义字符select * from emp where ename like 'A_%' escape 'A'; 这样我们就可以查询到首字符为_下划线的字符串。]]></content>
+      <categories>
+        <category>数据库相关</category>
+      </categories>
+      <tags>
+        <tag>模糊查询</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[SQL语言介绍]]></title>
     <url>%2FSQL%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D%2F</url>
     <content type="text"><![CDATA[结构化数据库操作语言介绍–SQL语言 关系数据库基本概念关系：整个二维表 关系名：表格名称 元组：行数据（记录） 属性：列数据（字段） 属性名：列名称（字段名） 主键：唯一确定元组的属性组（关键字） 域：属性的取值范围 SQL概念 结构化语句 SQL是最重要的关系数据库操作语言，是所有关系数据库管理系统的标准语言 许多数据库厂商在使用SQL的同时，都对SQL进行了扩展，比如ORACLE的PL/SQL语言，MS SQL-Server的T-SQL语言 SQL语言是一种非过程化语言，只需要提出”做什么”,而不需要指明“怎么做” SQL作用 数据库数据的增删改查操作（CRUD） 数据库对象的创建，修改和删除操作 用户权限/角色的授予和取消 事务控制 SQL分类 DQL(数据查询语言) select DML（数据操作语言） insert、update、delete DDL（数据定义语言） create、alter、drop DCL（数据控制语言） grant、revoke TCL(事务控制语言) SAVEPOINT 、 ROLLBACK、SET TRANSACTION ，COMMIT 存储数据操作语言针对表中的数据，而数据定义语言针对数据库对象（表、索引、视图、触发器、存储过程、函数、表空间等） SQL使用通过SQL语句进行数据库中的数据管理数据的读取： 单表的查询（关系数据库底层都是二维表） 多表查询 子查询 数据的存储： 增加 增加一条数据 增加一张表 删除 删除数据 删除表 修改 修改数据 修改表 通过SQL语句管理用户 创建用户 修改用户 删除用户 通过SQL语句管理事务单表的增删改查多表联合查询子查询创建表和用户序列、索引、视图数据库分页查询数据库备份]]></content>
@@ -203,8 +227,8 @@
         <category>计算机操作系统</category>
       </categories>
       <tags>
-        <tag>计算机操作系统</tag>
         <tag>进程同步</tag>
+        <tag>计算机操作系统</tag>
         <tag>Peterson算法</tag>
       </tags>
   </entry>
@@ -403,8 +427,8 @@
         <category>计算机操作系统</category>
       </categories>
       <tags>
-        <tag>进程管理</tag>
         <tag>计算机操作系统</tag>
+        <tag>进程管理</tag>
       </tags>
   </entry>
 </search>
