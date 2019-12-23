@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="进程管理,计算机操作系统,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="进程的基本概念+进程控制">
+<meta name="keywords" content="进程管理,计算机操作系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="进程的概念与控制">
+<meta property="og:url" content="http://www.x1aolin.com/进程的基本概念/index.html">
+<meta property="og:site_name" content="x1aolin&#39;s home">
+<meta property="og:description" content="进程的基本概念+进程控制">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20190419200721.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%861.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20190419204035.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B52.png">
+<meta property="og:updated_time" content="2019-04-20T04:12:04.181Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="进程的概念与控制">
+<meta name="twitter:description" content="进程的基本概念+进程控制">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20190419200721.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.x1aolin.com/进程的基本概念/">
+
+
+
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入查看密码') !== ''){
+                alert('不知道密码还瞎猜，有能耐去询问博主啊，辣鸡！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title>进程的概念与控制 | x1aolin's home</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/xiaolin6" class="github-corner" aria-label="View source on GitHub">
+	<svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+		<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z">
+		</path>
+		<path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm">
+		</path>
+		<path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body">
+		</path>
+	</svg>
+</a>
+<style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">x1aolin's home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">你有多自律，就会有多自由</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            成果
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.x1aolin.com/进程的基本概念/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="x1aolin">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="x1aolin's home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">进程的概念与控制</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-26T20:20:35+08:00">
+                2019-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote class="blockquote-center"><view><font size="4">进程的基本概念+进程控制</font></view></blockquote>
+<a id="more"></a>
+<h2 id="程序的顺序执行"><a href="#程序的顺序执行" class="headerlink" title="程序的顺序执行"></a>程序的顺序执行</h2><h3 id="顺序执行的基本概念"><a href="#顺序执行的基本概念" class="headerlink" title="顺序执行的基本概念"></a>顺序执行的基本概念</h3><p>包括程序段级顺序执行、程序级顺序执行、语句级顺序执行等</p>
+<h3 id="顺序执行特征"><a href="#顺序执行特征" class="headerlink" title="顺序执行特征"></a>顺序执行特征</h3><ol>
+<li><p>顺序性：处理机严格按照程序规定的顺序执行程序</p>
+</li>
+<li><p>封闭性：程序独占全机资源，不受其他程序的影响</p>
+</li>
+<li><p>可再现行：程序执行结果可以再次显现，即无论何时执行结果都相同</p>
+</li>
+</ol>
+<p>顺序执行存在着<strong>整体资源利用率低</strong> 、<strong>单位时间内算题量少</strong>等诸多问题，为了解决这些问题，我们引入了多道程序技术，使程序或程序段之间能够并发执行，这样各设备就可以同时运行，提高整体运行速度和资源利用率。</p>
+<h2 id="程序的并发执行"><a href="#程序的并发执行" class="headerlink" title="程序的并发执行"></a>程序的并发执行</h2><p>并非所有的程序都能够并发执行，只有在不存在前驱关系的程序之间才有可能并发执行。另外，并发执行可能导致各个程序间相互影响，运行结果将出现<strong>不可再现性</strong>，即在不同时期运行结果不同（后文给出处理方案）。</p>
+<h3 id="并发执行特征"><a href="#并发执行特征" class="headerlink" title="并发执行特征"></a>并发执行特征</h3><ol>
+<li><p>间断性：资源的共享，以及为完成同一项任务而相互合作等原因，致使在这些并发执行的程序之间形成相互制约关系，因此将导致程序执行具有”执行-暂停-执行”的特点 。</p>
+</li>
+<li><p>失去封闭性：程序不再独占全机资源，运行受到其他程序的影响。</p>
+</li>
+<li><p>不可再现性：程序执行结果受其他程序的影响，结果不定。</p>
+</li>
+</ol>
+<h2 id="进程的描述"><a href="#进程的描述" class="headerlink" title="进程的描述"></a>进程的描述</h2><p>在多道程序环境下，程序的执行属于并发执行，也就相应的导致了程序的不可再现性，如果该性质不能够得到有效控制，那程序的执行也就失去了意义。为了能够使程序能够“正常”并发执行，人们引入了“进程”这一概念。</p>
+<h3 id="进程定义"><a href="#进程定义" class="headerlink" title="进程定义"></a>进程定义</h3><p>为了使参与并发执行的每个程序（含数据）都能够独立的运行，在操作系统中必须为之配置一个专门的数据结构，称为<strong>进程控制块（PCB）</strong>。系统利用PCB来描述进程的基本情况和活动过程，进而控制和管理进程。这样，<strong>由程序段、相应的数据段和PCB三部分构成了进程实体（简称进程）</strong>。更准确地说，进程是进程实体的运行过程， 是系统进行资源分配和调度的独立单位。</p>
+<h3 id="进程特征"><a href="#进程特征" class="headerlink" title="进程特征"></a>进程特征</h3><p>进程除了程序所没有的进程控制块(PCB)外，还具有如下特征：</p>
+<ol>
+<li><p>动态性：是程序的一次执行过程，因此是动态的。</p>
+</li>
+<li><p>并发行：指多个进程实体同存于内存中，也能在一段时间内同时运行。</p>
+</li>
+<li><p>独立性：能独立运行的基本单位，也是资源分配和调度的基本单位。</p>
+</li>
+<li><p><a href="https://baike.baidu.com/item/%E5%BC%82%E6%AD%A5%E6%80%A7/9548854?fr=aladdin" target="_blank" rel="noopener">异步性</a>：进程以各自独立的、不可预知的速度向前推进。</p>
+</li>
+</ol>
+<p><strong>进程实体的结构特征</strong>：程序段、数据段、进程控制块（PCB）— 操作系统内核当中，如图所示：</p>
+<p><img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20190419200721.png" alt></p>
+<h3 id="进程的基本状态及转换"><a href="#进程的基本状态及转换" class="headerlink" title="进程的基本状态及转换"></a>进程的基本状态及转换</h3><h4 id="进程的三种基本状态"><a href="#进程的三种基本状态" class="headerlink" title="进程的三种基本状态"></a>进程的三种基本状态</h4><p>由于多个进程在并发执行时共享资源，致使它们在运行时呈现间断性的运行规律，所以进程在其生命周期内可能具有多种状态。</p>
+<ol>
+<li><p>就绪状态：进程已经获得了除处理机之外的所有资源，一旦获得处理机就可以立即执行。</p>
+</li>
+<li><p>执行状态：进程已经获得CPU，其程序正在执行。</p>
+</li>
+<li><p>阻塞状态：正在执行的进程，由于发生某事件（如等待I/O、时间片到）而暂停无法继续执行的状态。</p>
+</li>
+</ol>
+<p>进程并非固定处于某种状态，其状态会随着自身的运行和外界的变化而变化，其状态变化如图所示：</p>
+<p><img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%861.jpg" alt></p>
+<h4 id="创建状态和终止状态"><a href="#创建状态和终止状态" class="headerlink" title="创建状态和终止状态"></a>创建状态和终止状态</h4><p>满足了进程控制块对数据及操作的完整性要求以及增强管理的灵活性</p>
+<p><strong>创建状态</strong>：创建一个进程步骤如下：</p>
+<blockquote>
+<ol>
+<li>申请空白PCB，并向PCB中填写用于控制和管理进程的信息;</li>
+<li>为该进程分配运行时所必须的资源； </li>
+<li>把该进程转入就绪状态并插入就绪队列中。</li>
+</ol>
+</blockquote>
+<p>当进程所需资源无法得到满足时，即无法完成第3步时的状态称为创建状态，此时进程不能够被调度运行。</p>
+<p><strong>终止状态</strong>：添加此状态是为了保存状态码和一些计时统计数据，供其他进程收集。一旦其他进进程完成了对信息的提取之后，操作系统将删除该进程，即将PCB清零，并将该空白PCB返回给系统。😀</p>
+<p>如图所示：<img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20190419204035.jpg" alt></p>
+<h4 id="挂起状态"><a href="#挂起状态" class="headerlink" title="挂起状态"></a>挂起状态</h4><p>在许多系统中，进程除了就绪、执行和阻塞三种最基本的操作的状态外，为了系统和用户观察和分析进程的需要，引入了挂起操作。</p>
+<p><strong>挂起操作</strong>: 当该操作作用于某个进程时，该进程将被挂起，意味着此时该进程处于静止状态。<em>如果进程正在执行，它将暂停执行。若原本处于就绪状态，则该进程暂时不接受调度</em> 。如图所示：<img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B52.png" alt></p>
+<h2 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h2><p>记住一句话：<strong>所有进程都是由其他进程创建，根进程在操作系统内核初始化时创建！</strong></p>
+<h3 id="进程创建"><a href="#进程创建" class="headerlink" title="进程创建"></a>进程创建</h3><p>创建条件：用户登录、作业调度、提供服务（当运行中的用户程序提出某种请求之后，系统将专门创建一个进程来提供用户所需要的服务）、应用请求等。</p>
+<p><strong>进程创建原语：create()</strong> </p>
+<p>关于创建步骤我上面介绍 创建状态 时大概说了一下，这里就不在详细说明了。</p>
+<h3 id="进程终止"><a href="#进程终止" class="headerlink" title="进程终止"></a>进程终止</h3><p>终止条件：正常结束、异常结束、外界干预（应外界的请求而终止）。</p>
+<p><strong>进程终止原语：exit()</strong></p>
+<p>下面说一下撤销进程的流程：</p>
+<p>① 根据被终止进程的标识符，从PCB集合中检索出该进程的PCB， 从中读出该进程的状态。 </p>
+<p>② 若被终止进程正处于执行状态， 应立即终止该进程的执行，并置调度标志为真，用于指示该进程被终止后应重新进行调度。 </p>
+<p>③ 若该进程还有子孙进程，还应将其所有子孙进程予以终止，以防他们成为不可控的进程。 </p>
+<p>④ 将被终止进程所拥有的全部资源， 或者归还给其父进程，或者归还给系统。 </p>
+<p>⑤ 将被终止进程（它的PCB）从所在队列（或链表）中移出，等待其他程序来搜集信息。</p>
+<h3 id="进程阻塞"><a href="#进程阻塞" class="headerlink" title="进程阻塞"></a>进程阻塞</h3><p>阻塞条件：请求系统服务，请求操作，等待数据、资源，等待工作任务</p>
+<p><strong>进程阻塞原语：block()</strong></p>
+<p>正在执行的进程，当发生了上述某事件，进程便通过调用阻塞原语block()将自己阻塞，程序停止执行，进入阻塞队列。注意，<strong>进程是自己阻塞自己</strong>。</p>
+<h3 id="进程唤醒"><a href="#进程唤醒" class="headerlink" title="进程唤醒"></a>进程唤醒</h3><p>唤醒条件：允许系统服务，允许操作，数据、资源到达，工作任务到达</p>
+<p><strong>进程唤醒原语：wakeup()</strong></p>
+<p>当被阻塞进程所期待的事情发生时，则由有关进程(比如提供数据的进程)调用唤醒原语wakeup()，将等待该进程的事情唤醒。注意，<strong>阻塞进程是被别的进程唤醒</strong>。</p>
+<h3 id="进程挂起"><a href="#进程挂起" class="headerlink" title="进程挂起"></a>进程挂起</h3><p>挂起条件：调试系统、暂停程序执行</p>
+<p><strong>进程挂起原语：suspend()</strong></p>
+<h3 id="进程激活"><a href="#进程激活" class="headerlink" title="进程激活"></a>进程激活</h3><p>激活条件：调试系统结束，程序继续执行</p>
+<p><strong>进程激活原语：active()</strong></p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>此博客为博主一人书写，其中难免会发生错误，大家如果发现有错误或者有不懂的地方，欢迎在下方评论区留言，我会尽快回复。最后，感谢您的观看。</p>
+
+      
+    </div>
+    
+    
+    
+
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的每一份支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/mm_reward_qrcode_1554297453387.png" alt="x1aolin 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/1554297520653.jpg" alt="x1aolin 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    x1aolin
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.x1aolin.com/进程的基本概念/" title="进程的概念与控制">http://www.x1aolin.com/进程的基本概念/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+
+  
+	<div>
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:16px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	</div>
+  
+
+
+
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/进程管理/" rel="tag"><i class="fa fa-tag"></i>进程管理</a>
+          
+            <a href="/tags/计算机操作系统/" rel="tag"><i class="fa fa-tag"></i>计算机操作系统</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/WXSS从零到入门1/" rel="prev" title="WXSS之选择器">
+                WXSS之选择器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzQwMy8xOTk0NA=="></div>
+    </div>
+
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="x1aolin">
+            
+              <p class="site-author-name" itemprop="name">x1aolin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/xiaolin6" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/00feeb0168de" target="_blank" title="简  书">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>简  书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/6264878118" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://me.csdn.net/weixin_38365166" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wugenqiang.github.io/" title="Enjoytoshare的博客" target="_blank">Enjoytoshare的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://fanyi.baidu.com/" title="百度翻译" target="_blank">百度翻译</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.baidu.com/" title="百度一下，你就知道" target="_blank">百度一下，你就知道</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#程序的顺序执行"><span class="nav-number">1.</span> <span class="nav-text">程序的顺序执行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序执行的基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">顺序执行的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序执行特征"><span class="nav-number">1.2.</span> <span class="nav-text">顺序执行特征</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序的并发执行"><span class="nav-number">2.</span> <span class="nav-text">程序的并发执行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#并发执行特征"><span class="nav-number">2.1.</span> <span class="nav-text">并发执行特征</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程的描述"><span class="nav-number">3.</span> <span class="nav-text">进程的描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程定义"><span class="nav-number">3.1.</span> <span class="nav-text">进程定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程特征"><span class="nav-number">3.2.</span> <span class="nav-text">进程特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程的基本状态及转换"><span class="nav-number">3.3.</span> <span class="nav-text">进程的基本状态及转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进程的三种基本状态"><span class="nav-number">3.3.1.</span> <span class="nav-text">进程的三种基本状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建状态和终止状态"><span class="nav-number">3.3.2.</span> <span class="nav-text">创建状态和终止状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#挂起状态"><span class="nav-number">3.3.3.</span> <span class="nav-text">挂起状态</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程控制"><span class="nav-number">4.</span> <span class="nav-text">进程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程创建"><span class="nav-number">4.1.</span> <span class="nav-text">进程创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程终止"><span class="nav-number">4.2.</span> <span class="nav-text">进程终止</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程阻塞"><span class="nav-number">4.3.</span> <span class="nav-text">进程阻塞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程唤醒"><span class="nav-number">4.4.</span> <span class="nav-text">进程唤醒</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程挂起"><span class="nav-number">4.5.</span> <span class="nav-text">进程挂起</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程激活"><span class="nav-number">4.6.</span> <span class="nav-text">进程激活</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在最后"><span class="nav-number">5.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">x1aolin</span>
+
+  
+</div>
+
+<!-- 隐藏网站底部的powered By Hexo/强力驱动
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+-->
+
+
+<!-- 添加网站运行时间功能 -->
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/26/2019 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 本站访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
+
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+
+<!--萌萌搞怪 next\source\js\src\crash_cheat.js-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>

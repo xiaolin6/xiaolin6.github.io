@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="算法笔记,C/C++笔记,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="C/C++知识补充">
+<meta name="keywords" content="算法笔记,C&#x2F;C++笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法笔记先导">
+<meta property="og:url" content="http://www.x1aolin.com/算法笔记先导/index.html">
+<meta property="og:site_name" content="x1aolin&#39;s home">
+<meta property="og:description" content="C/C++知识补充">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20190410213245.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20190410213413.png">
+<meta property="og:updated_time" content="2019-04-12T13:24:01.773Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法笔记先导">
+<meta name="twitter:description" content="C/C++知识补充">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20190410213245.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.x1aolin.com/算法笔记先导/">
+
+
+
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入查看密码') !== ''){
+                alert('不知道密码还瞎猜，有能耐去询问博主啊，辣鸡！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title>算法笔记先导 | x1aolin's home</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/xiaolin6" class="github-corner" aria-label="View source on GitHub">
+	<svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+		<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z">
+		</path>
+		<path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm">
+		</path>
+		<path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body">
+		</path>
+	</svg>
+</a>
+<style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">x1aolin's home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">你有多自律，就会有多自由</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            成果
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.x1aolin.com/算法笔记先导/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="x1aolin">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="x1aolin's home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法笔记先导</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-09T10:43:56+08:00">
+                2019-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">算法笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote class="blockquote-center"><view><font size="4">C/C++知识补充</font></view>
+</blockquote>
+<a id="more"></a>
+<blockquote>
+<p>在接下来的一段时间内，我会陆续更新《算法笔记》这本书的算法内容，写在这一是为了分享，二是为了自身的复习与查看。这次的是c/c++一些简要问题的补充，并不是详细的阐述C++的用法，若想要系统的学习C++，建议参考那些专门讲解C/C++的书，或者参考这里：<a href="http://www.runoob.com/cprogramming/c-tutorial.html" target="_blank" rel="noopener">C菜鸟教程</a> 、<a href="http://www.runoob.com/cplusplus/cpp-data-types.html" target="_blank" rel="noopener">C++菜鸟教程</a>。</p>
+</blockquote>
+<h3 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h3><h4 id="整型"><a href="#整型" class="headerlink" title="整型"></a>整型</h4><p>整型可分为短整型<code>short</code>、整型<code>int</code>(也被称为<code>long int</code>)、长整型<code>long long</code>(也被称为<code>long long int</code>)。</p>
+<table>
+<thead>
+<tr>
+<th>整型</th>
+<th>取值范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>-2<sup>31</sup> ~ +(2<sup>31</sup> - 1)</td>
+</tr>
+<tr>
+<td>long long</td>
+<td>-2<sup>63</sup> ~ +(2<sup>63</sup> - 1)</td>
+</tr>
+</tbody>
+</table>
+<p><code>注</code>：如果long long 型赋予大于2<sup>31</sup> - 1的初值，则需要在初值后面加上LL，否则编译会报错。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"%d"</span>,a); <span class="comment">//int类型输出格式</span></span><br><span class="line">print(<span class="string">"%lld"</span>,c); <span class="comment">//long long类型输出格式</span></span><br></pre></td></tr></table></figure>
+<h4 id="浮点型"><a href="#浮点型" class="headerlink" title="浮点型"></a>浮点型</h4><p>单精度 <code>float</code>有效精度只有6~7位。一个浮点数占用32bit，其中1bit作为符号位，8bit作为指数位，23bit作为尾数位；</p>
+<p>双精度 <code>double</code>有效精度有15~16位。一个浮点数占用64bit，其中1bit作为符号位，11bit作为指数位，52bit作为尾数位。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"%f"</span>,c); <span class="comment">//float和double类型输出格式</span></span><br></pre></td></tr></table></figure>
+<h4 id="字符型"><a href="#字符型" class="headerlink" title="字符型"></a>字符型</h4><ol>
+<li>0~9、A~Z、a~z在ASCII码的中编号为48~57、65~90、97~122，其中<strong>小写字母比大写字母的ASSII码值大32。</strong></li>
+<li>在C语言中，字符常量必须用单引号标注。</li>
+<li>转义字符</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\n   <span class="comment">//表示换行</span></span><br><span class="line">\<span class="number">0</span>   <span class="comment">//表示空字符NULL，其ASCII码为0，请注意\0不是空格</span></span><br><span class="line">\t   <span class="comment">//Tab键</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><p>字符串常量</p>
+<p>在c中没有一种单独的一种基本数据类型来存储字符串，只能使用字符数组的形式，字符串常量用双引号标注。</p>
+</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> a[<span class="number">11</span>] = <span class="string">"qwertyuiop"</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%s"</span>,a);</span><br></pre></td></tr></table></figure>
+<h4 id="布尔型"><a href="#布尔型" class="headerlink" title="布尔型"></a>布尔型</h4><p>布尔型在C++中可直接使用，但在C语言中必须添加<code>stdbool.h</code>头文件。</p>
+<p>整型常量在赋值的给布尔型变量时会自动转换为<code>true</code>或者<code>false</code>。其中，“非零”时包括正整数和负整数的，他们都会转化为<code>true</code>；只有“零”转化为<code>fasle</code>，<strong>非零即一</strong>。</p>
+<h3 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h3><p>强制类型转换格式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//格式：(新类型名)变量名</span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> s = <span class="number">23</span>;</span><br><span class="line"><span class="keyword">int</span> a = <span class="number">-23</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d  %d"</span>,(<span class="keyword">bool</span>)s,(<span class="keyword">bool</span>)a);  <span class="comment">//输出结果为： 1  1</span></span><br></pre></td></tr></table></figure>
+<h3 id="符号常量和const常量"><a href="#符号常量和const常量" class="headerlink" title="符号常量和const常量"></a>符号常量和const常量</h3><p>符号常量通俗的讲就是“替换”，即用一个标识符来替代常量，又称为“宏定义”或“宏替换”。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> 标识符 常量   <span class="comment">//末尾不加分号</span></span></span><br></pre></td></tr></table></figure>
+<p>另一种方法是使用<code>const</code>,格式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> 数据类型 变量名 = 常量  <span class="comment">//常量一旦确定其值之后就无法改变</span></span><br></pre></td></tr></table></figure>
+<p>上面两种方法定义常量都可以，但是推荐const写法。</p>
+<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><p>define除了可以定义常量外，其实可以定义任何语句或字段。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> 标识符 任何语句或片段</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ADD(a, b) ((a)+(b))  <span class="comment">//下面就可以用ADD(a, b)了，相当于输入了((a)+(b))</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><p>其他的运算符就不说了，说一下自增自减运算符</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a++   a--	<span class="comment">//先使用再加（减）一</span></span><br><span class="line">++a   --a	<span class="comment">//先加（减）一再使用</span></span><br></pre></td></tr></table></figure>
+<p>条件运算符：C语言中唯一的三目运算符</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A ? B : C ;  <span class="comment">//A判定正确的话执行B指令，否则执行C指令。</span></span><br></pre></td></tr></table></figure>
+<h3 id="scanf-输入函数"><a href="#scanf-输入函数" class="headerlink" title="scanf 输入函数"></a>scanf 输入函数</h3><p>格式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">"格式控制"</span>， 变量地址)；	<span class="comment">//格式</span></span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d：%d"</span>,&amp;n); 			   <span class="comment">//输入时的输入举例：  8：20 （即输入必须和scanf中相同）</span></span><br></pre></td></tr></table></figure>
+<p>下面解释一下<code>&amp;n</code>前面的<code>&amp;</code>。在C语言中，变量在定义之后，就会在计算机内存中分配一块空间给这个变量，该空间在内存中的地址称为变量的地址。为了得到变量的地址，需要在变量前面家一个&amp;（<strong>取地址运算符</strong>）。</p>
+<p><strong>注意：</strong></p>
+<ol>
+<li>数组名称本身就代表了这个数组第一个元素的地址，不需要再加地址运算符；<strong>除了char数组整个输入的情况下不再<code>&amp;</code>之外，其他变量类型都需要加&amp;。</strong></li>
+<li>除了%c外，scanf 对其他格式符的输入是以空白符（空格，Tab键）为结束判断标志的，也就是说，%c是可以读入空格和换行的。</li>
+<li>%s 字符数组是以空格跟换行作为读入结束标志的，即如果你在输入一串字符串时中间有空格，那么这个字符串从空格那个地方就断掉了。</li>
+</ol>
+<h3 id="printf-输出函数"><a href="#printf-输出函数" class="headerlink" title="printf 输出函数"></a>printf 输出函数</h3><p> 正规的就不说了，下面说一下几个**实用的输出格式。</p>
+<h4 id="md"><a href="#md" class="headerlink" title="%md"></a>%md</h4><p>%md可以使不足m位的<code>int</code>型变量以m位进行<strong>右对齐输出</strong>，其中高位用空格补齐；如果变量本身超过m位，则保持原样。</p>
+<h4 id="0md"><a href="#0md" class="headerlink" title="% 0md"></a>% 0md</h4><p>%0md只是在%md中间多加了一个0，和%md的唯一不同点在于，当变量不足m位时，将在前面补足够数量的0而不是空格。</p>
+<h4 id="mf"><a href="#mf" class="headerlink" title="%.mf"></a>%.mf</h4><p>%.mf 可以让浮点数保留m位小数输出，使用的精度为“<a href="https://zhidao.baidu.com/question/394417212762835325.html" target="_blank" rel="noopener">四舍六入五成双</a>”规则，如果是四舍五入，则使用<code>round</code>函数。</p>
+<h4 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">123</span>;</span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">123456</span>;</span><br><span class="line">    <span class="keyword">double</span> c = <span class="number">12.3456</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%5d\n%5d\n%.2f\n"</span>,a,b,c);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%05d\n%05d\n%.3f\n"</span>,a,b,c);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">123</span></span><br><span class="line"><span class="number">123456</span></span><br><span class="line"><span class="number">12.35</span></span><br><span class="line"><span class="number">00123</span></span><br><span class="line"><span class="number">123456</span></span><br><span class="line"><span class="number">12.346</span></span><br></pre></td></tr></table></figure>
+<h3 id="getchar-putchar"><a href="#getchar-putchar" class="headerlink" title="getchar / putchar"></a>getchar / putchar</h3><p>getchar() 用来输入单个字符，putchar()用来输出单个字符，<strong>getchar()可以识别换行符</strong>，所以输入的时候不要随便点击<code>enter</code>键。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;		//这里给出用法，具体结果自己跑吧。</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(getchar())&#123;   <span class="comment">//接收字符</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">'a'</span>:</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"+++++++\n"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"-------\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">char</span> a =<span class="string">'a'</span>;</span><br><span class="line">    <span class="built_in">putchar</span>(a);			<span class="comment">//输出字符</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="常用math函数"><a href="#常用math函数" class="headerlink" title="常用math函数"></a>常用math函数</h3><p>如果要使用，需要在程序开头加上 math.h 头文件。</p>
+<h4 id="fabs-double-x"><a href="#fabs-double-x" class="headerlink" title="fabs(double x)"></a>fabs(double x)</h4><p>该函数用于对 double 型变量取绝对值。</p>
+<h4 id="floor-double-x-与ceil-double-x"><a href="#floor-double-x-与ceil-double-x" class="headerlink" title="floor(double x)与ceil(double x)"></a>floor(double x)与ceil(double x)</h4><p>这两个函数分别用于double型变量的向下取整和向上取整，返回类型为double类型。</p>
+<h4 id="pow-double-x-double-y"><a href="#pow-double-x-double-y" class="headerlink" title="pow(double x,double y)"></a>pow(double x,double y)</h4><p>该函数用于返回x<sup>y</sup>，要求 x 和 y 都是 double 类型。</p>
+<h4 id="sqrt-double-x"><a href="#sqrt-double-x" class="headerlink" title="sqrt(double x)"></a>sqrt(double x)</h4><p>该函数用于返回double 型变量的算术平方根。</p>
+<h4 id="log-double-x"><a href="#log-double-x" class="headerlink" title="log(double x)"></a>log(double x)</h4><p>该函数用于返回double 型变量的<strong>以自然对数为底</strong>的对数，另外，若想求对任意底数的函数，应使用<a href="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20190410203204.png" target="_blank" rel="noopener">换底公式</a>。</p>
+<h4 id="三角函数公式"><a href="#三角函数公式" class="headerlink" title="三角函数公式"></a>三角函数公式</h4><ol>
+<li>sin(double x)    正弦</li>
+<li>cos(double x) </li>
+<li>tan(double x)</li>
+<li>asin(double x)      反正弦</li>
+<li>acos(double x)</li>
+<li>atan(double x)</li>
+</ol>
+<h4 id="round-double-x"><a href="#round-double-x" class="headerlink" title="round(double x)"></a>round(double x)</h4><p>该函数用于将 double 型变量x四舍五入，返回类型也是 double型，<strong>需要用强制类型转换进行取整操作。</strong></p>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//冒泡排序 6个数</span></span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">10</span>]=&#123;<span class="number">2</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">7</span>,<span class="number">3</span>,<span class="number">5</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;<span class="number">6</span>;i++)&#123;  <span class="comment">//n-1轮</span></span><br><span class="line">        <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;<span class="number">6</span>-i;j++)&#123; <span class="comment">//第i轮时前n-i对相比较</span></span><br><span class="line">            <span class="keyword">if</span>(a[j]&gt;a[j+<span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">int</span> temp;</span><br><span class="line">                temp = a[j];</span><br><span class="line">                a[j] = a[j+<span class="number">1</span>];</span><br><span class="line">                a[j+<span class="number">1</span>] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">6</span>;i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d"</span>,a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>本来不想说了，这里插两句，就是C语言的数组<strong>输出必须用循环</strong>，没有一次性输出的函数。</p>
+<p>另外，如果数组大小过大（大概10<sup>6</sup>级别），则需要将其定义在主函数外面，否则会使程序异常退出，原因是函数内部申请的局部变量来自系统栈，允许申请的空间较小；而函数外部申请的局部变量来自静态存储区，允许申请的空间较大。</p>
+<h4 id="memset赋值函数"><a href="#memset赋值函数" class="headerlink" title="memset赋值函数"></a>memset赋值函数</h4><p>使用前请添加头文件：string.h</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">memset</span>(数组名，值，<span class="keyword">sizeof</span>(数组名))； <span class="comment">//对数组中每一个元素赋相同的值</span></span><br></pre></td></tr></table></figure>
+<p>注意：memset是<strong>按字节赋值</strong>，即对每个字节赋相同的值，这点要重点注意，请利用二进制知识进行运用。举例来说，int占用4个字节，所以该函数第二个 <code>值 = 1</code>，结果一定不是1，而是<code>00000001 00000001 00000001 00000001</code>  ；但是-1和0是可以用的，因为0是<code>00000000 00000000 00000000 00000000</code>，所以还是0 ；-1为<code>11111111 11111111 11111111 11111111</code>，所以值还是-1。</p>
+<p>当你看不懂上面时，只需要记住 0 和 -1是可以用的就可以了，输入0或-1就是给整个数组赋值0或-1。</p>
+<h3 id="字符数组"><a href="#字符数组" class="headerlink" title="字符数组"></a>字符数组</h3><p>这里重点谈一下字符数组的几种输入输出方式，并比较一下异同。</p>
+<h4 id="scanf-与printf"><a href="#scanf-与printf" class="headerlink" title="scanf()与printf()"></a>scanf()与printf()</h4><p>scanf()对字符类型有%c和%s两种格式。其中%c对应单个字符，可以存储<strong>空格</strong>和<strong>换行</strong>并将其输出；而%s对应字符串，不可以存储<strong>空格</strong>和<strong>换行</strong>，而是通过空格和换行来作为一个字符串的结束。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> a;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%c"</span>,&amp;a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"----------"</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%c"</span>,a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"----------"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输入回车效果如下：<img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20190410213245.png" alt> 输入空格效果如下：<img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20190410213413.png" alt></p>
+<h4 id="getchar-与putchar"><a href="#getchar-与putchar" class="headerlink" title="getchar()与putchar()"></a>getchar()与putchar()</h4><p>上面已经说过这里就不说了。</p>
+<h4 id="gets-与puts"><a href="#gets-与puts" class="headerlink" title="gets()与puts()"></a>gets()与puts()</h4><p>gets()用于输入一行字符串，并将其存放于一维数组（或二维数组的一维）中；puts()用于将一维数组（或二维数组的一维）在界面上输出，并紧跟一个换行。</p>
+<p><strong>注：</strong> gets识别换行符<code>\n</code>作为输入结束，因此 scanf 完一个字符串后，如果要使用 gets ,需使用 getchar 接收字符串的换行符。怎么理解呢，拿下面的代码跑一下就清楚了。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> str_1[<span class="number">100</span>];</span><br><span class="line">    <span class="keyword">char</span> str_2[<span class="number">100</span>];</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,str_1);</span><br><span class="line">    getchar();  		<span class="comment">//等跑完在注释掉此行试试代码效果就清楚了。</span></span><br><span class="line">    gets(str_2);</span><br><span class="line">    <span class="built_in">puts</span>(str_1);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"--------\n"</span>);</span><br><span class="line">    <span class="built_in">puts</span>(str_2);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="友情提醒"><a href="#友情提醒" class="headerlink" title="友情提醒"></a>友情提醒</h4><ol>
+<li>结束符<code>\0</code> 的ASCII码为0，即空字符NULL，占用一个字符位，因此开字符数组的时候千万要记得字符数组的长度一定要比实际存储字符串的长度多1。</li>
+<li>int 型数组的末尾不需要加\0，仅char 型数组需要。</li>
+<li>如果不是使用 scanf 函数的%s 格式或 gets 函数输入字符串，请一定要在输入的每个字符串末尾加入<code>\0</code>。</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> str[<span class="number">15</span>];</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">        str[i] = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    str[<span class="number">3</span>] = <span class="string">'\0'</span>;		<span class="comment">//！！！重点！！！一定要添加</span></span><br><span class="line">    <span class="built_in">puts</span>(str);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="string-h"><a href="#string-h" class="headerlink" title="string.h"></a>string.h</h3><p>该头文件包含了许多用于字符数组的函数，下面将做一些简要介绍。</p>
+<h4 id="strlen"><a href="#strlen" class="headerlink" title="strlen()"></a>strlen()</h4><p>strlen函数可以得到字符数组中第一个<code>\0</code>前的字符的个数，其格式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strlen</span>(str);  <span class="comment">//其中 str 为字符数组</span></span><br></pre></td></tr></table></figure>
+<h4 id="strcmp"><a href="#strcmp" class="headerlink" title="strcmp()"></a>strcmp()</h4><p>该函数可以返回两个字符串大小的比较结果，比较原则是按照字典序，格式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strcmp</span>(str1,str2);  <span class="comment">//其中str1、str2都是字符数组</span></span><br></pre></td></tr></table></figure>
+<h4 id="strcpy"><a href="#strcpy" class="headerlink" title="strcpy()"></a>strcpy()</h4><p>strcpy函数可以把一个字符串复制给另一个字符串，格式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strcpy</span>(str1,str2);  <span class="comment">//其中str1、str2都是字符数组</span></span><br></pre></td></tr></table></figure>
+<h4 id="strcat"><a href="#strcat" class="headerlink" title="strcat()"></a>strcat()</h4><p>strcat 函数可以把一个字符串接到另一个字符串后面，其格式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strcat</span>(str1,str2);  <span class="comment">//其中str1、str2都是字符数组 str1 = str1 + str2</span></span><br></pre></td></tr></table></figure>
+<h3 id="sscanf-与sprintf"><a href="#sscanf-与sprintf" class="headerlink" title="sscanf()与sprintf()"></a>sscanf()与sprintf()</h3><p>sscanf() 和 sprintf() 是处理字符串问题的利器，大家可以将其理解为 string + scanf() 和 string + printf()。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> str[<span class="number">1000</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="built_in">sscanf</span>(str,<span class="string">"%d"</span>,&amp;n);  <span class="comment">//把字符数组str中的内容以"%d"的格式写到n中。---&gt;</span></span><br><span class="line"><span class="built_in">sprintf</span>(str,<span class="string">"%d"</span>,n);  <span class="comment">//把n以"%d"的格式写到str数组中。  &lt;---</span></span><br></pre></td></tr></table></figure>
+<p>如果你感觉有点蒙的话，那我说scanf() and printf() 你总会熟悉吧，其实，他们可以这样写：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(screen,<span class="string">"%d"</span>,&amp;n);  <span class="comment">// == scanf("%d",&amp;n)</span></span><br><span class="line"><span class="built_in">printf</span>(screen,<span class="string">"%d"</span>,n);  <span class="comment">// == printf("%d",n)</span></span><br></pre></td></tr></table></figure>
+<p>这样会不会清晰一点了呢？ 上面做出的改变只是把输出到屏幕改为了输出到数组而已。</p>
+<p>注： 这里的数组仅限<strong>字符数组</strong>。</p>
+<p>举个例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = <span class="number">123</span>;</span><br><span class="line">    <span class="keyword">char</span> str[<span class="number">15</span>];</span><br><span class="line">    gets(str);</span><br><span class="line">    <span class="built_in">sscanf</span>(str,<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,n);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>打印结果是 你输入什么就打印什么，然后不输入则打印默认值123。</p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>以数组作为参数时，参数中第一维不需要填写长度(如果是二维数组，那么第二维需要填写长度)。另外，<strong>数组作为参数时，在函数中对数组元素的修改就等同于对原数组元素的修改</strong>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">char</span> b[][<span class="number">7</span>])</span></span>&#123; <span class="comment">//这里的7为b数组的长度</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="递归调用"><a href="#递归调用" class="headerlink" title="递归调用"></a>递归调用</h4><p>递归我已经懵逼好久好久了，今天尽量给大家介绍清楚。</p>
+<p>递归的关键有两个：</p>
+<p>（1）递归的结束条件</p>
+<p>（2）递归最后一层和其他有关系的层的关系怎样用非递归函数来表达</p>
+<p>比如：斐波纳契亚数列，当n==1和n==2的时候f(n)=1，这就是递归的终止条件。给了终止条件，计算机才能进行求解子问题并回溯，最终求出f(n)。</p>
+<p>算了，不写了，如果你们想看的话，看这位大佬写的吧：<a href="https://blog.csdn.net/qq_41705423/article/details/82025409" target="_blank" rel="noopener">汉诺塔问题—递归</a>，我感觉写的很清晰了，如果还是不懂，看看这个也不错：<a href="https://blog.csdn.net/gui951753/article/details/79538799" target="_blank" rel="noopener">通过汉诺塔深入理解递归流程</a>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">char</span> a,<span class="keyword">char</span> b)</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%c--&gt;%c\n"</span>,a,b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">char</span> x,<span class="keyword">char</span> y,<span class="keyword">char</span> z)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">0</span>)&#123;           <span class="comment">//结束条件</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    change(n<span class="number">-1</span>,x,z,y);  </span><br><span class="line">    print(x,z);         </span><br><span class="line">    change(n<span class="number">-1</span>,y,x,z);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    change(n,<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="指针变量作为函数参数"><a href="#指针变量作为函数参数" class="headerlink" title="指针变量作为函数参数"></a>指针变量作为函数参数</h4><p>这种情况视为把变量的地址传入函数，如果在函数中对这个地址中的元素进行改变，原先的数据确实会被改变。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">1</span>,b=<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> *p1,*p2;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,a,b);</span><br><span class="line">    p1 = &amp;a;</span><br><span class="line">    p2 = &amp;b;</span><br><span class="line">    swap(p1,p2);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d %d"</span>,a,b);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> *q,<span class="keyword">int</span> *w)</span></span>&#123;  <span class="comment">//直接修改原件的内容</span></span><br><span class="line">    <span class="keyword">int</span> temp = *q;</span><br><span class="line">    *q = *w;</span><br><span class="line">    *w = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：<strong>只有在获得地址的情况下对元素进行操作，才能真正的修改变量</strong>。</p>
+<h3 id="引用（C-语法）"><a href="#引用（C-语法）" class="headerlink" title="引用（C++语法）"></a>引用（C++语法）</h3><p>除了上面的指针可以修改传入参数的值以外，<strong>引用</strong>也是可以的。引用不产生副本，只是给原变量起了一个别名，因此，对引用变量的操作就是对原变量的操作，用法如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> &amp;q)</span></span>&#123;</span><br><span class="line">   q = <span class="number">9</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">1</span>;</span><br><span class="line">    change(a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;  <span class="comment">//结果为9</span></span><br></pre></td></tr></table></figure>
+<p>注意： 因为引用是产生变量的别名，因此常量不可使用引用。</p>
+<h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><p>定义一个结构体基本格式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Name</span>&#123;</span>		<span class="comment">//name为类型名</span></span><br><span class="line">    <span class="comment">//一些基本的数据结构或者定义的数据类型</span></span><br><span class="line">&#125;；</span><br></pre></td></tr></table></figure>
+<p>定义分为直接定义和按照基本数据类型进行定义，不懂自查。另外，结构体可以定义除了自己本身之外的所有数据类型，当然也就可以定义自身类型的指针变量。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	node n; <span class="comment">//xxxxxxxxxxx不可以这样定义</span></span><br><span class="line">	node *next;  <span class="comment">//√√√可以这样定义</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="结构体初始化"><a href="#结构体初始化" class="headerlink" title="结构体初始化"></a>结构体初始化</h4><p>逐一赋值什么的就不说了，这里提一下<strong>构造函数</strong>的事情。构造函数不需要写返回类型，且函数名与结构体名称相同。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stuInfo</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">char</span> gender;</span><br><span class="line">    stuInfo(<span class="keyword">int</span> _id, <span class="keyword">char</span> _gender)&#123;		<span class="comment">// 111</span></span><br><span class="line">        id = _id;</span><br><span class="line">        gender = _gender;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//当然，构造函数也可以简化为一行（把下面的代码替换到上面的 111 处即可）</span></span><br><span class="line">stuInfo(<span class="keyword">int</span> _id, <span class="keyword">char</span> _gender):id(_id), gender(_gender)&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>这样在定义结构体变量就可以进行初始化了</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stuInfo stu = stuInfo(<span class="number">12315</span>,<span class="string">'M'</span>);</span><br></pre></td></tr></table></figure>
+<p>注： <strong>如果自己重新定义了构造函数，则不能不经初始化就定义结构体变量。</strong>一次可定义多个参数不同的构造函数，会根据不同条件进行触发。</p>
+<h3 id="补充-1"><a href="#补充-1" class="headerlink" title="补充"></a>补充</h3><ol>
+<li>浮点数经过大量计算后存储并不准确，所以在进行浮点数比较的时候要多加注意。</li>
+<li>圆周率Π不准确就写3.14，准确的话写 acos(-1)，因为cos(Π) = -1。</li>
+</ol>
+<div style="text-align:right">先这样吧，等以后想到了再补充，2016/4/12。</div>
+      
+    </div>
+    
+    
+    
+
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的每一份支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/mm_reward_qrcode_1554297453387.png" alt="x1aolin 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/1554297520653.jpg" alt="x1aolin 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    x1aolin
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.x1aolin.com/算法笔记先导/" title="算法笔记先导">http://www.x1aolin.com/算法笔记先导/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+
+  
+	<div>
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:16px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	</div>
+  
+
+
+
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法笔记/" rel="tag"><i class="fa fa-tag"></i>算法笔记</a>
+          
+            <a href="/tags/C-C-笔记/" rel="tag"><i class="fa fa-tag"></i>C/C++笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/javascript从零到入门2/" rel="next" title="javascript从零到入门2">
+                <i class="fa fa-chevron-left"></i> javascript从零到入门2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/B1016/" rel="prev" title="B1016.部分A+B">
+                B1016.部分A+B <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzQwMy8xOTk0NA=="></div>
+    </div>
+
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="x1aolin">
+            
+              <p class="site-author-name" itemprop="name">x1aolin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/xiaolin6" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/00feeb0168de" target="_blank" title="简  书">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>简  书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/6264878118" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://me.csdn.net/weixin_38365166" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wugenqiang.github.io/" title="Enjoytoshare的博客" target="_blank">Enjoytoshare的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://fanyi.baidu.com/" title="百度翻译" target="_blank">百度翻译</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.baidu.com/" title="百度一下，你就知道" target="_blank">百度一下，你就知道</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量类型"><span class="nav-number">1.</span> <span class="nav-text">变量类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#整型"><span class="nav-number">1.1.</span> <span class="nav-text">整型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浮点型"><span class="nav-number">1.2.</span> <span class="nav-text">浮点型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符型"><span class="nav-number">1.3.</span> <span class="nav-text">字符型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#布尔型"><span class="nav-number">1.4.</span> <span class="nav-text">布尔型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强制类型转换"><span class="nav-number">2.</span> <span class="nav-text">强制类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#符号常量和const常量"><span class="nav-number">3.</span> <span class="nav-text">符号常量和const常量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#补充"><span class="nav-number">3.1.</span> <span class="nav-text">补充</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算符"><span class="nav-number">4.</span> <span class="nav-text">运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scanf-输入函数"><span class="nav-number">5.</span> <span class="nav-text">scanf 输入函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#printf-输出函数"><span class="nav-number">6.</span> <span class="nav-text">printf 输出函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#md"><span class="nav-number">6.1.</span> <span class="nav-text">%md</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0md"><span class="nav-number">6.2.</span> <span class="nav-text">% 0md</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mf"><span class="nav-number">6.3.</span> <span class="nav-text">%.mf</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码演示"><span class="nav-number">6.4.</span> <span class="nav-text">代码演示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getchar-putchar"><span class="nav-number">7.</span> <span class="nav-text">getchar / putchar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用math函数"><span class="nav-number">8.</span> <span class="nav-text">常用math函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fabs-double-x"><span class="nav-number">8.1.</span> <span class="nav-text">fabs(double x)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#floor-double-x-与ceil-double-x"><span class="nav-number">8.2.</span> <span class="nav-text">floor(double x)与ceil(double x)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pow-double-x-double-y"><span class="nav-number">8.3.</span> <span class="nav-text">pow(double x,double y)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sqrt-double-x"><span class="nav-number">8.4.</span> <span class="nav-text">sqrt(double x)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#log-double-x"><span class="nav-number">8.5.</span> <span class="nav-text">log(double x)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三角函数公式"><span class="nav-number">8.6.</span> <span class="nav-text">三角函数公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#round-double-x"><span class="nav-number">8.7.</span> <span class="nav-text">round(double x)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#冒泡排序"><span class="nav-number">9.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">10.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#memset赋值函数"><span class="nav-number">10.1.</span> <span class="nav-text">memset赋值函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符数组"><span class="nav-number">11.</span> <span class="nav-text">字符数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#scanf-与printf"><span class="nav-number">11.1.</span> <span class="nav-text">scanf()与printf()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getchar-与putchar"><span class="nav-number">11.2.</span> <span class="nav-text">getchar()与putchar()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gets-与puts"><span class="nav-number">11.3.</span> <span class="nav-text">gets()与puts()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#友情提醒"><span class="nav-number">11.4.</span> <span class="nav-text">友情提醒</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#string-h"><span class="nav-number">12.</span> <span class="nav-text">string.h</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#strlen"><span class="nav-number">12.1.</span> <span class="nav-text">strlen()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strcmp"><span class="nav-number">12.2.</span> <span class="nav-text">strcmp()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strcpy"><span class="nav-number">12.3.</span> <span class="nav-text">strcpy()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strcat"><span class="nav-number">12.4.</span> <span class="nav-text">strcat()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sscanf-与sprintf"><span class="nav-number">13.</span> <span class="nav-text">sscanf()与sprintf()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">14.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#递归调用"><span class="nav-number">14.1.</span> <span class="nav-text">递归调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#指针变量作为函数参数"><span class="nav-number">14.2.</span> <span class="nav-text">指针变量作为函数参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用（C-语法）"><span class="nav-number">15.</span> <span class="nav-text">引用（C++语法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构体"><span class="nav-number">16.</span> <span class="nav-text">结构体</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#结构体初始化"><span class="nav-number">16.1.</span> <span class="nav-text">结构体初始化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充-1"><span class="nav-number">17.</span> <span class="nav-text">补充</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">x1aolin</span>
+
+  
+</div>
+
+<!-- 隐藏网站底部的powered By Hexo/强力驱动
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+-->
+
+
+<!-- 添加网站运行时间功能 -->
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/26/2019 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 本站访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
+
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+
+<!--萌萌搞怪 next\source\js\src\crash_cheat.js-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
