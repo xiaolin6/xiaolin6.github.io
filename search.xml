@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[数据结构-线性表]]></title>
+    <url>%2F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%BA%BF%E6%80%A7%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[线性表]]></content>
+      <categories>
+        <category>数据结构基础</category>
+      </categories>
+      <tags>
+        <tag>线性表</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[数据结构基础0]]></title>
-    <url>%2F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%800%2F</url>
-    <content type="text"></content>
+    <url>%2F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%801%2F</url>
+    <content type="text"><![CDATA[树与二叉树]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>概论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[数据结构基础]]></title>
+    <url>%2F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80%2F</url>
+    <content type="text"><![CDATA[从今天起，我就开始复习数据结构部分，两年前因为自己的任性，数据结构部分没能很好的完成。这次希望自己能够使用Java来还原这些基础的数据结构，也算是弥补过去犯下的一些错误吧。加油！ 下面说一下接下来这个系列能够完成的数据结构： 线性表：顺序表 + 链表 栈和队列：注意它们的区别 串 数和二叉树 图 查找 排序 emmmmm，如果要素过多的话我会分两批。]]></content>
+      <categories>
+        <category>数据结构基础</category>
+      </categories>
+      <tags>
+        <tag>概论</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[JDBC数据库操作技术1]]></title>
