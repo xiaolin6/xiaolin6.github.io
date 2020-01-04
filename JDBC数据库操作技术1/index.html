@@ -85,7 +85,7 @@
 
 
 
-  <meta name="keywords" content="增删改,主键,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -96,18 +96,17 @@
 
 
 
-<meta name="description" content="Oracle数据库之增加删除修改&amp;amp;数据备份">
-<meta name="keywords" content="增删改,主键">
+<meta name="description" content="通过数据库管理系统，完成对单表中的数据简单查询">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Oracle基础知识3">
-<meta property="og:url" content="http://www.x1aolin.com/Oracle基础知识3/index.html">
+<meta property="og:title" content="JDBC数据库操作技术1">
+<meta property="og:url" content="http://www.x1aolin.com/JDBC数据库操作技术1/index.html">
 <meta property="og:site_name" content="x1aolin&#39;s home">
-<meta property="og:description" content="Oracle数据库之增加删除修改&amp;amp;数据备份">
+<meta property="og:description" content="通过数据库管理系统，完成对单表中的数据简单查询">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-19T15:56:36.683Z">
+<meta property="og:updated_time" content="2019-12-24T12:39:39.934Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Oracle基础知识3">
-<meta name="twitter:description" content="Oracle数据库之增加删除修改&amp;amp;数据备份">
+<meta name="twitter:title" content="JDBC数据库操作技术1">
+<meta name="twitter:description" content="通过数据库管理系统，完成对单表中的数据简单查询">
 
 
 
@@ -137,7 +136,7 @@
 
 
 
-  <link rel="canonical" href="http://www.x1aolin.com/Oracle基础知识3/">
+  <link rel="canonical" href="http://www.x1aolin.com/JDBC数据库操作技术1/">
 
 
 
@@ -154,7 +153,7 @@
     })();
 </script>
 
-  <title>Oracle基础知识3 | x1aolin's home</title>
+  <title>JDBC数据库操作技术1 | x1aolin's home</title>
   
 
 
@@ -335,7 +334,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.x1aolin.com/Oracle基础知识3/">
+    <link itemprop="mainEntityOfPage" href="http://www.x1aolin.com/JDBC数据库操作技术1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="x1aolin">
@@ -352,7 +351,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Oracle基础知识3</h1>
+          <h1 class="post-title" itemprop="name headline">JDBC数据库操作技术1</h1>
         
 
         <div class="post-meta">
@@ -364,8 +363,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-19T17:59:41+08:00">
-                2019-12-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-23T17:02:43+08:00">
+                2019-12-23
               </time>
             
 
@@ -429,33 +428,110 @@
       
 
       
-        <blockquote class="blockquote-center"><p>Oracle数据库之增加删除修改&amp;数据备份</p>
+        <blockquote class="blockquote-center"><p>通过数据库管理系统，完成对单表中的数据简单查询</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="数据库的增删改"><a href="#数据库的增删改" class="headerlink" title="数据库的增删改"></a>数据库的增删改</h2><h3 id="增加数据"><a href="#增加数据" class="headerlink" title="增加数据"></a>增加数据</h3><p>增加删除修改的数据SQL语句执行完毕后，不会立马进行数据的写入，还需要<strong>手动对数据进行提交</strong>，如果数据有问题，还可以进行回滚。避免了大量的误操作对数据库造成的影响，这提高了数据库的安全性。</p>
-<p>主键：非空唯一，主键唯一的标识了一条数据。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> 表名(字段名,字段名,...)<span class="keyword">values</span>(值<span class="number">1</span>, 值<span class="number">2</span>, 值<span class="number">3.</span>..);</span><br></pre></td></tr></table></figure>
-<p>注意：</p>
+<h2 id="Java的数据获取方式"><a href="#Java的数据获取方式" class="headerlink" title="Java的数据获取方式"></a>Java的数据获取方式</h2><ul>
+<li>直接声明变量并赋值</li>
+<li>Scanner类控制台输入</li>
+<li>IO流（将硬盘存储中的数据读取到java中）</li>
+<li>scoket + io</li>
+<li>从数据库中获取</li>
+</ul>
+<h2 id="JDBC概念"><a href="#JDBC概念" class="headerlink" title="JDBC概念"></a>JDBC概念</h2><p>因为Java和数据库的沟通不一致，我们就没有办法用Java来进行数据库的相关操作，所以为了解决这个问题，<strong>数据库厂商对外提供了java支持的接口</strong>，而我们只要重写这些接口就可以了。事实上，数据库厂商对外提供了数据库操作的驱动包（翻译官），我们在使用时，只需要调用该驱动包（jar）即可。</p>
+<p>JDBC其实就是数据厂商对外提供的能够对自己的数据进行操作的<strong>驱动包</strong>也就是<code>jar</code>文件。</p>
+<h2 id="JDBC基本使用流程"><a href="#JDBC基本使用流程" class="headerlink" title="JDBC基本使用流程"></a>JDBC基本使用流程</h2><ul>
+<li><p><strong>导入jar包</strong></p>
 <ul>
-<li><p>主键必须给值，允许非空字段可以不给值，这取决于创建表时候的约束条件。</p>
+<li>导入ojdbc6.jar，在项目上创建一个空的文件夹，将该<code>.jar</code>文件放入并点击右键 builder path –&gt; add to builder path。</li>
+</ul>
 </li>
-<li><p>插入语句表名后跟的字段名为要赋值的字段，值和字段必须要一一对应。</p>
-</li>
-<li><p>字段名包括括号全部省略时要给出全字段的值，即所有列都要给出。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> 表名 <span class="keyword">values</span>(值<span class="number">1</span>, 值<span class="number">2</span>, 值<span class="number">3.</span>..);</span><br></pre></td></tr></table></figure>
+<li><p><strong>加载驱动</strong></p>
+<ul>
+<li><p>对于oracle数据库</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class.forName(<span class="string">"oracle.jdbc.driver.OracleDriver"</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>初始化加载JDBC类到Java虚拟机。</li>
+<li>使用ojdbc6.jar包时，该句可以省略不写。</li>
+</ul>
 </li>
 </ul>
-<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><p>删除数据，都是以记录为单位的，所以最小都是删除一整条记录。格式如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> 表名;  <span class="comment">--删除表中的所有记录，表还在，为空表</span></span><br><span class="line"><span class="keyword">truncate</span> <span class="keyword">table</span> 表名;  <span class="comment">--效果同上，但是效率高于delete</span></span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> 表名 <span class="keyword">where</span> 条件; <span class="comment">--删除指定数据</span></span><br></pre></td></tr></table></figure>
-<p>因此，若想要清空某个表，推荐使用<code>truncate</code>关键字。</p>
-<h3 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h3><p>格式如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> 表名 <span class="keyword">set</span> 字段名=新的值,字段名=新的值,...; <span class="comment">--将字段的值全部改为新的值</span></span><br><span class="line"><span class="keyword">update</span> 表名 <span class="keyword">set</span> 字段名=新的值,字段名=新的值,... <span class="keyword">where</span> 条件;</span><br></pre></td></tr></table></figure>
-<h2 id="数据备份"><a href="#数据备份" class="headerlink" title="数据备份"></a>数据备份</h2><h3 id="表级别备份"><a href="#表级别备份" class="headerlink" title="表级别备份"></a>表级别备份</h3><p>备份只会备份表结构和表的数据，约束不会备份。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> 新的表名 <span class="keyword">as</span> <span class="keyword">select</span> * <span class="keyword">from</span> 备份表名;  <span class="comment">--全部备份</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> 新的表名 <span class="keyword">as</span> <span class="keyword">select</span> 字段名,字段名,... <span class="keyword">from</span> 备份表名;  <span class="comment">--部分备份,因为约束条件不会备份，所以字段名可不包括主码</span></span><br></pre></td></tr></table></figure>
-<h3 id="数据整体备份"><a href="#数据整体备份" class="headerlink" title="数据整体备份"></a>数据整体备份</h3><p>查询语句结果的字段数据必须和插入表名的字段数量一致，类型也要一致。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> 备份表名 <span class="keyword">select</span> * <span class="keyword">from</span> 表名;</span><br></pre></td></tr></table></figure>
-<p>实际应用的话，例子如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> deptBak <span class="keyword">select</span> * <span class="keyword">from</span> dept;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>获取数据库连接对象</strong>(连接指定的数据库并返回来连接对象)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// url: 表示要连接的数据地址</span></span><br><span class="line"><span class="comment">// username: 数据库的用户名</span></span><br><span class="line"><span class="comment">// password: 数据库的密码</span></span><br><span class="line">Connection conn = DriverManager.getConnection(url,username,password); <span class="comment">//字符串形式</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>创建sql命令对象</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Statement stmt = conn.createStatement();</span><br></pre></td></tr></table></figure>
+<p>作用：编译，发送SQL命令</p>
+</li>
+<li><p><strong>创建sql语句命令</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String sql = <span class="string">"sql语句"</span>;  <span class="comment">//sql语句最后不需要添加分号;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>执行sql命令</strong></p>
+<ul>
+<li><p>新增sql命令</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = stmt.executeUpdate(sql);  <span class="comment">//sql没有执行成功 返回-1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>返回值</p>
+<ul>
+<li>返回值小于0，表示未执行成功。</li>
+<li>返回值大于0，表示成功修改的数据量。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>关闭资源</strong></p>
+</li>
+</ul>
+<p>下面给出一个最简单代码示例（该代码可用来完成对数据库的<strong>增加删除修改</strong>操作）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.x1aolin.insert;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.DriverManager;</span><br><span class="line"><span class="keyword">import</span> java.sql.SQLException;</span><br><span class="line"><span class="keyword">import</span> java.sql.Statement;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestInsert</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		<span class="comment">//声明jdbc变量</span></span><br><span class="line">		Connection conn = <span class="keyword">null</span>;</span><br><span class="line">		Statement stmt = <span class="keyword">null</span>;</span><br><span class="line">		<span class="comment">//声明JDBC参数</span></span><br><span class="line">		String dirver = <span class="string">"oracle.jdbc.driver.OracleDriver"</span>;</span><br><span class="line">		String url = <span class="string">"jdbc:oracle:thin:@localhost:1521:XE"</span>;</span><br><span class="line">		String username = <span class="string">"scott"</span>;</span><br><span class="line">		String password = <span class="string">"x1aolin"</span>;  				</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//1 加载驱动类（运用反射的相关知识，目的是为了进内存）</span></span><br><span class="line">			Class.forName(dirver);</span><br><span class="line">			<span class="comment">//2 获取数据库连接对象（连接指定的数据库）</span></span><br><span class="line">			conn = DriverManager.getConnection(url, username, password);</span><br><span class="line">			<span class="comment">//3 获取SQL命令对象（编译和发送sql命令给数据库）</span></span><br><span class="line">			stmt = conn.createStatement();  </span><br><span class="line">			<span class="comment">//4 创建sql命令</span></span><br><span class="line">			String sql = <span class="string">"insert into city(cid,cname) values(6,'LINYI')"</span>; </span><br><span class="line">			<span class="comment">//5 执行sql命令</span></span><br><span class="line">			<span class="keyword">int</span> i = stmt.executeUpdate(sql);  </span><br><span class="line">			System.out.println(<span class="string">"执行结果："</span>+ i);</span><br><span class="line">			</span><br><span class="line">		&#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">			<span class="comment">//6 关闭资源 关闭资源的时候尽量分开try-catch</span></span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				stmt.close();</span><br><span class="line">			&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				conn.close();</span><br><span class="line">			&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="JDBC事务"><a href="#JDBC事务" class="headerlink" title="JDBC事务"></a>JDBC事务</h3><p><strong>事务：</strong>一个事件的完成需要几个子操作的联合完成，只要有一个子操作执行失败，则数据回滚到原始状态，都成功执行则提交数据。</p>
+<p>JDBC事务是自动提交的，当我们需要达到上面的效果时，就需要更改JDBC为手动提交命令。</p>
+<p>只有增加删除修改才会涉及到事务，这也是为了保持表中数据的真实性，而且只<strong>要涉及到增删改，必须要使用手动提交、回滚的策略。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.x1aolin.insert;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.DriverManager;</span><br><span class="line"><span class="keyword">import</span> java.sql.SQLException;</span><br><span class="line"><span class="keyword">import</span> java.sql.Statement;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestInsert</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		<span class="comment">//声明jdbc变量</span></span><br><span class="line">		Connection conn = <span class="keyword">null</span>;</span><br><span class="line">		Statement stmt = <span class="keyword">null</span>;</span><br><span class="line">		<span class="comment">//声明JDBC参数</span></span><br><span class="line">		String dirver = <span class="string">"oracle.jdbc.driver.OracleDriver"</span>;</span><br><span class="line">		String url = <span class="string">"jdbc:oracle:thin:@localhost:1521:XE"</span>;</span><br><span class="line">		String username = <span class="string">"scott"</span>;</span><br><span class="line">		String password = <span class="string">"peijialin"</span>;  </span><br><span class="line">		<span class="comment">//1 加载驱动类（运用反射的相关知识，目的是为了进内存）		</span></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			Class.forName(dirver);</span><br><span class="line">			<span class="comment">//2 获取数据库连接对象（连接指定的数据库）</span></span><br><span class="line">			conn = DriverManager.getConnection(url, username, password);</span><br><span class="line">			<span class="comment">//设置事务为手动提交</span></span><br><span class="line">			conn.setAutoCommit(<span class="keyword">false</span>);</span><br><span class="line">			<span class="comment">//3 获取SQL命令对象（编译和发送sql命令给数据库）</span></span><br><span class="line">			stmt = conn.createStatement();  </span><br><span class="line">			<span class="comment">//4 创建sql命令</span></span><br><span class="line">			String sql1 = <span class="string">"insert into city(cid,cname) values(7,'LINYI')"</span>; </span><br><span class="line">			String sql2 = <span class="string">"insert into city(cid,cname) values(8,'LINYI')"</span>;</span><br><span class="line">			<span class="comment">//5 执行sql命令</span></span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				<span class="keyword">int</span> i1 = stmt.executeUpdate(sql1);</span><br><span class="line">				<span class="keyword">int</span> i2 = stmt.executeUpdate(sql2); </span><br><span class="line">				System.out.println(i1+<span class="string">"---"</span>+ i2);</span><br><span class="line">				conn.commit();				</span><br><span class="line">			&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">				System.out.println(<span class="string">"rollback"</span>);</span><br><span class="line">				conn.rollback();</span><br><span class="line">			&#125;						</span><br><span class="line">		&#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">			<span class="comment">//6 关闭资源 关闭资源的时候尽量分开try-catch</span></span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				stmt.close();</span><br><span class="line">			&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				conn.close();</span><br><span class="line">			&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="JDBC完成查询"><a href="#JDBC完成查询" class="headerlink" title="JDBC完成查询"></a>JDBC完成查询</h3><p>修改数据和上面的增删改数据的区别并不在于对于数据库的连接，而是在于当我们连接成功并执行完相应的sql语句的时候，数据库返回给我们的数据不同。</p>
+<p>显而易见，查询时从数据库返回的数据量比增删改要多得多，我们应当考虑“对象a”来存储二维表中数据的值：对象的属性对应于我们要查询的数据表的值。</p>
+<p>另外，当我们从数据库查询数据时，当执行完相关命令，会返回存储查询到的数据的对象（ResultSet）,该对象是基于指针进行数据存储的，当然，以元组为单位。基于指针就会带来一个问题，就是我们对按序号查询的时候很不方便，所以我们就考虑把一个元组为单位的”对象a“，存储到ArrayList集合中，之后就方便后续数据处理了。下面给出部分重点代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ResultSet rs = stmt.executeQuery(sql);  <span class="comment">//这之前的代码就是数据库连接代码，同上</span></span><br><span class="line"><span class="keyword">while</span>(rs.next())&#123;</span><br><span class="line">    City ct = <span class="keyword">new</span> City();</span><br><span class="line">    ct.setCid(rs.getInt(<span class="string">"cid"</span>));</span><br><span class="line">    ct.setCname(rs.getString(<span class="string">"cname"</span>));</span><br><span class="line">    ct.setCdesc(rs.getString(<span class="string">"cdesc"</span>));</span><br><span class="line">    <span class="comment">//将对象存储到ArrayList中	</span></span><br><span class="line">    list.add(ct);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="JDBC的MVC思想"><a href="#JDBC的MVC思想" class="headerlink" title="JDBC的MVC思想"></a>JDBC的MVC思想</h3><h2 id="JDBC封装"><a href="#JDBC封装" class="headerlink" title="JDBC封装"></a>JDBC封装</h2><h3 id="properties文件"><a href="#properties文件" class="headerlink" title="properties文件"></a>properties文件</h3><p>使用将数据库的相关信息填入<code>properties</code>属性配置文件，然后封装工具类进行获取的方法，来在不重启的情况下完成对代码参数的修改。</p>
+<p><code>properties</code>文件是专门用来存储属性配置的文件，格式要求必须是键值对，以<code>=</code>隔开，一行一组键值对，并且不能够使用分号结尾。</p>
+<p>可以使用Properties对象来进行读取该文件的内容。</p>
+<p>使用：</p>
+<ul>
+<li><p>创建java工具类</p>
+</li>
+<li><p>创建jdbc参数静态变量</p>
+</li>
+<li><p>创建静态代码块</p>
+<ul>
+<li>创建properties对象</li>
+<li>获取properties文件流对象</li>
+<li>加载属性配置文件</li>
+<li>获取jdbc参数并赋值给静态变量</li>
+<li>加载驱动</li>
+</ul>
+</li>
+<li>创建获取Connection对象的静态方法</li>
+<li>创建获取PreparedStatement对象的静态方法</li>
+<li>创建获取Statement对象的静态方法</li>
+<li>创建关闭资源静态方法</li>
+<li>创建增删改的封装方法–executDML</li>
+</ul>
+<p>为了提高代码的可阅读性和便于维护，我们需要将功能代码进行封装，而不是一股脑的全部放到main方法中。这样也可以有效的防止代码冗余，单独抽取一个类进行相关功能的定义。而且为了代码条理更加清晰，我们单独创建两个包：</p>
+<ul>
+<li><code>com.x1aolin.dao</code> 前缀无所谓  存放接口类</li>
+<li><code>com.x1aolin.daoImpl</code> 存放与接口相关的实现类</li>
+</ul>
+<h2 id="数据库开发步骤"><a href="#数据库开发步骤" class="headerlink" title="数据库开发步骤"></a>数据库开发步骤</h2><ul>
+<li>业务需求分析</li>
+<li>数据库设计</li>
+<li><code>sql</code>设计</li>
+<li>数据库操作功能类实现</li>
+<li>业务逻辑代码实现0</li>
+<li>联合测试</li>
+<li>上线测试</li>
+<li>维护   </li>
+</ul>
 
       
     </div>
@@ -506,7 +582,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://www.x1aolin.com/Oracle基础知识3/" title="Oracle基础知识3">http://www.x1aolin.com/Oracle基础知识3/</a>
+    <a href="http://www.x1aolin.com/JDBC数据库操作技术1/" title="JDBC数据库操作技术1">http://www.x1aolin.com/JDBC数据库操作技术1/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -539,14 +615,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/增删改/" rel="tag"><i class="fa fa-tag"></i>增删改</a>
-          
-            <a href="/tags/主键/" rel="tag"><i class="fa fa-tag"></i>主键</a>
-          
-        </div>
-      
 
       
       
@@ -556,8 +624,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Oracle基础知识2/" rel="next" title="Oracle基础知识2">
-                <i class="fa fa-chevron-left"></i> Oracle基础知识2
+              <a href="/Oracle基础知识6/" rel="next" title="Oracle基础知识6">
+                <i class="fa fa-chevron-left"></i> Oracle基础知识6
               </a>
             
           </div>
@@ -566,8 +634,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Oracle基础知识4/" rel="prev" title="Oracle基础知识4">
-                Oracle基础知识4 <i class="fa fa-chevron-right"></i>
+              <a href="/数据结构基础0/" rel="prev" title="数据结构基础0">
+                数据结构基础0 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -756,7 +824,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库的增删改"><span class="nav-number">1.</span> <span class="nav-text">数据库的增删改</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#增加数据"><span class="nav-number">1.1.</span> <span class="nav-text">增加数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除数据"><span class="nav-number">1.2.</span> <span class="nav-text">删除数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新数据"><span class="nav-number">1.3.</span> <span class="nav-text">更新数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据备份"><span class="nav-number">2.</span> <span class="nav-text">数据备份</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#表级别备份"><span class="nav-number">2.1.</span> <span class="nav-text">表级别备份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据整体备份"><span class="nav-number">2.2.</span> <span class="nav-text">数据整体备份</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java的数据获取方式"><span class="nav-number">1.</span> <span class="nav-text">Java的数据获取方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDBC概念"><span class="nav-number">2.</span> <span class="nav-text">JDBC概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDBC基本使用流程"><span class="nav-number">3.</span> <span class="nav-text">JDBC基本使用流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDBC事务"><span class="nav-number">3.1.</span> <span class="nav-text">JDBC事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDBC完成查询"><span class="nav-number">3.2.</span> <span class="nav-text">JDBC完成查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDBC的MVC思想"><span class="nav-number">3.3.</span> <span class="nav-text">JDBC的MVC思想</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDBC封装"><span class="nav-number">4.</span> <span class="nav-text">JDBC封装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#properties文件"><span class="nav-number">4.1.</span> <span class="nav-text">properties文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库开发步骤"><span class="nav-number">5.</span> <span class="nav-text">数据库开发步骤</span></a></li></ol></div>
             
 
           </div>
