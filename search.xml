@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[goHome]]></title>
-    <url>%2FgoHome%2F</url>
-    <content type="text"><![CDATA[经过昨天一天的颠簸和今天一天的休息，准备开始进行自己的假期学习计划。 emmmmm，假期所划如下： Java300集 Java数据结构、计算机网络、操作系统 Web相关 Java相关框架 打算做个项目出来，或者说是用我们课程设计的相关项目。t]]></content>
-      <categories>
-        <category>x1aolin的个人日记</category>
-      </categories>
-      <tags>
-        <tag>try</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[数据结构-线性表]]></title>
     <url>%2F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%BA%BF%E6%80%A7%E8%A1%A8%2F</url>
     <content type="text"><![CDATA[线性表 线性表定义线性表基本操作线性表的实现顺序表单链表双向链表循环链表各存储结构区别线性表的应用]]></content>
@@ -271,8 +260,8 @@
         <category>计算机操作系统</category>
       </categories>
       <tags>
-        <tag>计算机操作系统</tag>
         <tag>进程同步</tag>
+        <tag>计算机操作系统</tag>
         <tag>Peterson算法</tag>
       </tags>
   </entry>
@@ -471,8 +460,8 @@
         <category>计算机操作系统</category>
       </categories>
       <tags>
-        <tag>进程管理</tag>
         <tag>计算机操作系统</tag>
+        <tag>进程管理</tag>
       </tags>
   </entry>
 </search>
