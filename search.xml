@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[goHome]]></title>
     <url>%2FgoHome%2F</url>
-    <content type="text"><![CDATA[经过昨天一天的颠簸和今天一天的休息，准备开始进行自己的假期学习计划。 emmmmm，假期所划如下： Java300集 Java数据结构、计算机网络、操作系统 Web相关 Java相关框架 打算做个项目出来，或者说是用我们课程设计的相关项目。]]></content>
+    <content type="text"><![CDATA[经过昨天一天的颠簸和今天一天的休息，准备开始进行自己的假期学习计划。 emmmmm，假期所划如下： Java300集 Java数据结构、计算机网络、操作系统 Web相关 Java相关框架 打算做个项目出来，或者说是用我们课程设计的相关项目。t]]></content>
       <categories>
         <category>x1aolin的个人日记</category>
       </categories>
@@ -118,8 +118,8 @@
         <category>数据库相关</category>
       </categories>
       <tags>
-        <tag>sql</tag>
         <tag>模糊查询</tag>
+        <tag>sql</tag>
       </tags>
   </entry>
   <entry>
@@ -271,8 +271,8 @@
         <category>计算机操作系统</category>
       </categories>
       <tags>
-        <tag>进程同步</tag>
         <tag>计算机操作系统</tag>
+        <tag>进程同步</tag>
         <tag>Peterson算法</tag>
       </tags>
   </entry>
@@ -471,8 +471,8 @@
         <category>计算机操作系统</category>
       </categories>
       <tags>
-        <tag>计算机操作系统</tag>
         <tag>进程管理</tag>
+        <tag>计算机操作系统</tag>
       </tags>
   </entry>
 </search>
