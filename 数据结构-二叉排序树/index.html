@@ -119,7 +119,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200120205145.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200120215605.png">
-<meta property="og:updated_time" content="2020-01-21T04:07:04.200Z">
+<meta property="og:updated_time" content="2020-01-21T09:27:13.529Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构-二叉排序树">
 <meta name="twitter:description" content="二叉排序树详细讲解">
@@ -438,21 +438,22 @@
         <blockquote class="blockquote-center"><p>二叉排序树详细讲解</p>
 </blockquote>
 <a id="more"></a>
-<h3 id="二叉排序树"><a href="#二叉排序树" class="headerlink" title="二叉排序树"></a>二叉排序树</h3><p>二叉排序树，又称为二叉查找树。它或者是一颗空树，或者具有下列性质的二叉树。</p>
+<h2 id="二叉排序树"><a href="#二叉排序树" class="headerlink" title="二叉排序树"></a>二叉排序树</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>二叉排序树，又称为二叉查找树。它或者是一颗空树，或者具有下列性质的二叉树。</p>
 <ul>
 <li>若它的左子树不空，则左子树上所有节点的值均小于它的根节点的值；</li>
 <li>若它的右子树不空，则右子树上所有节点的值均大于它的根节点的值；</li>
 <li>它的左、右子树也分别为二叉排序树。</li>
 </ul>
-<p><strong>二叉排序树插入</strong></p>
+<h3 id="二叉排序树插入"><a href="#二叉排序树插入" class="headerlink" title="二叉排序树插入"></a>二叉排序树插入</h3><p>根据其定义，我们将插入节点的方法展示如下：</p>
 <ol>
 <li>第一个输入的数据作为此二叉树的树根。</li>
 <li>之后的数据以递归的方式与树根进行比较，小于数个置于左子树，大于树根置于右子树。</li>
 </ol>
 <p><img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200120205145.png" alt></p>
+<p>下面给出其递归实现过程</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//二叉排序树 插入</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">BinarySortTree</span><span class="params">(<span class="keyword">int</span> ord,Node&lt;Integer&gt; currentNode,LinkBiTree&lt;Integer&gt; Tree)</span></span>&#123;</span><br><span class="line">    <span class="comment">//结束条件</span></span><br><span class="line">    <span class="keyword">if</span>(currentNode!=<span class="keyword">null</span>&amp;&amp;currentNode.getLchild()==<span class="keyword">null</span>&amp;&amp;ord&lt;currentNode.getData())&#123;</span><br><span class="line">        Tree.insertL(ord,currentNode);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(currentNode!=<span class="keyword">null</span></span><br><span class="line">            &amp;&amp;currentNode.getRchild()==<span class="keyword">null</span>&amp;&amp;ord&gt;=currentNode.getData())&#123;</span><br><span class="line">        Tree.insertR(ord,currentNode);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//递归条件</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(ord&lt;currentNode.getData())&#123;</span><br><span class="line">        BinarySortTree(ord,currentNode.getLchild(),Tree);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(ord&gt;=currentNode.getData())&#123;</span><br><span class="line">        BinarySortTree(ord,currentNode.getRchild(),Tree);</span><br><span class="line">    &#125;		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>二叉排序树删除</strong></p>
-<p>对于二叉排序树中的节点A，对它的删除分为三种情况，目的就是不改变排序树的性质：</p>
+<p>建立二叉树后，我们仅需通过一次中序遍历（LDR，左下为最小值，右下为最大值）即可完成排序输出，当然，我们也可以将得到的结果放入队列中加以存储。</p>
+<h3 id="二叉排序树删除"><a href="#二叉排序树删除" class="headerlink" title="二叉排序树删除"></a>二叉排序树删除</h3><p>对于二叉排序树中的节点A，对它的删除分为三种情况，目的就是不改变排序树的性质：</p>
 <ol>
 <li><p>如果A为叶子节点，则直接删除节点A即可。</p>
 </li>
@@ -460,12 +461,19 @@
 </li>
 <li><p>如果A有两个子节点，我们就以用A节点的直接前驱或者直接后继来替换A节点，调整直接前驱或者直接后继的位置。</p>
 <p><img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200120215605.png" alt></p>
-<p>由上图我们可以看出，若寻找其直接前驱，应找其左子树的最大节点（也就是最右下节点，如上图37所示）；若找其直接后继，应找其右子树的最小节点（也就是最左下节点，如上图中48点），下面将分为两种方式来进行展示。</p>
-<p>在此期间两个节点，要替换的节点和用来进行替换的节点</p>
+<p><strong>分析：</strong></p>
+<p>下面分为三个情况进行讨论，对应上面的三类情况：</p>
+<p><strong>情况一</strong>：叶子节点直接删除即可，但要注意删除其父节点的指针指向，也就是说，在搜索要删除节点的时候，要注意保存其父节点。</p>
+<p><strong>情况二</strong>：也仅仅需要在搜索时注意找寻其父节点，然后进行该结点的父节点与该节点的子树（左右都可以）连接即可。</p>
+<p><strong>情况三</strong>：当有两个子节点时，我们为了保持排序树本身的性质不变，需要找其直接前驱或者直接后继来顶替该位置，由上图我们可以看出，若寻找其直接前驱，应找其左子树的最大节点（上图为37节点）；若找其直接后继，应找其右子树的最小节点（上图为48节点）。</p>
+<p>在这里，<strong>我们先按照找直接前驱进行讨论</strong>。</p>
+<p>（1）如何寻找37节点呢？因为我们要删除47节点，所以我们寻找其直接前驱应在47的左子树上寻找最大值。问题相继就转变成了以35为根节点的一棵二叉排序树如何寻找最大值的问题。根据二叉排序树的定义和我们插入排序的一些经验来看，寻找一棵树的最大值仅需要不断的从根节点寻找其右孩子即可，直到当前结点的右孩子为空，那这个结点就是我们要寻找的节点。主要在寻找过程中保存其父节点，后续会用到。</p>
+<p>（2）找到之后，我们还需要考虑其替换节点本身可能造成的后果，由于我们寻找替换节点时的算法决定了用于替换的节点（上图37节点）只能够为两种情况：叶子节点和仅有一个左子树。这时我们可以分别加以处理：</p>
+<p>​    1）叶子节点时，我们仅需将其父节点的右子树置空即可；</p>
+<p>​    2）有左子树时，我们需要将其父节点的右孩子与其接待的左孩子进行连接。</p>
+<p>直接后继分析过程与上面类似，在此不再赘述。</p>
 </li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">loading...</span><br><span class="line">    https:<span class="comment">//www.cnblogs.com/Kiven5197/p/8877177.html</span></span><br></pre></td></tr></table></figure>
-<p>建立二叉树后，我们仅需通过一次中序遍历（LDR，左下为最小值，右下为最大值）即可完成排序输出，当然，我们也可以将得到的结果放入队列中加以存储。</p>
 
       
     </div>
@@ -762,7 +770,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉排序树"><span class="nav-number">1.</span> <span class="nav-text">二叉排序树</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉排序树"><span class="nav-number">1.</span> <span class="nav-text">二叉排序树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉排序树插入"><span class="nav-number">1.2.</span> <span class="nav-text">二叉排序树插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉排序树删除"><span class="nav-number">1.3.</span> <span class="nav-text">二叉排序树删除</span></a></li></ol></li></ol></div>
             
 
           </div>
