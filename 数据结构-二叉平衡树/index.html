@@ -109,19 +109,20 @@
 
 
 
-<meta name="description" content="平衡二叉树详细讲解">
+<meta name="description" content="平衡二叉树，未完待续…">
 <meta name="keywords" content="红黑树,AVL树,Treap树,伸展树">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构-平衡二叉树">
 <meta property="og:url" content="http://www.x1aolin.com/数据结构-二叉平衡树/index.html">
 <meta property="og:site_name" content="x1aolin&#39;s home">
-<meta property="og:description" content="平衡二叉树详细讲解">
+<meta property="og:description" content="平衡二叉树，未完待续…">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200122153541.png">
-<meta property="og:updated_time" content="2020-01-22T08:08:03.388Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200122160532.png">
+<meta property="og:updated_time" content="2020-01-24T15:17:42.189Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构-平衡二叉树">
-<meta name="twitter:description" content="平衡二叉树详细讲解">
+<meta name="twitter:description" content="平衡二叉树，未完待续…">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200122153541.png">
 
 
@@ -392,7 +393,18 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构基础/" itemprop="url" rel="index">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构/数据结构基础/" itemprop="url" rel="index">
                     <span itemprop="name">数据结构基础</span>
                   </a>
                 </span>
@@ -434,11 +446,11 @@
       
 
       
-        <blockquote class="blockquote-center"><p>平衡二叉树详细讲解</p>
+        <blockquote class="blockquote-center"><p>平衡二叉树，未完待续…</p>
 </blockquote>
 <a id="more"></a>
 <h2 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>平衡树是二叉搜索树和堆合并构成的数据结构，它是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树。</p>
-<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><p>对一棵查找树(search tree)进行查询/新增/删除 等动作, 所花的时间与树的高度h 成比例, 并不与树的容量 n 成比例。如果可以让树维持矮矮胖胖的好身材, 也就是让h维持在O(lg n)左右, 完成上述工作就很省时间。能够一直维持好身材, 不因新增删除而长歪的搜寻树, 叫做balanced search tree(平衡树)。</p>
+<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><p>对一棵查找树(search tree)进行查询/新增/删除等动作, 所花的时间与树的高度h成比例, 并不与树的容量n成比例。如果可以让树维持矮矮胖胖的好身材, 也就是让h维持在O(lg n)左右, 完成上述工作就很省时间。能够一直维持好身材, 不因新增删除而长歪的搜寻树, 叫做balanced search tree(平衡树)。</p>
 <h3 id="种类"><a href="#种类" class="headerlink" title="种类"></a>种类</h3><p> 1.红黑树        2.AVL树        3.SBT     4.Treap      5.伸展树</p>
 <p>下面进行较为详细的说明。</p>
 <h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><p>红黑树就是一种<strong>自平衡的二叉查找树</strong>，说他平衡的意思是他不会变成“瘸子”，左腿特别长或者右腿特别长。除了符合二叉查找树的特性之外，还具体下列的特性:</p>
@@ -448,20 +460,23 @@
 <li>所有叶子结点都是黑色的（实际上都是Null指针，下图用NIL表示）。叶子结点不包含任何关键字信息，所有查询关键字都在非终结点上。</li>
 <li>每个红色结点的两个子节点必须是黑色的（从每个叶子到根的所有路径上不能有两个连续的红色结点）。</li>
 <li>从任一结点到其每个叶子的所有路径都包含相同数目的黑色结点。<ol>
-<li>也就是说，如果一个结点存在黑子结点，那么该节点肯定有两个子结点。</li>
+<li>也就是说，如果一个结点存在黑孩子结点，那么该节点肯定有两个黑孩子结点。</li>
 </ol>
 </li>
 </ol>
 <p>另外，红黑树并不是一个完美平衡二叉查找树，任意一个结点到每个叶子结点的路径都包含数量相同的黑结点(性质5)。所以我们叫红黑树这种平衡为<strong>黑色完美平衡</strong>。</p>
-<p><strong>红黑树自平衡</strong></p>
-<p>前面讲到红黑树能自平衡，它靠的是什么？三种操作：左旋、右旋和变色。</p>
+<h3 id="红黑树自平衡"><a href="#红黑树自平衡" class="headerlink" title="红黑树自平衡"></a>红黑树自平衡</h3><p>前面讲到红黑树能自平衡，它靠的是什么？三种操作：左旋、右旋和变色。</p>
 <ul>
-<li><strong>左旋</strong>：以某个结点作为支点(旋转结点)，其右子结点变为旋转结点的父结点，右子结点的左子结点变为旋转结点的右子结点，左子结点保持不变。如图3。</li>
-<li><strong>右旋</strong>：以某个结点作为支点(旋转结点)，其左子结点变为旋转结点的父结点，左子结点的右子结点变为旋转结点的左子结点，右子结点保持不变。如图4。</li>
+<li><strong>左旋</strong>：以某个结点作为支点(旋转结点)，其右子结点变为旋转结点的父结点，右子结点的左子结点变为旋转结点的右子结点，左子结点保持不变。</li>
+<li><strong>右旋</strong>：以某个结点作为支点(旋转结点)，其左子结点变为旋转结点的父结点，左子结点的右子结点变为旋转结点的左子结点，右子结点保持不变。</li>
 <li><strong>变色</strong>：结点的颜色由红变黑或由黑变红。</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200122153541.png" alt></p>
-<h2 id="AVL树"><a href="#AVL树" class="headerlink" title="AVL树"></a>AVL树</h2><p>平衡二叉查找树，又称 AVL树。 它除了具备二叉查找树的基本特征之外，还具有一个非常重要的特点：它的左子树和右子树都是平衡二叉树，且左子树和右子树的深度之差的绝对值（<strong>平衡因子</strong> ） 不超过1。 也就是说AVL树每个节点的平衡因子只可能是 -1、0和1。</p>
+<p><img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200122160532.png" alt></p>
+<p>由上图可知：旋转操作不会影响旋转结点的父结点，父结点以上的结构还是保持不变的。若想进一步了解请点击<a href="https://www.jianshu.com/p/e136ec79235c" target="_blank" rel="noopener">这里</a>。</p>
+<h3 id="红黑树查找"><a href="#红黑树查找" class="headerlink" title="红黑树查找"></a>红黑树查找</h3><p>归根结底，红黑树是一棵二叉搜索树，所以查找遵循<a href="https://x1aolin.com/数据结构-二叉搜索树/" target="_blank" rel="noopener">二叉搜索树</a>的规则即可。</p>
+<h3 id="红黑树插入"><a href="#红黑树插入" class="headerlink" title="红黑树插入"></a>红黑树插入</h3><p>插入操作包括两部分工作：一查找插入的位置；二插入后自平衡。</p>
+<h3 id="红黑树删除"><a href="#红黑树删除" class="headerlink" title="红黑树删除"></a>红黑树删除</h3><h2 id="AVL树"><a href="#AVL树" class="headerlink" title="AVL树"></a>AVL树</h2><p>平衡二叉查找树，又称 AVL树。 它除了具备二叉查找树的基本特征之外，还具有一个非常重要的特点：它的左子树和右子树都是平衡二叉树，且左子树和右子树的深度之差的绝对值（<strong>平衡因子</strong> ） 不超过1。 也就是说AVL树每个节点的平衡因子只可能是 -1、0和1。</p>
 <h2 id="SBT树"><a href="#SBT树" class="headerlink" title="SBT树"></a>SBT树</h2><h2 id="Treap树"><a href="#Treap树" class="headerlink" title="Treap树"></a>Treap树</h2><h2 id="伸展树"><a href="#伸展树" class="headerlink" title="伸展树"></a>伸展树</h2>
       
     </div>
@@ -566,8 +581,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/数据结构-平衡树/" rel="next" title="数据结构-平衡二叉树">
-                <i class="fa fa-chevron-left"></i> 数据结构-平衡二叉树
+              <a href="/数据结构-二叉搜索树/" rel="next" title="数据结构-二叉搜索树">
+                <i class="fa fa-chevron-left"></i> 数据结构-二叉搜索树
               </a>
             
           </div>
@@ -575,6 +590,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/数据结构-LeetCode树相关题目/" rel="prev" title="数据结构-LeetCode树相关题目">
+                数据结构-LeetCode树相关题目 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -657,7 +676,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -668,7 +687,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -679,7 +698,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -762,7 +781,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#平衡二叉树"><span class="nav-number">1.</span> <span class="nav-text">平衡二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优势"><span class="nav-number">1.2.</span> <span class="nav-text">优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#种类"><span class="nav-number">1.3.</span> <span class="nav-text">种类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树"><span class="nav-number">2.</span> <span class="nav-text">红黑树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AVL树"><span class="nav-number">3.</span> <span class="nav-text">AVL树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SBT树"><span class="nav-number">4.</span> <span class="nav-text">SBT树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Treap树"><span class="nav-number">5.</span> <span class="nav-text">Treap树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伸展树"><span class="nav-number">6.</span> <span class="nav-text">伸展树</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#平衡二叉树"><span class="nav-number">1.</span> <span class="nav-text">平衡二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优势"><span class="nav-number">1.2.</span> <span class="nav-text">优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#种类"><span class="nav-number">1.3.</span> <span class="nav-text">种类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树"><span class="nav-number">2.</span> <span class="nav-text">红黑树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#红黑树自平衡"><span class="nav-number">2.1.</span> <span class="nav-text">红黑树自平衡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#红黑树查找"><span class="nav-number">2.2.</span> <span class="nav-text">红黑树查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#红黑树插入"><span class="nav-number">2.3.</span> <span class="nav-text">红黑树插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#红黑树删除"><span class="nav-number">2.4.</span> <span class="nav-text">红黑树删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AVL树"><span class="nav-number">3.</span> <span class="nav-text">AVL树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SBT树"><span class="nav-number">4.</span> <span class="nav-text">SBT树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Treap树"><span class="nav-number">5.</span> <span class="nav-text">Treap树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伸展树"><span class="nav-number">6.</span> <span class="nav-text">伸展树</span></a></li></ol></div>
             
 
           </div>
