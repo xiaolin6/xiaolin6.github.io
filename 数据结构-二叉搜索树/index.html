@@ -117,10 +117,12 @@
 <meta property="og:site_name" content="x1aolin&#39;s home">
 <meta property="og:description" content="二叉搜索树详细讲解">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-28T09:47:14.778Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200120215605.png">
+<meta property="og:updated_time" content="2020-01-29T06:11:07.160Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构-二叉搜索树">
 <meta name="twitter:description" content="二叉搜索树详细讲解">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200120215605.png">
 
 
 
@@ -446,7 +448,7 @@
         <blockquote class="blockquote-center"><p>二叉搜索树详细讲解</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h2><p><strong>二叉搜索树特点如下</strong>：</p>
+<h2 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h2><h3 id="二叉搜索树概论"><a href="#二叉搜索树概论" class="headerlink" title="二叉搜索树概论"></a>二叉搜索树概论</h3><p>二叉搜索树特点如下：</p>
 <ul>
 <li>可以为空集合，但若不是空集合则节点上一定要有一个键值。</li>
 <li>每一个树根的值需大于左子树的值</li>
@@ -454,8 +456,15 @@
 <li>左右子树也是二叉搜索树</li>
 <li>树的每个节点值都不同</li>
 </ul>
-<p>事实上，二叉搜索树是在二叉排序树的基础上的进一步延伸，所以，只要懂得二叉树的排序就可以理解二叉排序树的搜索。</p>
-<p><strong>二叉搜索树算法</strong>：</p>
+<p>事实上，二叉搜索树是在二叉排序树的基础上的进一步延伸，所以，只要懂得二叉树的排序就可以理解二叉排序树的搜索。这样的结构有一个好处是很容易获得最大值（<em>Maximum</em>）、最小值（<em>minimum</em>）、某元素的前驱（<em>Precursor</em>）、某元素的后继（Successor）。</p>
+<ol>
+<li>最大值：树的最右节点。</li>
+<li>最小值：树的最左节点。</li>
+<li>某元素前驱：左子树的最右。</li>
+<li>某元素的后继：右子树的最左。</li>
+</ol>
+<p><strong>其基本操作有</strong>：（1）搜索    （2）遍历    （3）插入    （4）删除</p>
+<h3 id="二叉搜索树搜索"><a href="#二叉搜索树搜索" class="headerlink" title="二叉搜索树搜索"></a>二叉搜索树搜索</h3><p>算法：</p>
 <ol>
 <li><p>从根结点开始查找，把根结点设置为当前结点；</p>
 </li>
@@ -471,6 +480,30 @@
 </li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span>  Node&lt;Integer&gt; <span class="title">searchInBinarySortTree</span><span class="params">(Node&lt;Integer&gt; root,<span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(root.getData().equals(value))&#123;</span><br><span class="line">			<span class="keyword">return</span> root;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(root.getData()&gt;value)&#123;</span><br><span class="line">			<span class="keyword">return</span> searchInBinarySortTree(root.getLchild(),value);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(root.getData()&lt;value)&#123;</span><br><span class="line">			<span class="keyword">return</span> searchInBinarySortTree(root.getRchild(),value);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="二叉搜索树遍历"><a href="#二叉搜索树遍历" class="headerlink" title="二叉搜索树遍历"></a>二叉搜索树遍历</h3><p>由于二叉搜索树的特性，如使用中序遍历则可输出一个排好序的二叉树，这里就不细讲了，若不了解请点击这里<a href="https://x1aolin.com/数据结构-LeetCode树相关题目/" target="_blank" rel="noopener">数据结构-LeetCode树相关题目</a>进行了解。</p>
+<h3 id="二叉搜索树插入"><a href="#二叉搜索树插入" class="headerlink" title="二叉搜索树插入"></a>二叉搜索树插入</h3><p>这也可以运用递归，将二叉搜索树的结点与要插入的结点进行比较，若比当前节点大，则与当前节点右子树进行比较；否则，则与当前节点的左子树进行比较，知道找到其叶子节点，然后根据逻辑插入到左边还是右边。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">BinarySortTree</span><span class="params">(<span class="keyword">int</span> ord,Node&lt;Integer&gt; currentNode,LinkBiTree&lt;Integer&gt; Tree)</span></span>&#123;</span><br><span class="line">    <span class="comment">//结束条件</span></span><br><span class="line">    <span class="keyword">if</span>(currentNode!=<span class="keyword">null</span>&amp;&amp;currentNode.getLchild()==<span class="keyword">null</span>&amp;&amp;ord&lt;currentNode.getData())&#123;</span><br><span class="line">        Tree.insertL(ord,currentNode);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(currentNode!=<span class="keyword">null</span></span><br><span class="line">            &amp;&amp;currentNode.getRchild()==<span class="keyword">null</span>&amp;&amp;ord&gt;=currentNode.getData())&#123;</span><br><span class="line">        Tree.insertR(ord,currentNode);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//递归条件</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(ord&lt;currentNode.getData())&#123;</span><br><span class="line">        BinarySortTree(ord,currentNode.getLchild(),Tree);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(ord&gt;=currentNode.getData())&#123;</span><br><span class="line">        BinarySortTree(ord,currentNode.getRchild(),Tree);</span><br><span class="line">    &#125;		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="二叉搜索树删除"><a href="#二叉搜索树删除" class="headerlink" title="二叉搜索树删除"></a>二叉搜索树删除</h3><p>对于二叉搜索树中的节点A，对它的删除分为三种情况，目的就是不改变排序树的性质：</p>
+<ol>
+<li><p>如果A为叶子节点，则直接删除节点A即可。</p>
+</li>
+<li><p>如果A只有一个子节点，就直接将A的子节点连至A的父节点上，并将A删除；</p>
+</li>
+<li><p>如果A有两个子节点，我们就以用A节点的直接前驱或者直接后继来替换A节点，调整直接前驱或者直接后继的位置。</p>
+<p><img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200120215605.png" alt></p>
+<p><strong>分析：</strong></p>
+<p>下面分为三个情况进行讨论，对应上面的三类情况：</p>
+<p><strong>情况一</strong>：叶子节点直接删除即可，但要注意删除其父节点的指针指向，也就是说，在搜索要删除节点的时候，要注意保存其父节点。</p>
+<p><strong>情况二</strong>：也仅仅需要在搜索时注意找寻其父节点，然后进行该结点的父节点与该节点的子树（左右都可以）连接即可。</p>
+<p><strong>情况三</strong>：当有两个子节点时，我们为了保持排序树本身的性质不变，需要找其直接前驱或者直接后继来顶替该位置，由上图我们可以看出，若寻找其直接前驱，应找其左子树的最大节点（上图为37节点）；若找其直接后继，应找其右子树的最小节点（上图为48节点）。</p>
+<p>在这里，<strong>我们先按照找直接前驱进行讨论</strong>。</p>
+<p>（1）如何寻找37节点呢？因为我们要删除47节点，所以我们寻找其直接前驱应在47的左子树上寻找最大值。问题相继就转变成了以35为根节点的一棵二叉排序树如何寻找最大值的问题。根据二叉排序树的定义和我们插入排序的一些经验来看，寻找一棵树的最大值仅需要不断的从根节点寻找其右孩子即可，直到当前结点的右孩子为空，那这个结点就是我们要寻找的节点。主要在寻找过程中保存其父节点，后续会用到。</p>
+<p>（2）找到之后，我们还需要考虑其替换节点本身可能造成的后果，由于我们寻找替换节点时的算法决定了用于替换的节点（上图37节点）只能够为两种情况：叶子节点和仅有一个左子树。这时我们可以分别加以处理：</p>
+<p>​    1）叶子节点时，我们仅需将其父节点的右子树置空即可；</p>
+<p>​    2）有左子树时，我们需要将其父节点的右孩子与其接待的左孩子进行连接。</p>
+<p>直接后继分析过程与上面类似，在此不再赘述。</p>
+</li>
+</ol>
 <h2 id="线索二叉树"><a href="#线索二叉树" class="headerlink" title="线索二叉树"></a>线索二叉树</h2><p>所谓”线索二叉树“，就是把那些二叉树中指向空的链接加以利用，再指向树的其他节点，而这些链接就称为“线索”，这棵树就被称为线索二叉树。</p>
 <p><strong>将二叉树转换成线索二叉树的步骤如下</strong>：</p>
 <ul>
@@ -790,7 +823,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉搜索树"><span class="nav-number">1.</span> <span class="nav-text">二叉搜索树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线索二叉树"><span class="nav-number">2.</span> <span class="nav-text">线索二叉树</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉搜索树"><span class="nav-number">1.</span> <span class="nav-text">二叉搜索树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉搜索树概论"><span class="nav-number">1.1.</span> <span class="nav-text">二叉搜索树概论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉搜索树搜索"><span class="nav-number">1.2.</span> <span class="nav-text">二叉搜索树搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉搜索树遍历"><span class="nav-number">1.3.</span> <span class="nav-text">二叉搜索树遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉搜索树插入"><span class="nav-number">1.4.</span> <span class="nav-text">二叉搜索树插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉搜索树删除"><span class="nav-number">1.5.</span> <span class="nav-text">二叉搜索树删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线索二叉树"><span class="nav-number">2.</span> <span class="nav-text">线索二叉树</span></a></li></ol></div>
             
 
           </div>
