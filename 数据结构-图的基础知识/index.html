@@ -109,17 +109,17 @@
 
 
 
-<meta name="description" content="图的相关基础知识">
+<meta name="description" content="图的基础知识">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构-图的基础知识">
 <meta property="og:url" content="http://www.x1aolin.com/数据结构-图的基础知识/index.html">
 <meta property="og:site_name" content="x1aolin&#39;s home">
-<meta property="og:description" content="图的相关基础知识">
+<meta property="og:description" content="图的基础知识">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-30T05:14:49.422Z">
+<meta property="og:updated_time" content="2020-01-30T13:46:15.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构-图的基础知识">
-<meta name="twitter:description" content="图的相关基础知识">
+<meta name="twitter:description" content="图的基础知识">
 
 
 
@@ -453,11 +453,39 @@
       
 
       
-        <blockquote class="blockquote-center"><p>图的相关基础知识</p>
+        <blockquote class="blockquote-center"><p>图的基础知识</p>
 </blockquote>
 <a id="more"></a>
-<p>come on!</p>
-
+<h2 id="图形介绍"><a href="#图形介绍" class="headerlink" title="图形介绍"></a>图形介绍</h2><h3 id="图的定义"><a href="#图的定义" class="headerlink" title="图的定义"></a>图的定义</h3><p>图是一系列顶点（结点）和描述顶点的关系边（弧）组成。图是数据元素的集合，这些数据元素相互连接形成网路，其形式化定义为：</p>
+<p>G = (V,E)</p>
+<p>其中V为所有顶点的集合，E为所有边的集合。图形共有两种：一是无向图形，一是有向图形。无向图以(V<sub>1</sub>，V<sub>2</sub>）表示边线，有向图以&lt;V<sub>1</sub>，V<sub>2</sub>&gt;表示边线。</p>
+<h3 id="图的常用术语"><a href="#图的常用术语" class="headerlink" title="图的常用术语"></a>图的常用术语</h3><ol>
+<li><strong>度</strong>：在无向图中，顶点的度是指连那个顶点的边的数量。对于有向图来说，分为入度和出度。</li>
+<li><strong>入度</strong>：一个顶点的入度是指向当前顶点的边的数量。</li>
+<li><strong>出度</strong>：一个顶点的出度是由该顶点出发的边的数量。</li>
+<li><strong>权</strong>：有些图的边（弧）附带有一些数据信息，这些数据信息称为边的权（Weight）。</li>
+<li><strong>完全图</strong>：完全图是指任意俩顶点之间都互相有连线的图。无向图中，N个顶点正好有<code>N(N-1)/2</code>条边；在有向图中，N个顶点会有<code>N(N-1)</code>条边。</li>
+<li><strong>子图</strong>：一个图中的部分顶点和连接这些顶点的部分弧。</li>
+<li><strong>路径</strong>：两个不同顶点之间所经过的边称为路径。</li>
+<li><strong>路径长度</strong>：路径上所包含边的总数为路径长度。</li>
+<li><strong>回路</strong>：起始顶点及终止顶点为同一节点的简单路径称为回路。</li>
+<li><strong>相连</strong>：在无向图中，若顶点V<sub>i</sub>到顶点V<sub>j</sub>间存在路径，则V<sub>i</sub>和V<sub>j</sub>之间是相连的。</li>
+<li><strong>相连图</strong>：如果图形G中，任两个顶点均相连，则此图形称为相连图形。</li>
+<li><strong>相连单元</strong>：图形中相连在一起的最大子图总数。</li>
+<li><strong>强相连</strong>：在有向图中，任两顶点间有相反的边称为强相连。</li>
+</ol>
+<h3 id="图的基本操作"><a href="#图的基本操作" class="headerlink" title="图的基本操作"></a>图的基本操作</h3><ol>
+<li>插入顶点</li>
+<li>查找顶点</li>
+<li>删除顶点</li>
+<li>插入边</li>
+<li>查找边</li>
+<li>删除边</li>
+<li>求图的边数</li>
+<li>遍历图</li>
+<li>求最短路径</li>
+</ol>
+<h2 id="图的实现"><a href="#图的实现" class="headerlink" title="图的实现"></a>图的实现</h2><h3 id="邻接矩阵表示法★"><a href="#邻接矩阵表示法★" class="headerlink" title="邻接矩阵表示法★"></a>邻接矩阵表示法★</h3><h3 id="邻接表表示法★"><a href="#邻接表表示法★" class="headerlink" title="邻接表表示法★"></a>邻接表表示法★</h3><h3 id="相邻多元列表法"><a href="#相邻多元列表法" class="headerlink" title="相邻多元列表法"></a>相邻多元列表法</h3><h3 id="索引表格法"><a href="#索引表格法" class="headerlink" title="索引表格法"></a>索引表格法</h3><h2 id="图形的遍历"><a href="#图形的遍历" class="headerlink" title="图形的遍历"></a>图形的遍历</h2><h2 id="图形的应用"><a href="#图形的应用" class="headerlink" title="图形的应用"></a>图形的应用</h2>
       
     </div>
     
@@ -613,8 +641,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -726,6 +763,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图形介绍"><span class="nav-number">1.</span> <span class="nav-text">图形介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图的定义"><span class="nav-number">1.1.</span> <span class="nav-text">图的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图的常用术语"><span class="nav-number">1.2.</span> <span class="nav-text">图的常用术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图的基本操作"><span class="nav-number">1.3.</span> <span class="nav-text">图的基本操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图的实现"><span class="nav-number">2.</span> <span class="nav-text">图的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#邻接矩阵表示法★"><span class="nav-number">2.1.</span> <span class="nav-text">邻接矩阵表示法★</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#邻接表表示法★"><span class="nav-number">2.2.</span> <span class="nav-text">邻接表表示法★</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相邻多元列表法"><span class="nav-number">2.3.</span> <span class="nav-text">相邻多元列表法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引表格法"><span class="nav-number">2.4.</span> <span class="nav-text">索引表格法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图形的遍历"><span class="nav-number">3.</span> <span class="nav-text">图形的遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图形的应用"><span class="nav-number">4.</span> <span class="nav-text">图形的应用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
