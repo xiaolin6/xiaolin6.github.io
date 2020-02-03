@@ -117,10 +117,15 @@
 <meta property="og:site_name" content="x1aolin&#39;s home">
 <meta property="og:description" content="（二）图的遍历–深度优先搜索与广度优先搜索">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-02T05:23:33.002Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200203123024.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200203123931.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200203123024.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200203212358.png">
+<meta property="og:updated_time" content="2020-02-03T14:33:05.307Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构-深度优先与广度优先">
 <meta name="twitter:description" content="（二）图的遍历–深度优先搜索与广度优先搜索">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200203123024.png">
 
 
 
@@ -457,7 +462,52 @@
         <blockquote class="blockquote-center"><p>（二）图的遍历–深度优先搜索与广度优先搜索</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="图形的遍历"><a href="#图形的遍历" class="headerlink" title="图形的遍历"></a>图形的遍历</h2>
+<h2 id="图形的遍历"><a href="#图形的遍历" class="headerlink" title="图形的遍历"></a>图形的遍历</h2><p>图的遍历是指从图中的任一节点出发，对图中的所有顶点访问一次且仅访问一次。在图中，若没有特殊的顶点被指定为起始顶点，图的遍历可以从任何顶点开始。图的遍历主要有深度优先搜索和广度优先搜索两种方式，下面进行逐一介绍。</p>
+<p><strong>说明</strong>：这里仅给出算法思想和部分代码,可能有些突兀，整体代码实现请<a href="https://x1aolin.com/数据结构-图形介绍与实现/" target="_blank" rel="noopener">点击这里</a>，在图的实现一栏中查看，这里给出基于邻接矩阵和邻接表两种结构的实现方案，这样看到我最初的定义的话，可能会加深一下理解。</p>
+<h3 id="DFS-深度优先搜索"><a href="#DFS-深度优先搜索" class="headerlink" title="DFS-深度优先搜索"></a>DFS-深度优先搜索</h3><p><strong>算法思想</strong>:</p>
+<p>从图中某一顶点x出发，访问x，然后遍历任何一个与x相邻的未被访问的顶点y，再遍历任何一个与y相邻的未被访问的顶点z……依此类推，直到到达一个所有邻接点都被访问的顶点为止；然后，依次回退到尚有邻接点未被访问过的顶点，重复上述过程，直到图中全部顶点都被访问过为止。</p>
+<p><strong>算法实现讲解</strong>：</p>
+<p>深度优先遍历背后基于堆栈，我们这里主要说明显示构造堆栈，利用压栈出栈操作实现遍历，当然，利用递归来隐式调用也可以。</p>
+<p><img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200203123024.png" style="zoom:77%;"></p>
+<p>以上图为例，遍历过程如下：</p>
+<ol>
+<li>访问起始顶点V1，并将V1压入栈。</li>
+<li>从栈中弹出顶点V1，将与V1相邻的未被访问的所有顶点V4和V2压入栈。</li>
+<li>从栈中弹出顶点V2，将与V2相邻的未被访问的所有顶点V6和V3压入栈。</li>
+<li>从栈中弹出顶点V3，将与V3相邻的未被访问的所有顶点V5压入栈。</li>
+<li>从栈中弹出顶点V5，顶点V5没有任何未被访问的邻接顶点，因此没有顶点入栈。</li>
+<li>从栈中弹出顶点V6，顶点V6没有任何未被访问的邻接顶点，因此没有顶点入栈。</li>
+<li>从栈中弹出顶点V6，顶点V6没有任何未被访问的邻接顶点，因此没有顶点入栈；此时栈为空，遍历完成。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200203123931.png" alt></p>
+<p><strong>说明</strong>：入栈之后就算是被访问过，等后面从栈中弹出即可。</p>
+<p>基于邻接矩阵法的代码实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">depthFirstSearch</span><span class="params">(<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(v&lt;<span class="number">0</span>||v&gt;=numOfVexs)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> ArrayIndexOutOfBoundsException();</span><br><span class="line">    visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[numOfVexs];</span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    stack.push(v);</span><br><span class="line">    visited[v] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">while</span>(!stack.isEmpty())&#123;</span><br><span class="line">        v = stack.pop();</span><br><span class="line">        sb.append(vexs[v]+<span class="string">","</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=numOfVexs-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>((edges[v][i]!=<span class="number">0</span>&amp;&amp;edges[v][i]!=Integer.MAX_VALUE)&amp;&amp;!visited[i])&#123;</span><br><span class="line">                stack.push(i);</span><br><span class="line">                visited[i] = <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(sb.length()&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> sb.substring(<span class="number">0</span>, sb.length()-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>基于邻接表法的代码实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">depthFirstSearch</span><span class="params">(<span class="keyword">int</span> v)</span></span>&#123;		</span><br><span class="line">    <span class="keyword">if</span>(v&lt;<span class="number">0</span>||v&gt;=numOfVexs)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> ArrayIndexOutOfBoundsException();</span><br><span class="line">    visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[numOfVexs];</span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    stack.push(v);</span><br><span class="line">    visited[v] = <span class="keyword">true</span>;</span><br><span class="line">    ENode current;</span><br><span class="line">    <span class="keyword">while</span>(!stack.isEmpty())&#123;</span><br><span class="line">        v = stack.pop();</span><br><span class="line">        sb.append(vexs[v].data+<span class="string">"-&gt;"</span>);</span><br><span class="line">        current = vexs[v].firstadj;</span><br><span class="line">        <span class="keyword">while</span>(current!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!visited[current.adjvex])&#123;</span><br><span class="line">                stack.push(current.adjvex);					</span><br><span class="line">                visited[current.adjvex] = <span class="keyword">true</span>;</span><br><span class="line">            &#125;				</span><br><span class="line">            current = current.nextadj;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(sb.length()&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> sb.substring(<span class="number">0</span>,sb.length()-<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="BFS-广度优先搜索"><a href="#BFS-广度优先搜索" class="headerlink" title="BFS-广度优先搜索"></a>BFS-广度优先搜索</h3><p><strong>算法思想</strong>：</p>
+<p>图的广度优先算法是从图的某个顶点x出发，访问x。然后访问与x相邻的所有未被访问的顶点x<sub>1</sub>,x<sub>2</sub>,…,x<sub>n</sub>；接着再依次访问与x<sub>1</sub>,x<sub>2</sub>,…,x<sub>n</sub>相邻接的未被访问过的所有顶点。以此类推，直至图的每个顶点都被访问。                                                                                                                                                                      </p>
+<p><strong>算法实现讲解</strong>：</p>
+<p><img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200203123024.png" style="zoom:77%;"></p>
+<p>可以使用队列来实现广度优先搜索算法，使用队列对上图中的顶点进行的广度优先搜索过程如下：</p>
+<ol>
+<li>访问起始顶点V1，并将它插入到队列。</li>
+<li>从队列中删除队头顶点V1，访问所有它未被访问的邻接顶点V2和V4，并将它们插入到队列。</li>
+<li>从队列中删除队头结点V2，访问所有它未被访问过的邻接顶点V3和V6，并将它们插入到队列。</li>
+<li>从队列中删除队头结点V4，访问所有它未被访问过的邻接顶点V5，并将其插入到队列。</li>
+<li>从队列中删除队头结点V3，V3没有任何未被访问的邻接顶点，因此无需入队。</li>
+<li>从队列中删除队头结点V6，V3没有任何未被访问的邻接顶点，因此无需入队。</li>
+<li>从队列中删除队头结点V5，V3没有任何未被访问的邻接顶点，因此无需入队。</li>
+<li>此时队列为空，图的遍历完成</li>
+</ol>
+<p><strong>说明</strong>：只要入队即为被访问过，出入队过程如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200203212358.png" alt></p>
+<p><strong>代码实现</strong>：</p>
+<p>基于邻接矩阵的代码实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">breadFirstSearch</span><span class="params">(<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(v&lt;<span class="number">0</span>||v&gt;=numOfVexs)&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> ArrayIndexOutOfBoundsException();</span><br><span class="line">	&#125;</span><br><span class="line">	visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[numOfVexs];</span><br><span class="line">	StringBuilder s = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">	Queue&lt;Integer&gt; queue = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</span><br><span class="line">	queue.offer(v);</span><br><span class="line">	visited[v] = <span class="keyword">true</span>;</span><br><span class="line">	<span class="keyword">while</span>(!queue.isEmpty())&#123;</span><br><span class="line">		v = queue.poll();</span><br><span class="line">		s.append(vexs[v] + <span class="string">","</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;numOfVexs;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>((edges[v][i]!=<span class="number">0</span>&amp;&amp;edges[v][i]!=Integer.MAX_VALUE)&amp;&amp;!visited[i])&#123;</span><br><span class="line">				queue.offer(i);</span><br><span class="line">				visited[i] = <span class="keyword">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(s.length()&gt;<span class="number">0</span>) <span class="keyword">return</span> s.substring(<span class="number">0</span>, s.length()-<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>基于邻接表的代码实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">breadFirstSearch</span><span class="params">(<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(v&lt;<span class="number">0</span>||v&gt;=numOfVexs)&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> ArrayIndexOutOfBoundsException();</span><br><span class="line">	&#125;</span><br><span class="line">	visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[numOfVexs];</span><br><span class="line">	StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">	Queue&lt;Integer&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">	queue.offer(v);</span><br><span class="line">	visited[v] = <span class="keyword">true</span>;</span><br><span class="line">	ENode current;</span><br><span class="line">	<span class="keyword">while</span>(!queue.isEmpty())&#123;</span><br><span class="line">		<span class="keyword">int</span> tmp = queue.poll();</span><br><span class="line">		sb.append(vexs[tmp].data + <span class="string">","</span>);</span><br><span class="line">		current = vexs[tmp].firstadj;</span><br><span class="line">		<span class="keyword">while</span>(current!=<span class="keyword">null</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span>(!visited[current.adjvex])&#123;</span><br><span class="line">				queue.offer(current.adjvex);</span><br><span class="line">				visited[current.adjvex] = <span class="keyword">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			current = current.nextadj;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(sb.length()&gt;<span class="number">0</span>) <span class="keyword">return</span> sb.substring(<span class="number">0</span>, sb.length()-<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -567,8 +617,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/数据结构-图形的应用/" rel="prev" title="数据结构-图形的应用">
-                数据结构-图形的应用 <i class="fa fa-chevron-right"></i>
+              <a href="/数据结构-图的最短路径算法实现/" rel="prev" title="数据结构-图的最短路径算法实现">
+                数据结构-图的最短路径算法实现 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -652,7 +702,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -663,7 +713,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -674,7 +724,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -757,7 +807,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图形的遍历"><span class="nav-number">1.</span> <span class="nav-text">图形的遍历</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图形的遍历"><span class="nav-number">1.</span> <span class="nav-text">图形的遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DFS-深度优先搜索"><span class="nav-number">1.1.</span> <span class="nav-text">DFS-深度优先搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BFS-广度优先搜索"><span class="nav-number">1.2.</span> <span class="nav-text">BFS-广度优先搜索</span></a></li></ol></li></ol></div>
             
 
           </div>
