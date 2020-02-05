@@ -120,7 +120,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200203204957.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200204223107.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200204224911.png">
-<meta property="og:updated_time" content="2020-02-04T14:53:34.459Z">
+<meta property="og:updated_time" content="2020-02-05T12:35:09.255Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构-图的最短路径算法实现">
 <meta name="twitter:description" content="（三）寻找图的最短路径">
@@ -405,18 +405,7 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构/数据结构基础/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构基础</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构/数据结构基础/图/" itemprop="url" rel="index">
+                  <a href="/categories/数据结构/图/" itemprop="url" rel="index">
                     <span itemprop="name">图</span>
                   </a>
                 </span>
@@ -470,13 +459,13 @@
 <li>不断重复过程步骤（3）和（4），直到集合T的顶点全部加入集合S为止。</li>
 </ol>
 <h3 id="求解过程"><a href="#求解过程" class="headerlink" title="求解过程"></a>求解过程</h3><p><img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200203204957.png" alt></p>
-<p>以上图为例，设顶点V1为开始顶点，V6为结束顶点，从它开始到所有其他顶点被确定。并且顶点V1,V2,V3,V4,V5,V6对应index的0,1,2,3,4,5。除此之外，设置一个一维数组st来标记找到最短路径的顶点的状态，并规定：（1）<code>st[i]=0</code>：未找到原点到V<sub>i</sub>顶点的最短途径，表示T集合。（2）<code>st[i]=1</code>：已找到原点到V<sub>i</sub>顶点的最短途径，表示S集合。再设置一个一维数组distance，用它来存储从V1到其他顶点的距离，该距离可能是直接的或者间接的，这对应于上面算法思想中的第四条，这里详细介绍一下求解过程：</p>
+<p>以上图为例，设顶点V1为开始顶点，从它开始到所有其他顶点被确定。并且顶点V1,V2,V3,V4,V5,V6对应index的0,1,2,3,4,5。除此之外，设置一个一维数组st来标记找到最短路径的顶点的状态，并规定：（1）<code>st[i]=0</code>：未找到原点到V<sub>i</sub>顶点的最短途径，表示T集合。（2）<code>st[i]=1</code>：已找到原点到V<sub>i</sub>顶点的最短途径，表示S集合。再设置一个一维数组distance，用它来存储从V1到其他顶点的距离，该距离可能是直接的或者间接的，这对应于上面算法思想中的第四条，这里详细介绍一下求解过程：</p>
 <ol>
 <li><p>初始化数组distance和st，如下图a所示。</p>
 </li>
-<li><p>从未访问顶点中选择路径长度最短的顶点加入访问集合。满足st[index] = 0 条件的index可取值{1,2,3,4,5}，然后分析图a中的distance数组，可知当index取值为3时，distance[3] = 10，在所有未访问顶点对应的距离最短，所以将st[3]设为1，如下图b所示。</p>
+<li><p>（算法第三步）从未访问顶点中选择路径长度最短的顶点加入访问集合。满足st[index] = 0 条件的index可取值{1,2,3,4,5}，然后分析图a中的distance数组，可知当index取值为3时，distance[3] = 10，在所有未访问顶点对应的距离最短，所以将st[3]设为1，如下图b所示。</p>
 </li>
-<li><p>修改未访问顶点的最短路径。满足st[index] = 0 条件的index可取值{1,2,4,5}，判断distance[index]是否小于distance[3]+matrix[3,index]，如果不是，则distance[index] = distance[3]+matrix[3,index]。</p>
+<li><p>（算法第四步）修改未访问顶点的最短路径。满足st[index] = 0 条件的index可取值{1,2,4,5}，判断distance[index]是否小于distance[3]+matrix[3,index]，如果不是，则distance[index] = distance[3]+matrix[3,index]。</p>
 <ol>
 <li>index = 1：distance[1]为20，distance[3] + matrix[3,1] = 10 + ∞ = ∞，前者小于后者，不用修改。</li>
 <li>index = 2：distance[2]为∞，distance[3] + matrix[3,2] = 10 + 20= 30，两者取小者，因此修改distance[2] = 30。</li>
@@ -485,9 +474,9 @@
 </ol>
 <p>此次操作后，distance发生变化，如下图 c 所示。</p>
 </li>
-<li><p>再次从未访问顶点中选择路径长度最短的顶点加入访问集合。满足st[index] = 0 条件的index可取值{1,2,4,5}，然后分析图 c 中的distance数组，可知当index取值为1时，distance[1] = 20，在所有未访问顶点对应的距离最短，所以将st[1]设为1，如下图 d 所示。</p>
+<li><p>（算法第三步）再次从未访问顶点中选择路径长度最短的顶点加入访问集合。满足st[index] = 0 条件的index可取值{1,2,4,5}，然后分析图 c 中的distance数组，可知当index取值为1时，distance[1] = 20，在所有未访问顶点对应的距离最短，所以将st[1]设为1，如下图 d 所示。</p>
 </li>
-<li><p>修改未访问顶点的最短路径。满足st[index] = 0 条件的index可取值{2,4,5}，判断distance[index]是否小于distance[1] + matrix[1,index]，如果不是，则distance[index] = distance[1] + matrix[1,index]。</p>
+<li><p>（算法第四步）修改未访问顶点的最短路径。满足st[index] = 0 条件的index可取值{2,4,5}，判断distance[index]是否小于distance[1] + matrix[1,index]，如果不是，则distance[index] = distance[1] + matrix[1,index]。</p>
 <ol>
 <li>index = 2：distance[2] = 30，distance[1] + matrix[1,2] = 20 + 10 = 30，两者相等，因此不用修改。</li>
 <li>index = 4：distance[4] = 25，distance[1] + matrix[1,4] = 20 + ∞ = 25，两者取小者，因此不用修改。</li>
@@ -495,28 +484,31 @@
 </ol>
 <p>此次操作后，distance的状态无变化，因此还是图 d。</p>
 </li>
-<li><p>再次从未访问顶点中选择路径长度最短的顶点加入访问集合。满足st[index] = 0 条件的index可取值{2,4,5}，然后分析图 d 中的distance数组，可知当index取值为4时，distance[4] = 25，在所有未访问顶点对应的距离最短，所以将st[4]设为1，如下图 e 所示。</p>
+<li><p>（算法第三步）再次从未访问顶点中选择路径长度最短的顶点加入访问集合。满足st[index] = 0 条件的index可取值{2,4,5}，然后分析图 d 中的distance数组，可知当index取值为4时，distance[4] = 25，在所有未访问顶点对应的距离最短，所以将st[4]设为1，如下图 e 所示。</p>
 </li>
-<li><p>修改未访问顶点的最短路径。满足st[index] = 0 条件的index可取值{2,5}，判断distance[index]是否小于distance[1] + matrix[1,index]，如果不是，则distance[index] = distance[1] + matrix[1,index]。</p>
+<li><p>（算法第四步）修改未访问顶点的最短路径。满足st[index] = 0 条件的index可取值{2,5}，判断distance[index]是否小于distance[1] + matrix[1,index]，如果不是，则distance[index] = distance[1] + matrix[1,index]。</p>
 <ol>
 <li>index = 2：distance[2] = 30，distance[4] + matrix[4,2] = 25 + 25 = 50，两者取小者为前者，因此不用修改。</li>
 <li>index = 5：distance[5] = ∞，distance[4] + matrix[4,5] = 25 + ∞ = ∞，两者相等，不用修改。</li>
 </ol>
 <p>此次操作后，distance的状态无变化，因此还是图 e。</p>
 </li>
-<li><p>再次从未访问顶点中选择路径长度最短的顶点加入访问集合。满足st[index] = 0 条件的index可取值{2,5}，然后分析图 e 中的distance数组，可知当index取值为2时，distance[2] = 30，在所有未访问顶点对应的距离最短，所以将st[2]设为1，如下图 f 所示。</p>
+<li><p>（算法第三步）再次从未访问顶点中选择路径长度最短的顶点加入访问集合。满足st[index] = 0 条件的index可取值{2,5}，然后分析图 e 中的distance数组，可知当index取值为2时，distance[2] = 30，在所有未访问顶点对应的距离最短，所以将st[2]设为1，如下图 f 所示。</p>
 </li>
-<li><p>修改未访问顶点的最短路径。满足st[index] = 0 条件的index可取值{5}，index = 5：distance[5] = ∞，distance[2] + matrix[2,5] = 30 + 5 = 35，前者大于后者，修改distance[5] = 35，如下图g所示。</p>
+<li><p>（算法第四步）修改未访问顶点的最短路径。满足st[index] = 0 条件的index可取值{5}，index = 5：distance[5] = ∞，distance[2] + matrix[2,5] = 30 + 5 = 35，前者大于后者，修改distance[5] = 35，如下图g所示。</p>
 </li>
-<li><p>再次从未访问顶点中选择路径长度最短的顶点加入访问集合。满足st[index] = 0 条件的index可取值{5}，然后分析图 e 中的distance数组，可知当index取值为2时，distance[5] = 35，在所有未访问顶点对应的距离最短，所以将st[5]设为1，如下图 h 所示。</p>
+<li><p>（算法第三步）再次从未访问顶点中选择路径长度最短的顶点加入访问集合。满足st[index] = 0 条件的index可取值{5}，然后分析图 e 中的distance数组，可知当index取值为2时，distance[5] = 35，在所有未访问顶点对应的距离最短，所以将st[5]设为1，如下图 h 所示。</p>
 </li>
-<li><p>至此之后，集合T的顶点已经全部加入集合S中，程序结束。</p>
+<li><p>（算法第四步）至此之后，集合T的顶点已经全部加入集合S中，程序结束。</p>
 </li>
 </ol>
 <p><img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200204223107.png" alt></p>
 <p><img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200204224911.png" alt></p>
 <h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>基于邻接矩阵的代码实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//实现Dijkstra算法</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] dijkstra(<span class="keyword">int</span> v)&#123;</span><br><span class="line">	<span class="keyword">if</span>(v&lt;<span class="number">0</span>||v&gt;=numOfVexs)&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> ArrayIndexOutOfBoundsException();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">boolean</span>[] st = <span class="keyword">new</span> <span class="keyword">boolean</span>[numOfVexs];	<span class="comment">//默认初始值为false</span></span><br><span class="line">	<span class="keyword">int</span>[] distance = <span class="keyword">new</span> <span class="keyword">int</span>[numOfVexs];	<span class="comment">//存放原点到其他点的距离</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; numOfVexs;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;numOfVexs;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(edges[i][j] == <span class="number">0</span>)&#123;</span><br><span class="line">				edges[i][j] = Integer.MAX_VALUE;</span><br><span class="line">				edges[j][i] = Integer.MAX_VALUE;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//初始化</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;numOfVexs;i++)&#123;</span><br><span class="line">		distance[i] = edges[v][i];   </span><br><span class="line">	&#125;</span><br><span class="line">	st[v] = <span class="keyword">true</span>;</span><br><span class="line">    distance[v] = <span class="number">0</span>;</span><br><span class="line">	<span class="comment">//循环开始</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;numOfVexs;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> min = Integer.MAX_VALUE;</span><br><span class="line">		<span class="keyword">int</span> index = -<span class="number">1</span>;</span><br><span class="line">		<span class="comment">//取最小值</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;numOfVexs;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(st[j]==<span class="keyword">false</span>)&#123;</span><br><span class="line">				<span class="keyword">if</span>(distance[j]&lt;min)&#123;</span><br><span class="line">					index = j;</span><br><span class="line">					min = distance[j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//找到源点到索引为index顶点的最短路径长度</span></span><br><span class="line">		<span class="keyword">if</span>(index!=-<span class="number">1</span>) st[index] = <span class="keyword">true</span>;</span><br><span class="line">		<span class="comment">//更新当前最短路径及距离</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> w=<span class="number">0</span>;w&lt;numOfVexs;w++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(st[w]==<span class="keyword">false</span>)&#123;</span><br><span class="line">				<span class="keyword">if</span>(edges[index][w]!= Integer.MAX_VALUE &amp;&amp; </span><br><span class="line">						(min + edges[index][w]&lt;distance[w]))&#123;</span><br><span class="line">					distance[w] = min + edges[index][w];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">			</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> distance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>基于邻接表的代码实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] dijkstra(<span class="keyword">int</span> v)&#123;</span><br><span class="line">	<span class="keyword">if</span>(v&lt;<span class="number">0</span>||v&gt;=numOfVexs)&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> ArrayIndexOutOfBoundsException();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">boolean</span>[] st = <span class="keyword">new</span> <span class="keyword">boolean</span>[numOfVexs];</span><br><span class="line">	<span class="keyword">int</span>[] distance = <span class="keyword">new</span> <span class="keyword">int</span>[numOfVexs];</span><br><span class="line">	<span class="comment">//初始化  </span></span><br><span class="line">	ENode current = vexs[v].firstadj;</span><br><span class="line">	<span class="keyword">while</span>(current!=<span class="keyword">null</span>)&#123;</span><br><span class="line">		distance[current.adjvex] = current.weight;</span><br><span class="line">		current = current.nextadj;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;numOfVexs;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(distance[i]==<span class="number">0</span>)</span><br><span class="line">			distance[i] = Integer.MAX_VALUE;</span><br><span class="line">	&#125;</span><br><span class="line">	st[v] = <span class="keyword">true</span>;</span><br><span class="line">	distance[v] = <span class="number">0</span>;</span><br><span class="line">	<span class="comment">//开始循环</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;numOfVexs;i++)&#123;</span><br><span class="line">		<span class="comment">//从未访问顶点中选择路径长度最短的顶点加入访问集合</span></span><br><span class="line">		<span class="keyword">int</span> min = Integer.MAX_VALUE;</span><br><span class="line">		<span class="keyword">int</span> index = -<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;numOfVexs;j++)&#123;			</span><br><span class="line">			<span class="keyword">if</span>(!st[j]&amp;&amp;distance[j]&lt;min)&#123;</span><br><span class="line">				index = j;</span><br><span class="line">				min = distance[j];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(index!=-<span class="number">1</span>)&#123;</span><br><span class="line">			st[index] = <span class="keyword">true</span>;</span><br><span class="line">			<span class="comment">//找到源点到索引为index顶点的最短路径长度</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;numOfVexs;k++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(!st[k])&#123;</span><br><span class="line">					<span class="keyword">int</span>[] tmp = <span class="keyword">new</span> <span class="keyword">int</span>[numOfVexs];</span><br><span class="line">					ENode cur = vexs[index].firstadj;</span><br><span class="line">					<span class="keyword">while</span>(cur!=<span class="keyword">null</span>)&#123;</span><br><span class="line">						tmp[cur.adjvex] = cur.weight;</span><br><span class="line">						cur = cur.nextadj;</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">if</span>(tmp[k]!=<span class="number">0</span>&amp;&amp;distance[k]&gt;min+tmp[k])</span><br><span class="line">						distance[k] = min + tmp[k];</span><br><span class="line">				&#125;					</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> distance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>说明：在本博客中<a href="https://x1aolin.com/数据结构-图的介绍与实现/" target="_blank" rel="noopener">图的介绍与实现</a>一节中会有该问题详细实现，大家可以参考那个来进行理解。</p>
 
       
     </div>
@@ -625,8 +617,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/数据结构-图形的应用/" rel="prev" title="数据结构-图形的应用">
-                数据结构-图形的应用 <i class="fa fa-chevron-right"></i>
+              <a href="/数据结构-排序概述/" rel="prev" title="数据结构-排序概述">
+                数据结构-排序概述 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -721,7 +713,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -732,7 +724,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
