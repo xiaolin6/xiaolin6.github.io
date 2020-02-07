@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="x1aolin&#39;s home">
 <meta property="og:description" content="几种常见的排序算法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-05T13:15:28.425Z">
+<meta property="og:updated_time" content="2020-02-07T02:10:01.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构-排序概述">
 <meta name="twitter:description" content="几种常见的排序算法">
@@ -451,7 +451,21 @@
 <li><strong>逻辑移动</strong>：并不会移动数据存储位置，仅改变指向这些数据的指针。</li>
 </ul>
 <p>两者之间的优劣在于直接移动会浪费许多时间进行数据的改动，而逻辑移动只要改变指针指向的位置就能轻易达到排序的目的。</p>
-<h3 id="排序分类"><a href="#排序分类" class="headerlink" title="排序分类"></a>排序分类</h3>
+<h3 id="排序分类"><a href="#排序分类" class="headerlink" title="排序分类"></a>排序分类</h3><p>在排序过程中，若整个文件都是放在内存中处理，排序时不涉及数据的内、外存交换，则称为内部排序（内排序）；反之，若排序过程中要进行数据的内、外存转换，则称为外部排序（外排序）。</p>
+<h4 id="内排序"><a href="#内排序" class="headerlink" title="内排序"></a>内排序</h4><ul>
+<li><strong>插入排序</strong>：每次将一个待排序的记录，按其关键字大小插入到前面已经排好序的子列表中的适当位置，直到全部记录插入完成为止。</li>
+<li><strong>选择排序</strong>：每一趟从待排序的记录中选出关键字最小或最大的记录，顺序放在已排好序的子列表的最后，直到全部记录排序完毕。</li>
+<li><strong>交换排序</strong>：两两比较待排序记录的关键字，发现两个记录的次序相反时即进行交换，直到没有反序的记录为止。</li>
+<li><strong>归并排序</strong>：将两个或两个以上的有序子序列“归并”为一个有效序列。</li>
+<li><strong>分配排序</strong>：无需比较关键字，通过“分配”和“收集”过程实现排序。</li>
+</ul>
+<h4 id="外排序"><a href="#外排序" class="headerlink" title="外排序"></a>外排序</h4><ul>
+<li>直接合并排序法</li>
+<li>k路合并法</li>
+<li>多项和并法</li>
+</ul>
+<p>排序有非递增排序和非递减排序两种，为了不失一般性，在后续介绍中将会使用按关键码非递减有序设计。</p>
+
       
     </div>
     
@@ -553,6 +567,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/数据结构-插入排序/" rel="prev" title="数据结构-插入排序">
+                数据结构-插入排序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -634,7 +652,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -739,7 +757,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">1.</span> <span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#排序分类"><span class="nav-number">1.1.</span> <span class="nav-text">排序分类</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">1.</span> <span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#排序分类"><span class="nav-number">1.1.</span> <span class="nav-text">排序分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内排序"><span class="nav-number">1.1.1.</span> <span class="nav-text">内排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外排序"><span class="nav-number">1.1.2.</span> <span class="nav-text">外排序</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
