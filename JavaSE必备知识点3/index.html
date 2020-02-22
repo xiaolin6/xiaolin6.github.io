@@ -118,7 +118,7 @@
 <meta property="og:description" content="JavaSE必备知识点—杂七杂八">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.sxt.cn/360shop/Public/admin/UEditor/20170524/1495609352295957.png">
-<meta property="og:updated_time" content="2020-01-30T05:09:57.593Z">
+<meta property="og:updated_time" content="2020-02-22T15:13:29.122Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaSE必备知识点3">
 <meta name="twitter:description" content="JavaSE必备知识点—杂七杂八">
@@ -515,7 +515,10 @@
 <p>自定义异常类只需从Exception类或者它的子类派生一个子类即可。</p>
 <p>自定义异常类如果继承Exception类，则为受检查异常，必须对其进行处理;如果不想处理，可以让自定义异常类继承运行时异常RuntimeException类。</p>
 <p>习惯上，自定义异常类应该包含2个构造器：一个是默认的构造器，另一个是带有详细信息的构造器。</p>
-<h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p>帮助我们建立类型安全的集合。泛型的本质就是“数据类型的参数化”。我们可以把“泛型”理解为数据类型的一个占位符（形式参数），即告诉编译器，在调用泛型时必须传入实际类型。</p>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>泛型可以帮助我们建立类型安全的集合。泛型的本质就是”数据类型的参数化”。我们可以把”泛型“理解为数据类型的一个占位符（形式参数），即告诉编译器，在调用泛型的时候必须传入实际类型。</p>
+<p> 我们可以在类的声明处增加泛型列表，如：&lt;T,E,V&gt;。   此处，字符可以是任何标识符，一般采用这3个字母。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.x1aolin.a;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestGeneric</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		MyCollection&lt;Integer&gt; mc = <span class="keyword">new</span> MyCollection&lt;Integer&gt;();<span class="comment">//jdk1.7后，后面的&lt;&gt;内容可省略</span></span><br><span class="line"><span class="comment">//		mc.set(0, "xxx");</span></span><br><span class="line">		mc.set(<span class="number">1</span>, <span class="number">111</span>);</span><br><span class="line">		</span><br><span class="line"><span class="comment">//		System.out.println((String)mc.get(0));</span></span><br><span class="line">		System.out.println(mc.get(<span class="number">1</span>));<span class="comment">//加了泛型，直接返回Integer类型，不用强制转换;</span></span><br><span class="line">		mc.get(<span class="number">1</span>);</span><br><span class="line">		List ls;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCollection</span>&lt;<span class="title">E</span>&gt;</span>&#123;  <span class="comment">// E:表示泛型;</span></span><br><span class="line">    <span class="comment">//Object类是所有类的父类，所以这里可以使用 父类引用指向子类对象 这一技巧</span></span><br><span class="line">	<span class="keyword">private</span> Object[] ob= <span class="keyword">new</span> Object[<span class="number">8</span>];</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> index,E a)</span></span>&#123;</span><br><span class="line">		ob[index] = a;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (E)ob[index];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p># </p>
 
       
     </div>
@@ -614,8 +617,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/JavaSE必备知识点2/" rel="next" title="JavaSE必备知识点2">
-                <i class="fa fa-chevron-left"></i> JavaSE必备知识点2
+              <a href="/JavaSE必备知识点1/" rel="next" title="JavaSE必备知识点1">
+                <i class="fa fa-chevron-left"></i> JavaSE必备知识点1
               </a>
             
           </div>
@@ -624,8 +627,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/JavaSE必备知识点4/" rel="prev" title="JavaSE必备知识点4">
-                JavaSE必备知识点4 <i class="fa fa-chevron-right"></i>
+              <a href="/JavaSE必备知识点4-容器/" rel="prev" title="JavaSE必备知识点4-泛型与容器">
+                JavaSE必备知识点4-泛型与容器 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -709,7 +712,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -720,7 +723,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -814,7 +817,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#时间处理相关类"><span class="nav-number">1.</span> <span class="nav-text">时间处理相关类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Date类"><span class="nav-number">1.1.</span> <span class="nav-text">Date类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DateFormat类"><span class="nav-number">1.2.</span> <span class="nav-text">DateFormat类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calendar日期类"><span class="nav-number">1.3.</span> <span class="nav-text">Calendar日期类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#综合运用：可视化日历"><span class="nav-number">1.4.</span> <span class="nav-text">综合运用：可视化日历</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Math类"><span class="nav-number">2.</span> <span class="nav-text">Math类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Random类"><span class="nav-number">2.1.</span> <span class="nav-text">Random类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File类"><span class="nav-number">3.</span> <span class="nav-text">File类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常"><span class="nav-number">4.</span> <span class="nav-text">异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时异常"><span class="nav-number">4.1.</span> <span class="nav-text">运行时异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#已检查异常"><span class="nav-number">4.2.</span> <span class="nav-text">已检查异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#捕获异常"><span class="nav-number">4.2.1.</span> <span class="nav-text">捕获异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明异常throws"><span class="nav-number">4.2.2.</span> <span class="nav-text">声明异常throws</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义异常"><span class="nav-number">4.2.3.</span> <span class="nav-text">自定义异常</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#容器"><span class="nav-number">5.</span> <span class="nav-text">容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型"><span class="nav-number">5.1.</span> <span class="nav-text">泛型</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#时间处理相关类"><span class="nav-number">1.</span> <span class="nav-text">时间处理相关类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Date类"><span class="nav-number">1.1.</span> <span class="nav-text">Date类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DateFormat类"><span class="nav-number">1.2.</span> <span class="nav-text">DateFormat类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calendar日期类"><span class="nav-number">1.3.</span> <span class="nav-text">Calendar日期类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#综合运用：可视化日历"><span class="nav-number">1.4.</span> <span class="nav-text">综合运用：可视化日历</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Math类"><span class="nav-number">2.</span> <span class="nav-text">Math类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Random类"><span class="nav-number">2.1.</span> <span class="nav-text">Random类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File类"><span class="nav-number">3.</span> <span class="nav-text">File类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常"><span class="nav-number">4.</span> <span class="nav-text">异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时异常"><span class="nav-number">4.1.</span> <span class="nav-text">运行时异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#已检查异常"><span class="nav-number">4.2.</span> <span class="nav-text">已检查异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#捕获异常"><span class="nav-number">4.2.1.</span> <span class="nav-text">捕获异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明异常throws"><span class="nav-number">4.2.2.</span> <span class="nav-text">声明异常throws</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义异常"><span class="nav-number">4.2.3.</span> <span class="nav-text">自定义异常</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛型"><span class="nav-number">5.</span> <span class="nav-text">泛型</span></a></li></ol></div>
             
 
           </div>
