@@ -98,7 +98,7 @@
 
 
 
-  <meta name="keywords" content="java,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -109,18 +109,17 @@
 
 
 
-<meta name="description" content="JavaSE必备知识点—JavaBean、Java API与IO相关">
-<meta name="keywords" content="java">
+<meta name="description" content="JavaSE–IO相关知识">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaSE必备知识点5">
-<meta property="og:url" content="http://www.x1aolin.com/JavaSE必备知识点5/index.html">
+<meta property="og:title" content="JavaSE必备知识点5-IO相关">
+<meta property="og:url" content="http://www.x1aolin.com/JavaSE必备知识点5-IO相关/index.html">
 <meta property="og:site_name" content="x1aolin&#39;s home">
-<meta property="og:description" content="JavaSE必备知识点—JavaBean、Java API与IO相关">
+<meta property="og:description" content="JavaSE–IO相关知识">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-22T15:08:49.559Z">
+<meta property="og:updated_time" content="2020-02-27T08:49:54.735Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaSE必备知识点5">
-<meta name="twitter:description" content="JavaSE必备知识点—JavaBean、Java API与IO相关">
+<meta name="twitter:title" content="JavaSE必备知识点5-IO相关">
+<meta name="twitter:description" content="JavaSE–IO相关知识">
 
 
 
@@ -150,7 +149,7 @@
 
 
 
-  <link rel="canonical" href="http://www.x1aolin.com/JavaSE必备知识点5/">
+  <link rel="canonical" href="http://www.x1aolin.com/JavaSE必备知识点5-IO相关/">
 
 
 
@@ -158,7 +157,7 @@
 
 
 
-  <title>JavaSE必备知识点5 | x1aolin's home</title>
+  <title>JavaSE必备知识点5-IO相关 | x1aolin's home</title>
   
 
 
@@ -338,7 +337,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.x1aolin.com/JavaSE必备知识点5/">
+    <link itemprop="mainEntityOfPage" href="http://www.x1aolin.com/JavaSE必备知识点5-IO相关/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="x1aolin">
@@ -355,7 +354,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaSE必备知识点5</h1>
+          <h1 class="post-title" itemprop="name headline">JavaSE必备知识点5-IO相关</h1>
         
 
         <div class="post-meta">
@@ -443,25 +442,17 @@
       
 
       
-        <blockquote class="blockquote-center"><p>JavaSE必备知识点—JavaBean、Java API与IO相关</p>
+        <blockquote class="blockquote-center"><p>JavaSE–IO相关知识</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="javaBean"><a href="#javaBean" class="headerlink" title="javaBean"></a>javaBean</h2><p>JavaBean 是一种JAVA语言写成的可重用组件。为写成JavaBean，类必须是具体的和公共的，并且具有无参数的<a href="https://baike.baidu.com/item/构造器/9844976" target="_blank" rel="noopener">构造器</a>。</p>
-<p>JavaBean 通过提供符合一致性设计模式的公共方法将内部域暴露成员属性，set和get方法获取。众所周知，属性名称符合这种模式，其他Java 类可以通过自省机制(反射机制)发现和操作这些JavaBean 的属性。 </p>
-<p>通俗一点来说，<strong>Java Bean 实际是就是一个普通的 Java Class，但是需要满足三个要求 1、所有属性为 private，只允许通过getter方法和setter方法访问对象的属性 2、必须具有一个无参的构造函数 3、实现serializable接口 。</strong></p>
-<h2 id="Java-API使用方法"><a href="#Java-API使用方法" class="headerlink" title="Java API使用方法"></a>Java API使用方法</h2><ul>
-<li>查看当前类的继承体系</li>
-<li>查看构造器（如果没有，看下原因，是由静态方法还是工具类引起的）</li>
-<li>方法（方法名，形参，返回值类型，是否为静态类型 ）</li>
-</ul>
-<h2 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h2><p>IO,也就是Input Output，即输入输出流。字节流、字符流。流是一个抽象、动态的概念，是一连串连续动态的数据集合。</p>
-<p><strong>流：</strong>数据源<strong>—&gt;</strong>程序。</p>
-<p>数据源常见的有：数据库、文件、其他程序、那日村、网络连接、IO设备等。</p>
-<p><strong>核心类</strong>:</p>
+<h2 id="IO介绍"><a href="#IO介绍" class="headerlink" title="IO介绍"></a>IO介绍</h2><p>IO就是input/output的简称，被称为输入输出流，流动的东西就是数据。因为我们操作的数据不同，这里面又可以分为字节流和字符流。当然，这里我们只是学习很基础的部分，真正实操的时候，我们会有不同的组件来帮助我们更好的去使用。</p>
+<p><strong>IO流：</strong>程序与数据源之间的流动，是一连串连续动态的数据集合。数据源可为：文件、内存、网络连接、数据库、设备等。</p>
+<p>要点：<strong>一切以程序为中心</strong></p>
+<p><strong>核心类：</strong></p>
 <table>
 <thead>
 <tr>
-<th>类</th>
+<th>io流核心类</th>
 <th>说明</th>
 </tr>
 </thead>
@@ -500,12 +491,17 @@
 </tr>
 </tbody>
 </table>
+<p>但我们需要从硬盘的文件中读取或者输入数据时，我们并不能够直接与硬盘打交道，而是通过操作系统，而关闭流就是通知操作系统可以关闭该“通道”了，至于关不关，是操作系统说了算。</p>
+<p>在Java中，一切皆对象。所以当我们从文件中读取数据的时候，我们需要将其进行序列化操作。</p>
 <p><strong>流的分类</strong>：</p>
 <ul>
 <li>流向：输入流 输出流 （以当前程序为中心）。</li>
 <li>功能：节点流（直接读写）、处理流（包装流）。没有节点流处理流无法发挥作用。</li>
 <li>数据：字节流（按照字节读取数据）、字符流（按照字符读取数据，底层仍是字节流，自动搜寻指定码表）。</li>
 </ul>
+<p><strong>节点流与处理流：</strong>节点流处于io操作的第一线，所有操作必须通过他们进行；处理流可以对其他流进行处理（可提高效率和提高操作灵活性）。</p>
+<p><strong>字节流与字符流</strong>：区别在于是按照字节还是字符读取数据，如果文件是字符类文件的话，使用字符流确实可以提高速度，当然，其底层还是基于字节流进行操作，自动对码表进行搜寻。</p>
+<p><strong>字符集</strong>：GBK、UTF-8、Unicode（Java中采用该编码），我们在进行文件的读取的时候一定要选择相同的字符集，否则会乱码。</p>
 <h3 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h3><p>java不能够直接操作硬盘，只能通过虚拟机与操作系统进行联系。下面给出代码，说明一下简单的用法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 熟悉File文件的主要方法</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> x1aolin</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestFile3</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		String path = <span class="string">"C:/a/P.jpg"</span>;</span><br><span class="line">		<span class="comment">//1、构建File对象</span></span><br><span class="line">		File src = <span class="keyword">new</span> File(path);</span><br><span class="line">		<span class="comment">//2、构建File对象</span></span><br><span class="line">		src = <span class="keyword">new</span> File(<span class="string">"C:/a"</span>,<span class="string">"P.jpg"</span>);  <span class="comment">//只要拼出来就可以了</span></span><br><span class="line">		src = <span class="keyword">new</span> File(<span class="string">"C:"</span>,<span class="string">"a/P.jpg"</span>);  <span class="comment">//只要拼出来就可以了</span></span><br><span class="line">		<span class="comment">//3、构建File对象</span></span><br><span class="line">		src = <span class="keyword">new</span> File(<span class="keyword">new</span> File(<span class="string">"C:/a"</span>),<span class="string">"P.jpg"</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//基本信息</span></span><br><span class="line">		System.out.println(<span class="string">"得到名称："</span>+src.getName());</span><br><span class="line">		<span class="comment">//以创建文件对象时候的路径为准，返回时仅去除掉文件名;若创建时使用相对目录，这里可能返回null</span></span><br><span class="line">		System.out.println(<span class="string">"得到父路径: "</span>+ src.getParent());</span><br><span class="line">		System.out.println(<span class="string">"得到相对路径: "</span>+ src.getPath()); <span class="comment">//有时候相对路径==绝对路径</span></span><br><span class="line">		System.out.println(<span class="string">"得到绝对路径: "</span>+ src.getAbsolutePath());</span><br><span class="line">		System.out.println(<span class="string">"得到父对象的名称: "</span>+ src.getParentFile().getName());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//文件状态 不存在  存在：文件夹 文件  boolean</span></span><br><span class="line">		System.out.println(<span class="string">"是否存在："</span>+src.exists());</span><br><span class="line">		System.out.println(<span class="string">"是否是文件："</span>+src.isFile());</span><br><span class="line">		System.out.println(<span class="string">"是否是文件夹："</span>+src.isDirectory());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//文件长度  文件的字节数大小 long类型   文件夹字节数大小需要另行编写</span></span><br><span class="line">		System.out.println(src.length());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//创建文件 删除文件</span></span><br><span class="line">		src = <span class="keyword">new</span> File(<span class="string">"C:/a/hh.md"</span>);</span><br><span class="line">		<span class="comment">//不存在才会进行创建  而且只能够创建文件而不是文件夹</span></span><br><span class="line">		<span class="keyword">boolean</span> flag1 = src.createNewFile();   <span class="comment">//这里抛出异常，因为创建文件可能会失败</span></span><br><span class="line">		<span class="keyword">boolean</span> flag2 = src.delete();	<span class="comment">//删除已经存在的文件</span></span><br><span class="line">		System.out.println(flag1);</span><br><span class="line">		System.out.println(flag2);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//补充： 操作系统的设备名称相同时不能够正确创建！</span></span><br><span class="line">		src = <span class="keyword">new</span> File(<span class="string">"C:/a/con"</span>);</span><br><span class="line">		System.out.println(<span class="string">"与操作系统设备同名时："</span>+src.createNewFile());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>文件夹相关</strong></p>
@@ -607,7 +603,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://www.x1aolin.com/JavaSE必备知识点5/" title="JavaSE必备知识点5">http://www.x1aolin.com/JavaSE必备知识点5/</a>
+    <a href="http://www.x1aolin.com/JavaSE必备知识点5-IO相关/" title="JavaSE必备知识点5-IO相关">http://www.x1aolin.com/JavaSE必备知识点5-IO相关/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -640,12 +636,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i>java</a>
-          
-        </div>
-      
 
       
       
@@ -655,8 +645,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/JavaSE必备知识点4-容器/" rel="next" title="JavaSE必备知识点4-泛型与容器">
-                <i class="fa fa-chevron-left"></i> JavaSE必备知识点4-泛型与容器
+              <a href="/JavaSE必备知识点4-容器/" rel="next" title="JavaSE必备知识点4-容器详解">
+                <i class="fa fa-chevron-left"></i> JavaSE必备知识点4-容器详解
               </a>
             
           </div>
@@ -750,7 +740,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -855,7 +845,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#javaBean"><span class="nav-number">1.</span> <span class="nav-text">javaBean</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-API使用方法"><span class="nav-number">2.</span> <span class="nav-text">Java API使用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO"><span class="nav-number">3.</span> <span class="nav-text">IO</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#File类"><span class="nav-number">3.1.</span> <span class="nav-text">File类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符集"><span class="nav-number">3.2.</span> <span class="nav-text">字符集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IO四大抽象类"><span class="nav-number">3.3.</span> <span class="nav-text">IO四大抽象类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IO标准步骤"><span class="nav-number">3.4.</span> <span class="nav-text">IO标准步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件字节流"><span class="nav-number">3.5.</span> <span class="nav-text">文件字节流</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#IO介绍"><span class="nav-number">1.</span> <span class="nav-text">IO介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#File类"><span class="nav-number">1.1.</span> <span class="nav-text">File类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符集"><span class="nav-number">1.2.</span> <span class="nav-text">字符集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IO四大抽象类"><span class="nav-number">1.3.</span> <span class="nav-text">IO四大抽象类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IO标准步骤"><span class="nav-number">1.4.</span> <span class="nav-text">IO标准步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件字节流"><span class="nav-number">1.5.</span> <span class="nav-text">文件字节流</span></a></li></ol></li></ol></div>
             
 
           </div>

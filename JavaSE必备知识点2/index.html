@@ -118,7 +118,7 @@
 <meta property="og:description" content="JavaSE必备知识点—杂七杂八">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.sxt.cn/360shop/Public/admin/UEditor/20170524/1495609352295957.png">
-<meta property="og:updated_time" content="2020-02-18T12:58:32.099Z">
+<meta property="og:updated_time" content="2020-02-24T02:45:05.537Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaSE必备知识点2">
 <meta name="twitter:description" content="JavaSE必备知识点—杂七杂八">
@@ -726,7 +726,7 @@
 <h3 id="非静态内部类"><a href="#非静态内部类" class="headerlink" title="非静态内部类"></a>非静态内部类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.x1aolin;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试内部类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> x1aolin</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestInnerClass</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建一个内部类</span></span><br><span class="line">		Outer.Inner inn = <span class="keyword">new</span> Outer().new Inner();</span><br><span class="line">		inn.prinT(<span class="number">19</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age = <span class="number">21</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testOuter</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Outer.testOuter()"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//成员内部类 非静态成员内部类</span></span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">int</span> age = <span class="number">20</span>;</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">prinT</span><span class="params">(<span class="keyword">int</span> age)</span></span>&#123;</span><br><span class="line">			System.out.println(<span class="string">"外部类private age = "</span>+Outer.<span class="keyword">this</span>.age);</span><br><span class="line">			System.out.println(<span class="string">"内部类private age = "</span>+<span class="keyword">this</span>.age);</span><br><span class="line">			System.out.println(<span class="string">"局部变量 age = "</span>+age);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>非静态内部类必须寄存在一个外部类<strong>对象</strong>里（属于外部类的对象而不是外部类本身）。因此，如果有一个非静态内部类对象那么一定存在对应的外部类对象。非静态内部类对象单独属于外部类的某个对象。</li>
-<li>非静态内部类可以直接访问外部类的成员（包括私有属性），但是外部类不饿能直接访问非静态内部类成员。</li>
+<li>非静态内部类可以直接访问外部类的成员（包括私有属性），但是外部类不能直接访问非静态内部类成员。</li>
 <li>非静态内部类不能有静态方法、静态属性和静态初始化块。（这些都是依托于类本身，而非静态内部类依托于对象）。</li>
 <li>外部类的静态方法、静态代码块不能访问非静态内部类，包括不能使用非静态内部类定义变量、创建实例。</li>
 </ul>
@@ -1006,7 +1006,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="x1aolin&#39;s home">
 <meta property="og:description" content="动态规划学习">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-19T07:35:44.648Z">
+<meta property="og:updated_time" content="2020-02-26T04:26:44.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见算法-动态规划">
 <meta name="twitter:description" content="动态规划学习">
@@ -433,11 +433,26 @@
       
         <blockquote class="blockquote-center"><view><font size="4">动态规划学习</font></view></blockquote>
 <a id="more"></a>
-<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><h3 id="三大步骤"><a href="#三大步骤" class="headerlink" title="三大步骤"></a>三大步骤</h3><p>动态规划，无非就是利用历史记录，来避免我们的重复计算。而这些历史记录，我们得需要一些变量来进行保存，一般使用一维数组或者二维数组来保存。</p>
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><p>如果你不熟悉动态规划，请先点击这里<a href="https://labuladong.gitbook.io/algo/di-ling-zhang-bi-du-xi-lie/dong-tai-gui-hua-xiang-jie-jin-jie#er-cou-ling-qian-wen-ti" target="_blank" rel="noopener">参考</a>。这篇博客是十分详细的，对于小白也完全适用。</p>
+<p>动态规划的一般形式就是求最值，既然是求最值，那么其核心问题就是穷举。</p>
+<p>动态规划的穷举有些特别，因为这类问题存在<strong>重叠子问题</strong>，为了避免暴力穷举导致的效率底下，我们需要<strong>备忘录</strong>来记录子问题的数值，来避免重复计算。</p>
+<p>动态规划问题一定具有<strong>最优子结构</strong>，只有这样，才能够通过子问题的最值得到原问题的最值。要符合「最优子结构」，子问题间必须互相独立，若子问题之间相互牵扯，就不存在最优的问题。</p>
+<p>另外，虽然动态规划的核心思想是穷举求最值，但是问题可以千变万化，为了进行正确合理的穷举，我们一定要列出正确的<strong>状态转换方程</strong>。</p>
+<p><strong>总结</strong>：以上提到的重叠子问题、最优子结构、状态转移方程就是动态规划三要素。</p>
+<h3 id="三大步骤"><a href="#三大步骤" class="headerlink" title="三大步骤"></a>三大步骤</h3><p>动态规划，无非就是利用历史记录，来避免我们的重复计算。而这些历史记录，我们得需要一些变量来进行保存，一般使用一维数组或者二维数组来保存。</p>
 <p><strong>步骤1</strong>：定义数组元素的含义。</p>
 <p><strong>步骤2</strong>：找出数组元素之间的关系式，也就是利用历史数据来推出新的元素值。</p>
 <p><strong>步骤3</strong>：找出初始值。</p>
-
+<h2 id="典型例题"><a href="#典型例题" class="headerlink" title="典型例题"></a>典型例题</h2><h3 id="最长递增子序列"><a href="#最长递增子序列" class="headerlink" title="最长递增子序列"></a>最长递增子序列</h3><p><strong>问题</strong>：</p>
+<p><strong>解析</strong>：</p>
+<p>首先明确 dp 数组所存数据的含义。这步很重要，如果不得当或者不够清晰，会阻碍之后的步骤。</p>
+<p>然后根据 dp 数组的定义，运用数学归纳法的思想，假设 $dp[0…i-1]$ 都已知，想办法求出 $dp[i]$，一旦这一步完成，整个题目基本就解决了。</p>
+<p>但如果无法完成这一步，很可能就是 dp 数组的定义不够恰当，需要重新定义 dp 数组的含义；或者可能是 dp 数组存储的信息还不够，不足以推出下一步的答案，需要把 dp 数组扩大成二维数组甚至三维数组。</p>
+<p>最后想一想问题的 base case 是什么，以此来初始化 dp 数组，以保证算法正确运行。</p>
+<p><strong>代码</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 给定一个无序的整数数组，寻找最长递增子序列</span></span><br><span class="line"><span class="comment"> * dp[i] 表示以 nums[i] 这个数结尾的最长递增子序列的长度。</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> x1aolin</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] num = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>&#125;;</span><br><span class="line">		<span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[num.length];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;num.length;i++) dp[i] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;dp.length;i++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;i;j++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(num[j]&lt;num[i])&#123;</span><br><span class="line">					dp[i] = Math.max(dp[j]+<span class="number">1</span>, dp[i]);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(dp[<span class="number">6</span>]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然，这代码可以再优化，这里就不再说了。</p>
+<h3 id="编辑距离"><a href="#编辑距离" class="headerlink" title="编辑距离"></a>编辑距离</h3>
       
     </div>
     
@@ -624,7 +639,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -729,7 +744,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#动态规划"><span class="nav-number">1.</span> <span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三大步骤"><span class="nav-number">1.1.</span> <span class="nav-text">三大步骤</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#动态规划"><span class="nav-number">1.</span> <span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三大步骤"><span class="nav-number">1.1.</span> <span class="nav-text">三大步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#典型例题"><span class="nav-number">2.</span> <span class="nav-text">典型例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最长递增子序列"><span class="nav-number">2.1.</span> <span class="nav-text">最长递增子序列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑距离"><span class="nav-number">2.2.</span> <span class="nav-text">编辑距离</span></a></li></ol></li></ol></div>
             
 
           </div>
