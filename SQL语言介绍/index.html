@@ -98,7 +98,7 @@
 
 
 
-  <meta name="keywords" content="模糊查询,sql,">
+  <meta name="keywords" content="sql,">
 
 
 
@@ -110,14 +110,14 @@
 
 
 <meta name="description" content="结构化数据库操作语言介绍–SQL语言">
-<meta name="keywords" content="模糊查询,sql">
+<meta name="keywords" content="sql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL语言介绍">
 <meta property="og:url" content="http://www.x1aolin.com/SQL语言介绍/index.html">
 <meta property="og:site_name" content="x1aolin&#39;s home">
 <meta property="og:description" content="结构化数据库操作语言介绍–SQL语言">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-16T08:38:54.648Z">
+<meta property="og:updated_time" content="2020-03-01T05:09:43.356Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL语言介绍">
 <meta name="twitter:description" content="结构化数据库操作语言介绍–SQL语言">
@@ -435,19 +435,17 @@
         <blockquote class="blockquote-center"><p>结构化数据库操作语言介绍–SQL语言</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="关系数据库基本概念"><a href="#关系数据库基本概念" class="headerlink" title="关系数据库基本概念"></a>关系数据库基本概念</h2><p>关系：整个二维表</p>
-<p>关系名：表格名称</p>
-<p>元组：行数据（记录）</p>
-<p>属性：列数据（字段）</p>
-<p>属性名：列名称（字段名）</p>
-<p>主键：唯一确定元组的属性组（关键字）</p>
-<p>域：属性的取值范围</p>
+<h2 id="关系数据库基本概念"><a href="#关系数据库基本概念" class="headerlink" title="关系数据库基本概念"></a>关系数据库基本概念</h2><p><strong>关系</strong>：整个二维表</p>
+<p><strong>关系名</strong>：表格名称</p>
+<p><strong>元组</strong>：行数据（记录）</p>
+<p><strong>属性</strong>：列数据（字段）</p>
+<p><strong>属性名</strong>：列名称（字段名）</p>
+<p><strong>主键</strong>：唯一确定元组的属性组（关键字）</p>
+<p><strong>域</strong>：属性的取值范围</p>
 <h2 id="SQL概念"><a href="#SQL概念" class="headerlink" title="SQL概念"></a>SQL概念</h2><ul>
-<li><p>结构化语句</p>
-</li>
-<li><p>SQL是最重要的关系数据库操作语言，是所有关系数据库管理系统的标准语言</p>
-</li>
-<li>许多数据库厂商在使用SQL的同时，都对SQL进行了扩展，比如ORACLE的PL/SQL语言，MS SQL-Server的T-SQL语言</li>
+<li>结构化语句</li>
+<li>SQL是最重要的关系数据库操作语言，是所有关系数据库管理系统的标准语言。</li>
+<li>许多数据库厂商在使用SQL的同时，都对SQL进行了扩展，比如ORACLE的PL/SQL语言，MS SQL-Server的T-SQL语言。</li>
 <li>SQL语言是一种非过程化语言，只需要提出”做什么”,而不需要指明“怎么做”</li>
 </ul>
 <h2 id="SQL作用"><a href="#SQL作用" class="headerlink" title="SQL作用"></a>SQL作用</h2><ul>
@@ -469,11 +467,8 @@
 <li>create、alter、drop</li>
 </ul>
 </li>
-<li><p>DCL（数据控制语言）</p>
-<ul>
+<li>DCL（数据控制语言）</li>
 <li>grant、revoke</li>
-</ul>
-</li>
 <li>TCL(事务控制语言)<ul>
 <li>SAVEPOINT 、 ROLLBACK、SET TRANSACTION ，COMMIT</li>
 </ul>
@@ -509,7 +504,8 @@
 <li>修改用户</li>
 <li>删除用户 </li>
 </ul>
-<h3 id="通过SQL语句管理事务"><a href="#通过SQL语句管理事务" class="headerlink" title="通过SQL语句管理事务"></a>通过SQL语句管理事务</h3><h3 id="单表的增删改查"><a href="#单表的增删改查" class="headerlink" title="单表的增删改查"></a>单表的增删改查</h3><h3 id="多表联合查询"><a href="#多表联合查询" class="headerlink" title="多表联合查询"></a>多表联合查询</h3><h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><h3 id="创建表和用户"><a href="#创建表和用户" class="headerlink" title="创建表和用户"></a>创建表和用户</h3><h3 id="序列、索引、视图"><a href="#序列、索引、视图" class="headerlink" title="序列、索引、视图"></a>序列、索引、视图</h3><h3 id="数据库分页查询"><a href="#数据库分页查询" class="headerlink" title="数据库分页查询"></a>数据库分页查询</h3><h3 id="数据库备份"><a href="#数据库备份" class="headerlink" title="数据库备份"></a>数据库备份</h3>
+<h3 id="通过SQL语句管理事务"><a href="#通过SQL语句管理事务" class="headerlink" title="通过SQL语句管理事务"></a>通过SQL语句管理事务</h3><h3 id="单表的增删改查"><a href="#单表的增删改查" class="headerlink" title="单表的增删改查"></a>单表的增删改查</h3><h3 id="多表联合查询"><a href="#多表联合查询" class="headerlink" title="多表联合查询"></a>多表联合查询</h3><h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><h3 id="创建表和用户"><a href="#创建表和用户" class="headerlink" title="创建表和用户"></a>创建表和用户</h3><h3 id="序列、索引、视图"><a href="#序列、索引、视图" class="headerlink" title="序列、索引、视图"></a>序列、索引、视图</h3><h3 id="数据库分页查询"><a href="#数据库分页查询" class="headerlink" title="数据库分页查询"></a>数据库分页查询</h3><h3 id="数据库备份"><a href="#数据库备份" class="headerlink" title="数据库备份"></a>数据库备份</h3><p>以上知识点会在Oracle基础知识系列当中陆续进行介绍，请继续往下看。</p>
+
       
     </div>
     
@@ -594,8 +590,6 @@
       
         <div class="post-tags">
           
-            <a href="/tags/模糊查询/" rel="tag"><i class="fa fa-tag"></i>模糊查询</a>
-          
             <a href="/tags/sql/" rel="tag"><i class="fa fa-tag"></i>sql</a>
           
         </div>
@@ -609,7 +603,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/数据库相关/" rel="next" title="oracle数据库初期介绍">
+              <a href="/Oracle数据库初期介绍/" rel="next" title="oracle数据库初期介绍">
                 <i class="fa fa-chevron-left"></i> oracle数据库初期介绍
               </a>
             

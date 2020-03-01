@@ -113,12 +113,12 @@
 <meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="oracle数据库初期介绍">
-<meta property="og:url" content="http://www.x1aolin.com/数据库相关/index.html">
+<meta property="og:url" content="http://www.x1aolin.com/Oracle数据库初期介绍/index.html">
 <meta property="og:site_name" content="x1aolin&#39;s home">
 <meta property="og:description" content="从今天开始，我会在这里比较详细的写一下Oracle数据库相关的一些知识，希望能够有更大的提高。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20191215120724.png">
-<meta property="og:updated_time" content="2019-12-15T04:12:57.550Z">
+<meta property="og:updated_time" content="2020-03-01T05:00:22.105Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="oracle数据库初期介绍">
 <meta name="twitter:description" content="从今天开始，我会在这里比较详细的写一下Oracle数据库相关的一些知识，希望能够有更大的提高。">
@@ -152,7 +152,7 @@
 
 
 
-  <link rel="canonical" href="http://www.x1aolin.com/数据库相关/">
+  <link rel="canonical" href="http://www.x1aolin.com/Oracle数据库初期介绍/">
 
 
 
@@ -340,7 +340,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.x1aolin.com/数据库相关/">
+    <link itemprop="mainEntityOfPage" href="http://www.x1aolin.com/Oracle数据库初期介绍/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="x1aolin">
@@ -438,67 +438,49 @@
 </blockquote>
 <a id="more"></a>
 <p>我们使用数据库无非就两块：<strong>使用数据库存储数据</strong>、<strong>使用数据库获取数据</strong>。</p>
-<h2 id="数据库概念介绍"><a href="#数据库概念介绍" class="headerlink" title="数据库概念介绍"></a>数据库概念介绍</h2><p>数据：</p>
-<p>​    数据是对现实生活事物描述的符号。</p>
-<p>数据库：</p>
-<p>​    用来存数数据的仓库。</p>
-<p>数据库管理系统：</p>
-<p>​    用户直观用来操作数据库的软件。</p>
-<p>数据库应用系统：</p>
-<p>​    在数据库管理系统之上，专门给普通用户进行使用的系统，例如京东、淘宝等。</p>
-<p>数据库系统：</p>
-<p>​    用户 + 数据库管理系统（需要数据库管理系统语言）+ 数据库 + 数据库应用系统 + 数据库管理员</p>
-<p>常用的数据库存储结构：</p>
-<p>​    网状数据库、层次数据库、关系数据库、对象数据库、NOSQL数据库</p>
-<p>关系数据库：</p>
-<p>​    二维表结构存储：数据、数据的描述、数据之间的关系。</p>
-<p>​    数据存储时仅仅存储数据是不够的，数据的描述，数据之间的关系也是其重点。</p>
-<p>常见的数据库管理系统：</p>
-<p><strong>Oracle</strong> 、 <strong>MySQL</strong> 、 SQL sever 、 DB2 、 Access</p>
-<h2 id="Oracle-甲骨文-介绍"><a href="#Oracle-甲骨文-介绍" class="headerlink" title="Oracle(甲骨文)介绍"></a>Oracle(甲骨文)介绍</h2><h3 id="oracle数据库管理系统介绍："><a href="#oracle数据库管理系统介绍：" class="headerlink" title="oracle数据库管理系统介绍："></a>oracle数据库管理系统介绍：</h3><p>​    Oracle公司的核心产品、目前最流行的数据库、基于C/S系统结构、主要版本有8i, 9i, 10g, 11g, 12cd等。</p>
-<h3 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h3><p>​    合理的管理数据库的存储和读取。</p>
-<h3 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h3><p>​    软件安装：</p>
-<p>​            软件：Oracle XE版本；一路next即可。</p>
-<p>​            PLSql：第三方提供的客户端插件。</p>
-<p>​    软件使用</p>
-<p>​            验证安装成功：</p>
-<p>​                    打开Sql命令黑窗口，输入命令conn system/密码</p>
-<p>​            安装内容：</p>
-<p>​                    数据库管理系统：（1个）</p>
-<p>​                            分两块：客户端+服务器。我们通过客户端连接服务器，然后由服务器来对我们实际的数据库。这样能够方便多人进行同一个库的处理。  </p>
-<p>​                    数据库：（多个）</p>
-<p>​                            SID：数据库的唯一标识符。</p>
-<p>​                            注意：Oracle XE版本默认安装数据库名为XE。</p>
-<p>​            软件服务器介绍：</p>
-<p>​                    <code>OracleServiceXE</code>：相当于oracle的开关。</p>
-<p>​                    <code>OracleXETNSListener</code>: oracle的监视器。</p>
-<p>​            软件目录结构介绍：</p>
-<p>​                    <code>C:\oraclexe\app\oracle</code>: 安装路径</p>
-<p>​                            oradata: 数据库相关信息</p>
-<p>​                            product：数据库管理系统的相关信息</p>
-<p>​                                    bin目录：数据库管理系统软件的启动目录</p>
-<p>​                                    jdbc目录：数据库和Java连接所需要的jar包</p>
-<p>​                                    network：数据库管理系统所需网络配置目录</p>
-<p>​                                    log目录：日志文件，存储出错、异常信息</p>
-<h3 id="软件原理"><a href="#软件原理" class="headerlink" title="软件原理"></a>软件原理</h3><p>​    软件体系架构：</p>
-<p>​            B/S架构：Browser/Sever（浏览器/服务器模式）浏览器可看作一个公共的客户端，可以避免下载客户端，只需要使用一个浏览器即可。更新不需要用户的同意，用户在下次访问该网站时自动使用新版版本，但是这样会加重服务器端的压力。</p>
-<p>​            C/S架构：Client/Sever（客户端/服务器模式）必须要安装该应用的相应客户端，才能使用。可以同时多用户处理，C/S架构因为版本的升级需要用户的同意，所以就容易造成用户的流失。</p>
-<p>​            oracle是基于C/S架构的。</p>
-<p>​                    基本交互流程：oracle客户端（位置地域不限）–&gt;oracle服务器 –&gt; 数据库</p>
-<p>​                    客户端连接服务器： 需要<strong>IP、端口号、协议、库名</strong>找数据库位置，通过用户名、密码进行验证进入。</p>
-<p>​                    协议配置文件：客户端默认加载该文件，该文件存储<strong>IP、端口号、协议、库名</strong>等数据</p>
+<h2 id="数据库概念介绍"><a href="#数据库概念介绍" class="headerlink" title="数据库概念介绍"></a>数据库概念介绍</h2><p><strong>数据</strong>：数据是对现实生活事物描述的符号。</p>
+<p><strong>数据库</strong>：用来存数数据的仓库。</p>
+<p><strong>数据库管理系统</strong>：用户直观用来操作数据库的软件。</p>
+<p><strong>数据库应用系统</strong>：在数据库管理系统之上，专门给普通用户进行使用的系统，例如京东、淘宝等。</p>
+<p><strong>数据库系统</strong>：用户 + 数据库管理系统（需要数据库管理系统语言）+ 数据库 + 数据库应用系统 + 数据库管理员</p>
+<p><strong>常用的数据库存储结构</strong>：网状数据库、层次数据库、关系数据库、对象数据库、NOSQL数据库</p>
+<p><strong>关系数据库</strong>：二维表结构存储：数据、数据的描述、数据之间的关系。    数据存储时仅仅存储数据是不够的，数据的描述，数据之间的关系也是其重点。</p>
+<p><strong>常见的数据库管理系统</strong>：<strong>Oracle</strong> 、 <strong>MySQL</strong> 、 SQL sever 、 DB2 、 Access</p>
+<h2 id="Oracle-甲骨文-介绍"><a href="#Oracle-甲骨文-介绍" class="headerlink" title="Oracle(甲骨文)介绍"></a>Oracle(甲骨文)介绍</h2><p><strong>oracle数据库管理系统</strong>：    </p>
+<p>Oracle公司的核心产品、目前最流行的数据库、基于C/S系统结构、主要版本有8i, 9i, 10g, 11g, 12cd等。</p>
+<p><strong>作用</strong>：    合理的管理数据库的存储和读取。</p>
+<p><strong>软件安装</strong>：<strong>软件</strong>：Oracle XE版本；一路next即可。<strong>PLSql</strong>：第三方提供的客户端插件。</p>
+<p><strong>软件使用</strong>：</p>
+<p><strong>验证安装成功</strong>：打开Sql命令黑窗口，输入命令conn system/密码</p>
+<p><strong>安装内容</strong>：</p>
+<p>（一）数据库管理系统：（1个）分两块：客户端+服务器。我们通过客户端连接服务器，然后由服务器来对我们实际的数据库。这样能够方便多人进行同一个库的处理。  </p>
+<p>（二）数据库：（多个）<strong>SID</strong>：数据库的唯一标识符。<strong>注意</strong>：Oracle XE版本默认安装数据库名为XE。</p>
+<p><strong>软件服务器介绍</strong>：</p>
+<p><code>OracleServiceXE</code>：相当于oracle的开关。<code>OracleXETNSListener</code>: oracle的监视器。</p>
+<p><strong>软件目录结构介绍</strong>：</p>
+<p><code>C:\oraclexe\app\oracle</code>: 安装路径</p>
+<p><strong>oradata</strong>: 数据库相关信息</p>
+<p><strong>product</strong>：数据库管理系统的相关信息</p>
+<p><strong>bin</strong>目录：数据库管理系统软件的启动目录</p>
+<p><strong>jdbc</strong>目录：数据库和Java连接所需要的jar包</p>
+<p><strong>network</strong>：数据库管理系统所需网络配置目录</p>
+<p><strong>log</strong>目录：日志文件，存储出错、异常信息</p>
+<h3 id="软件原理"><a href="#软件原理" class="headerlink" title="软件原理"></a>软件原理</h3><p><strong>软件体系架构</strong>：</p>
+<p><strong>B/S架构</strong>：Browser/Sever（浏览器/服务器模式）浏览器可看作一个公共的客户端，可以避免下载客户端，只需要使用一个浏览器即可。更新不需要用户的同意，用户在下次访问该网站时自动使用新版版本，但是这样会加重服务器端的压力。</p>
+<p><strong>C/S架构</strong>：Client/Sever（客户端/服务器模式）必须要安装该应用的相应客户端，才能使用。可以同时多用户处理，C/S架构因为版本的升级需要用户的同意，所以就容易造成用户的流失。</p>
+<p>oracle是基于C/S架构的。</p>
+<p><strong>基本交互流程</strong>：oracle客户端（位置地域不限）–&gt;oracle服务器 –&gt; 数据库</p>
+<p><strong>客户端连接服务器</strong>： 需要<strong>IP、端口号、协议、库名</strong>找数据库位置，通过用户名、密码进行验证进入。</p>
+<p><strong>协议配置文件</strong>：客户端默认加载该文件，该文件存储<strong>IP、端口号、协议、库名</strong>等数据</p>
 <p>虽然我们练习的时候时每个人都有一个客户端，一个服务器和一个数据库，但实际来讲，整个开发团队仅需要n个客户端，一个服务器和一个数据库即可完成相应的开发工作。</p>
 <h3 id="本地网络服务和监听配置"><a href="#本地网络服务和监听配置" class="headerlink" title="本地网络服务和监听配置"></a>本地网络服务和监听配置</h3><p>本地网路服务配置：<code>C:\oraclexe\app\oracle\product\10.2.0\server\NETWORK\ADMIN\tnsnames.ora</code></p>
 <p>​        该文件存储的是键值对，其作用为：Oracle客户端会自动加载其中的文件内容，连接配置好的数据库，该文件是给客户端使用的。</p>
 <p>​        Oracle给我们提供的客户端为一个黑色的窗口，为了使用方便，我们可以安装一个插件，来进行数据库操作。</p>
-<h3 id="oracleXE自带账户"><a href="#oracleXE自带账户" class="headerlink" title="oracleXE自带账户"></a>oracleXE自带账户</h3><p>账户名：</p>
-<p>​        <code>system</code>： 系统用户（管理员），通过其可添加其他普通用户。</p>
-<p>​         <code>sys</code>： 超级用户（工程师）</p>
-<p>区别：</p>
-<p>​        <code>sys</code>账户比<code>system</code>账户的权限要多。</p>
-<p>注意：</p>
-<p>​        OracleXE版本安装好后，不自带普通用户的。</p>
-<p>​        Oracle11g和oracle10g自带一个普通用户 scott，默认密码：tiger，并给该用户 自带了四张二维表数据。</p>
+<h3 id="oracleXE自带账户"><a href="#oracleXE自带账户" class="headerlink" title="oracleXE自带账户"></a>oracleXE自带账户</h3><p><strong>账户名</strong>：</p>
+<p><code>system</code>： 系统用户（管理员），通过其可添加其他普通用户。</p>
+<p><code>sys</code>： 超级用户（工程师）。</p>
+<p><strong>区别</strong>：<code>sys</code>账户比<code>system</code>账户的权限要多。</p>
+<p><strong>注意</strong>：OracleXE版本安装好后，不自带普通用户的。Oracle11g和oracle10g自带一个普通用户 scott，默认密码：tiger，并给该用户 自带了四张二维表数据。</p>
 <h2 id="oracle新建用户"><a href="#oracle新建用户" class="headerlink" title="oracle新建用户"></a>oracle新建用户</h2><h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><p>新建普通用户时必须用<code>system</code>等高级用户进行用户创建，步骤如下：</p>
 <ul>
 <li><p>打开plsql，使用system账户登录，注意：登陆身份选择sysdba</p>
@@ -514,19 +496,19 @@
 <li>赋予用户数据库登录连接权限<code>grant connect to USERNAME</code></li>
 <li>赋予用户资源操纵权限<code>grant resource to USERNAME</code></li>
 </ul>
-<h3 id="练习表概述"><a href="#练习表概述" class="headerlink" title="练习表概述"></a>练习表概述</h3><p>scott账户下有表：</p>
-<p>​        Emp：员工信息表</p>
-<p>​        Dept：部门表</p>
-<p>​        SaleGrade: 薪资等级表</p>
-<p>​        Bouns：津贴表</p>
+<h3 id="练习表概述"><a href="#练习表概述" class="headerlink" title="练习表概述"></a>练习表概述</h3><p>scott账户下有表：    </p>
+<p><strong>Emp</strong>：员工信息表        </p>
+<p><strong>Dept</strong>：部门表        </p>
+<p><strong>SaleGrade</strong>: 薪资等级表        </p>
+<p><strong>Bouns</strong>：津贴表</p>
 <h2 id="oracle修改用户密码"><a href="#oracle修改用户密码" class="headerlink" title="oracle修改用户密码"></a>oracle修改用户密码</h2><ul>
 <li>cmd打开window命令窗口</li>
 <li>输入命令：<code>sqlplus /nolog</code></li>
 <li>输入命令：<code>conn /as sysdba</code></li>
 <li>输入命令：<code>alter user USERNAME identify by newPassword;</code>(结尾分号)</li>
 </ul>
-<p>注意：</p>
-<p>​    sqlplus不是内部命令的错误，是因为oracle的环境变量配置有问题。正常的配置如下图第一行所示：<img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20191215120724.png" alt></p>
+<p><strong>注意</strong>：</p>
+<p>若出现<strong>sqlplus</strong>不是内部命令的错误，是因为oracle的环境变量配置有问题。正常的配置如下图所示：<img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20191215120724.png" alt></p>
 
       
     </div>
@@ -577,7 +559,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://www.x1aolin.com/数据库相关/" title="oracle数据库初期介绍">http://www.x1aolin.com/数据库相关/</a>
+    <a href="http://www.x1aolin.com/Oracle数据库初期介绍/" title="oracle数据库初期介绍">http://www.x1aolin.com/Oracle数据库初期介绍/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -825,7 +807,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库概念介绍"><span class="nav-number">1.</span> <span class="nav-text">数据库概念介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Oracle-甲骨文-介绍"><span class="nav-number">2.</span> <span class="nav-text">Oracle(甲骨文)介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#oracle数据库管理系统介绍："><span class="nav-number">2.1.</span> <span class="nav-text">oracle数据库管理系统介绍：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用："><span class="nav-number">2.2.</span> <span class="nav-text">作用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用："><span class="nav-number">2.3.</span> <span class="nav-text">使用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件原理"><span class="nav-number">2.4.</span> <span class="nav-text">软件原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地网络服务和监听配置"><span class="nav-number">2.5.</span> <span class="nav-text">本地网络服务和监听配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#oracleXE自带账户"><span class="nav-number">2.6.</span> <span class="nav-text">oracleXE自带账户</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#oracle新建用户"><span class="nav-number">3.</span> <span class="nav-text">oracle新建用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建用户"><span class="nav-number">3.1.</span> <span class="nav-text">创建用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给用户赋予权限"><span class="nav-number">3.2.</span> <span class="nav-text">给用户赋予权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#练习表概述"><span class="nav-number">3.3.</span> <span class="nav-text">练习表概述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#oracle修改用户密码"><span class="nav-number">4.</span> <span class="nav-text">oracle修改用户密码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库概念介绍"><span class="nav-number">1.</span> <span class="nav-text">数据库概念介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Oracle-甲骨文-介绍"><span class="nav-number">2.</span> <span class="nav-text">Oracle(甲骨文)介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#软件原理"><span class="nav-number">2.1.</span> <span class="nav-text">软件原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地网络服务和监听配置"><span class="nav-number">2.2.</span> <span class="nav-text">本地网络服务和监听配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#oracleXE自带账户"><span class="nav-number">2.3.</span> <span class="nav-text">oracleXE自带账户</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#oracle新建用户"><span class="nav-number">3.</span> <span class="nav-text">oracle新建用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建用户"><span class="nav-number">3.1.</span> <span class="nav-text">创建用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给用户赋予权限"><span class="nav-number">3.2.</span> <span class="nav-text">给用户赋予权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#练习表概述"><span class="nav-number">3.3.</span> <span class="nav-text">练习表概述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#oracle修改用户密码"><span class="nav-number">4.</span> <span class="nav-text">oracle修改用户密码</span></a></li></ol></div>
             
 
           </div>

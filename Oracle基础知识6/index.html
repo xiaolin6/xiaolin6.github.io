@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="x1aolin&#39;s home">
 <meta property="og:description" content="Oracle二维表管理–创建、维护、删除表">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-04T07:09:33.238Z">
+<meta property="og:updated_time" content="2020-03-01T15:00:35.742Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle基础知识6">
 <meta name="twitter:description" content="Oracle二维表管理–创建、维护、删除表">
@@ -466,7 +466,7 @@
 <ul>
 <li><p>添加主键，主键非空唯一</p>
 <ul>
-<li><p>直接在创建表的对应字段后添加<code>primary key</code>，这样方便，但是不能自定义约束条件名。</p>
+<li><p>直接在创建表的对应字段后添加<code>primary key</code>，这样方便，可以通过<code>constraint 主键名 primary key</code>来定义约束名。</p>
 </li>
 <li><p>在创建表的最后使用<code>constraint &lt;完整性约束条件名&gt; &lt;完整性约束条件&gt;</code>加以约束，下面给出一个较为正式的主键子句模板：<code>constraint pk_表名_字段名 primary key(字段名);</code></p>
 </li>
@@ -521,6 +521,8 @@
 </ul>
 </li>
 </ul>
+<p><strong>综上给个例子供参考</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> sss(</span><br><span class="line">       <span class="keyword">id</span> <span class="built_in">number</span>(<span class="number">10</span>) <span class="keyword">constraint</span> 主键名 primary <span class="keyword">key</span>,</span><br><span class="line">       ssex varchar2(<span class="number">4</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">       sname <span class="built_in">varchar</span>(<span class="number">30</span>),</span><br><span class="line">       sphone <span class="built_in">number</span>(<span class="number">11</span>) <span class="keyword">constraint</span> 约束名<span class="number">1</span> <span class="keyword">unique</span>,</span><br><span class="line">       <span class="keyword">constraint</span> 约束名<span class="number">2</span> <span class="keyword">check</span>(ssex <span class="keyword">in</span>(<span class="string">'男'</span>,<span class="string">'女'</span>))</span><br><span class="line">)</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> sss <span class="keyword">add</span> <span class="keyword">constraint</span> 约束名<span class="number">3</span> <span class="keyword">check</span>(sname <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">null</span>);</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> sss <span class="keyword">add</span> <span class="keyword">constraint</span> waiJianYueShu <span class="keyword">foreign</span> <span class="keyword">key</span>(<span class="keyword">id</span>) <span class="keyword">references</span> ss(<span class="keyword">id</span>);</span><br></pre></td></tr></table></figure>
 <h3 id="外键约束条件"><a href="#外键约束条件" class="headerlink" title="外键约束条件"></a>外键约束条件</h3><p>外键约束条件理论上也是在添加约束条件时一起添加，但因为外键约束较为特殊，这里独立出来讲一下，这也就完成了参照完整性！</p>
 <ul>
 <li><p>作用：当在子表中插入的数据在父表中不存在，则会自动报错。</p>
