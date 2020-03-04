@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="x1aolin&#39;s home">
 <meta property="og:description" content="使用JDBC完成对表中数据的修改与删除">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-02T07:57:12.294Z">
+<meta property="og:updated_time" content="2020-03-02T09:02:36.777Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JDBC完成修改&amp;删除">
 <meta name="twitter:description" content="使用JDBC完成对表中数据的修改与删除">
@@ -446,6 +446,16 @@
         <blockquote class="blockquote-center"><p>使用JDBC完成对表中数据的修改与删除</p>
 </blockquote>
 <a id="more"></a>
+<h2 id="JDBC完成修改和删除步骤"><a href="#JDBC完成修改和删除步骤" class="headerlink" title="JDBC完成修改和删除步骤"></a>JDBC完成修改和删除步骤</h2><p>第一步：导入jdbc驱动包</p>
+<p>第二步：加载驱动</p>
+<p>第三步：创建数据库连接对象：<code>DriverManager.getConnection()</code></p>
+<p>第四步：创建sql命令对象: <code>createStatement()</code></p>
+<p>第五步：创建sql语句</p>
+<p>第六步：执行sql语句: <code>executeUpdate()</code></p>
+<p>第七步：关闭资源</p>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.DriverManager;</span><br><span class="line"><span class="keyword">import</span> java.sql.SQLException;</span><br><span class="line"><span class="keyword">import</span> java.sql.Statement;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestUpdate</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Connection conn = <span class="keyword">null</span>;</span><br><span class="line">		Statement stmt = <span class="keyword">null</span>;</span><br><span class="line">		String driver = <span class="string">"oracle.jdbc.driver.OracleDriver"</span>;</span><br><span class="line">		String url = <span class="string">"jdbc:oracle:thin:@localhost:1521:XE"</span>;</span><br><span class="line">		String username = <span class="string">"hhh"</span>;</span><br><span class="line">		String password = <span class="string">"123456"</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">//加载驱动</span></span><br><span class="line">			Class.forName(driver);</span><br><span class="line">			<span class="comment">//创建数据库连接对象</span></span><br><span class="line">			conn = DriverManager.getConnection(url, username, password);</span><br><span class="line">			<span class="comment">//创建sql命令对象</span></span><br><span class="line">			stmt = conn.createStatement();</span><br><span class="line">			<span class="comment">//创建sql命令</span></span><br><span class="line">			String sql = <span class="string">"update stu set name = 'zhangsan' where name = 'limin'"</span>;</span><br><span class="line">			<span class="comment">//执行sql命令</span></span><br><span class="line">			<span class="keyword">int</span> i = stmt.executeUpdate(sql);</span><br><span class="line">			System.out.println(<span class="string">"执行结果："</span>+i);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">			System.out.println(<span class="string">"驱动加载失败！"</span>);</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">			System.out.println(<span class="string">"数据库连接对象创建失败！"</span>);</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">			<span class="comment">//关闭资源</span></span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				stmt.close();</span><br><span class="line">			&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">				System.out.println(<span class="string">"stmt对象关闭失败"</span>);</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				conn.close();</span><br><span class="line">			&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">				System.out.println(<span class="string">"conn对象关闭失败"</span>);</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>结论：JDBC中的增加、删除与修改除了sql语句不同以外，其余全部相同，</strong>所以不在给出删除数据的代码。</p>
+
       
     </div>
     
@@ -553,6 +563,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/JDBC完成查询/" rel="prev" title="JDBC完成查询">
+                JDBC完成查询 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -607,8 +621,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -625,7 +648,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -720,6 +743,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JDBC完成修改和删除步骤"><span class="nav-number">1.</span> <span class="nav-text">JDBC完成修改和删除步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码示例"><span class="nav-number">2.</span> <span class="nav-text">代码示例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
