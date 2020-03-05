@@ -98,7 +98,7 @@
 
 
 
-  <meta name="keywords" content="红黑树,AVL树,Treap树,伸展树,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -109,21 +109,17 @@
 
 
 
-<meta name="description" content="平衡二叉树，未完待续…">
-<meta name="keywords" content="红黑树,AVL树,Treap树,伸展树">
+<meta name="description" content="几种常见的查找算法 因为查找比较简单，所以我们就用一篇博客大致讲完常用的几种查找算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构-平衡二叉树">
-<meta property="og:url" content="http://www.x1aolin.com/数据结构-二叉平衡树/index.html">
+<meta property="og:title" content="数据结构-查找">
+<meta property="og:url" content="http://www.x1aolin.com/数据结构-查找/index.html">
 <meta property="og:site_name" content="x1aolin&#39;s home">
-<meta property="og:description" content="平衡二叉树，未完待续…">
+<meta property="og:description" content="几种常见的查找算法 因为查找比较简单，所以我们就用一篇博客大致讲完常用的几种查找算法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200122153541.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200122160532.png">
-<meta property="og:updated_time" content="2020-02-05T12:34:38.726Z">
+<meta property="og:updated_time" content="2020-03-05T04:17:59.609Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据结构-平衡二叉树">
-<meta name="twitter:description" content="平衡二叉树，未完待续…">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200122153541.png">
+<meta name="twitter:title" content="数据结构-查找">
+<meta name="twitter:description" content="几种常见的查找算法 因为查找比较简单，所以我们就用一篇博客大致讲完常用的几种查找算法">
 
 
 
@@ -153,7 +149,7 @@
 
 
 
-  <link rel="canonical" href="http://www.x1aolin.com/数据结构-二叉平衡树/">
+  <link rel="canonical" href="http://www.x1aolin.com/数据结构-查找/">
 
 
 
@@ -161,7 +157,7 @@
 
 
 
-  <title>数据结构-平衡二叉树 | x1aolin's home</title>
+  <title>数据结构-查找 | x1aolin's home</title>
   
 
 
@@ -341,7 +337,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.x1aolin.com/数据结构-二叉平衡树/">
+    <link itemprop="mainEntityOfPage" href="http://www.x1aolin.com/数据结构-查找/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="x1aolin">
@@ -358,7 +354,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">数据结构-平衡二叉树</h1>
+          <h1 class="post-title" itemprop="name headline">数据结构-查找</h1>
         
 
         <div class="post-meta">
@@ -370,8 +366,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-22T13:21:44+08:00">
-                2020-01-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-06T19:57:32+08:00">
+                2020-02-06
               </time>
             
 
@@ -404,8 +400,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构/树/" itemprop="url" rel="index">
-                    <span itemprop="name">树</span>
+                  <a href="/categories/数据结构/查找/" itemprop="url" rel="index">
+                    <span itemprop="name">查找</span>
                   </a>
                 </span>
 
@@ -446,38 +442,33 @@
       
 
       
-        <blockquote class="blockquote-center"><p>平衡二叉树，未完待续…</p>
+        <blockquote class="blockquote-center"><p>几种常见的查找算法</p>
+<p>因为查找比较简单，所以我们就用一篇博客大致讲完常用的几种查找算法</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>平衡树是二叉搜索树和堆合并构成的数据结构，它是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树。</p>
-<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><p>对一棵查找树(search tree)进行查询/新增/删除等动作, 所花的时间与树的高度h成比例, 并不与树的容量n成比例。如果可以让树维持矮矮胖胖的好身材, 也就是让h维持在O(lg n)左右, 完成上述工作就很省时间。能够一直维持好身材, 不因新增删除而长歪的搜寻树, 叫做balanced search tree(平衡树)。</p>
-<h3 id="种类"><a href="#种类" class="headerlink" title="种类"></a>种类</h3><p> 1.红黑树        2.AVL树        3.SBT     4.Treap      5.伸展树</p>
-<p>下面进行较为详细的说明。</p>
-<h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><p>红黑树就是一种<strong>自平衡的二叉查找树</strong>，说他平衡的意思是他不会变成“瘸子”，左腿特别长或者右腿特别长。除了符合二叉查找树的特性之外，还具体下列的特性:</p>
-<ol>
-<li>每一个结点要么是红色，要么是黑色。</li>
-<li>根结点是黑色的。</li>
-<li>所有叶子结点都是黑色的（实际上都是Null指针，下图用NIL表示）。叶子结点不包含任何关键字信息，所有查询关键字都在非终结点上。</li>
-<li>每个红色结点的两个子节点必须是黑色的（从每个叶子到根的所有路径上不能有两个连续的红色结点）。</li>
-<li>从任一结点到其每个叶子的所有路径都包含相同数目的黑色结点。<ol>
-<li>也就是说，如果一个结点存在黑孩子结点，那么该节点肯定有两个黑孩子结点。</li>
-</ol>
-</li>
-</ol>
-<p>另外，红黑树并不是一个完美平衡二叉查找树，任意一个结点到每个叶子结点的路径都包含数量相同的黑结点(性质5)。所以我们叫红黑树这种平衡为<strong>黑色完美平衡</strong>。</p>
-<h3 id="红黑树自平衡"><a href="#红黑树自平衡" class="headerlink" title="红黑树自平衡"></a>红黑树自平衡</h3><p>前面讲到红黑树能自平衡，它靠的是什么？三种操作：左旋、右旋和变色。</p>
-<ul>
-<li><strong>左旋</strong>：以某个结点作为支点(旋转结点)，其右子结点变为旋转结点的父结点，右子结点的左子结点变为旋转结点的右子结点，左子结点保持不变。</li>
-<li><strong>右旋</strong>：以某个结点作为支点(旋转结点)，其左子结点变为旋转结点的父结点，左子结点的右子结点变为旋转结点的左子结点，右子结点保持不变。</li>
-<li><strong>变色</strong>：结点的颜色由红变黑或由黑变红。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200122153541.png" alt></p>
-<p><img src="https://raw.githubusercontent.com/xiaolin6/mapDepot/master/img/20200122160532.png" alt></p>
-<p>由上图可知：旋转操作不会影响旋转结点的父结点，父结点以上的结构还是保持不变的。若想进一步了解请点击<a href="https://www.jianshu.com/p/e136ec79235c" target="_blank" rel="noopener">这里</a>。</p>
-<h3 id="红黑树查找"><a href="#红黑树查找" class="headerlink" title="红黑树查找"></a>红黑树查找</h3><p>归根结底，红黑树是一棵二叉搜索树，所以查找遵循<a href="https://x1aolin.com/数据结构-二叉搜索树/" target="_blank" rel="noopener">二叉搜索树</a>的规则即可。</p>
-<h3 id="红黑树插入"><a href="#红黑树插入" class="headerlink" title="红黑树插入"></a>红黑树插入</h3><p>插入操作包括两部分工作：一查找插入的位置；二插入后自平衡。</p>
-<h3 id="红黑树删除"><a href="#红黑树删除" class="headerlink" title="红黑树删除"></a>红黑树删除</h3><h2 id="AVL树"><a href="#AVL树" class="headerlink" title="AVL树"></a>AVL树</h2><p>平衡二叉查找树，又称 AVL树。 它除了具备二叉查找树的基本特征之外，还具有一个非常重要的特点：它的左子树和右子树都是平衡二叉树，且左子树和右子树的深度之差的绝对值（<strong>平衡因子</strong> ） 不超过1。 也就是说AVL树每个节点的平衡因子只可能是 -1、0和1。</p>
-<h2 id="SBT树"><a href="#SBT树" class="headerlink" title="SBT树"></a>SBT树</h2><h2 id="Treap树"><a href="#Treap树" class="headerlink" title="Treap树"></a>Treap树</h2><h2 id="伸展树"><a href="#伸展树" class="headerlink" title="伸展树"></a>伸展树</h2>
+<h2 id="认识查找"><a href="#认识查找" class="headerlink" title="认识查找"></a>认识查找</h2><p>查找是指根据给定的某个值，在给定的数据结构中查找指定数据元素的过程。若该数据结构中存在指定数据元素，则称查找是成功的，否则认为查找不成功。查找是数据处理领域中的一个重要内容，查找的效率将直接影响到数据处理的效率。</p>
+<p>在查找的过程对表做修改操作（如插入和删除），则相应的表称为<strong>动态查找表</strong>，否则称为<strong>静态查找表</strong>。</p>
+<p>逻辑上来说，查找基于的数据结构是集合，集合中的记录之间没有本质关系。但为了获得较高的查找性能，通常将查找集合组织成表、树等结构。</p>
+<p><strong>查找运算的主要操作是关键字的比较，所以通常把查找过程中对关键字需要执行的平均比较次数（也称为平均查找长度）作为衡量一个算法效率优劣的标准。</strong></p>
+<h2 id="线性表查找"><a href="#线性表查找" class="headerlink" title="线性表查找"></a>线性表查找</h2><p>线性表查找是指进行查找运行的查找表所采用的数据结构是线性表的存储结构。关于线性表的相关知识请参考我该系列中<a href="https://x1aolin.com/数据结构-线性表/" target="_blank" rel="noopener">线性表部分</a>，这里不做赘述。在线性表查找技术中，对数据元素的查找又分为顺序查找、二分查找和分块查找三种方法。</p>
+<h3 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h3><p><strong>基本思想</strong>：从表的一端开始，顺序扫描线性表，依次将扫描到结点关键字与给定值<code>key</code>进行比较。若当前扫描到的节点关键字与<code>key</code>相等，则查找成功，返回该结点的索引下标；若扫描结束后，仍未找到关键字等于<code>key</code>的结点，则查找失败，返回<code>-1</code>。</p>
+<p><strong>适用方向</strong>：虽然顺序查找的效率不高，但若<strong>顺序表为无序表</strong>或者<strong>采用链式存储结构的线性表</strong>，则只能够采用顺序查找。</p>
+<h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><p>二分查找要求线性表为有序表，即表中结点按关键字有序排列，并且要用顺序表作为表的存储结构。</p>
+<p><strong>基本思想</strong>：设顺序表存储在有序表data中，这里按照升序排列来讲解规则，设置三个变量<code>low</code>、<code>high</code>、<code>mid</code>，它们分别指向表的当前待查范围的下界、上界和中间位置。初始时，<code>low=0</code>，<code>high=n-1</code>，设待查数据元素的关键字为<code>key</code>。</p>
+<p>（一）令<code>mid = (low + high)/2</code>。</p>
+<p>（二）比较<code>key</code>与<code>data[mid].key</code>的大小，若相等，则查找成功；若<code>data[mid].key</code>小于<code>key</code>，则表明关键字可能位于<code>mid</code>的右侧，令<code>low=mid+1</code>，上界指示变量<code>high</code>不变；若<code>data[mid].key</code>大于<code>key</code>，则表明关键字可能位于<code>mid</code>的左侧，令<code>high=mid-1</code>，下界指示变量<code>low</code>不变。</p>
+<p>（三）比较当前变量<code>low</code>与<code>high</code>的值，若<code>low&lt;=high</code>，重复步骤（一）和（二），若<code>low&gt;high</code>，表明整个表查找完毕，线性表中不存在关键字为<code>key</code>的记录，查找失败，返回<code>-1</code>。</p>
+<p><strong>适用方向</strong>：因为二分查找需要线性表有序，而且这种排序过程也需要花费一定的时间，所以二分查找适合于<strong>长度较大且经常进行查找的顺序表。</strong></p>
+<h3 id="分块查找"><a href="#分块查找" class="headerlink" title="分块查找"></a>分块查找</h3><p>分块查找又称为索引顺序查找，是一种性能介于顺序查找和二分查找之间的一种查找方法。</p>
+<p><strong>基本思想</strong>：分块查找要求把顺序表分成若干块，每一块中的键值存储顺序是任意的，但要求“<strong>分块有序</strong>”，前一块中的最大键值小于后一块当中的最小键值，即块间结点有序，块内节点无序。另外，还需要建立一个索引表，索引表中的每一项对应顺序表中的一块，索引项由关键字域和链域组成，关键字块存放对应块内结点的最大键值，链域存放对应块首节点的位置。</p>
+<p>抽取各块中的最大关键字及其起始位置构成一个索引表，索引表按关键字排序，所以索引表是一个递增有序表。<strong>查找时，首先查找索引表，确定待查记录所在块，然后进入已确定的块中进行顺序查找。</strong></p>
+<p><strong>代码示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//测试数组：数据在运行下面的代码的前提是已经做好顺序块分块排序！</span></span><br><span class="line"><span class="comment">//int[] data = &#123;20,10,30,40,60,45,70,75,90,80,100&#125;;</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinerListSearch</span> </span>&#123;</span><br><span class="line">	<span class="comment">//创建索引表结点内部类</span></span><br><span class="line">	<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">BlockInfo</span></span>&#123;</span><br><span class="line">		<span class="keyword">int</span> blockBeginIndex;</span><br><span class="line">		<span class="keyword">int</span> blockEndIndex;</span><br><span class="line">		<span class="keyword">int</span> blockMaxValue;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//创建分块查找索引表  创建分块之后进行块与块之间的排序。明天再搞</span></span><br><span class="line">	<span class="keyword">public</span> BlockInfo[] getBlockArray(<span class="keyword">int</span>[] data)&#123;</span><br><span class="line">		<span class="keyword">int</span> length = data.length;</span><br><span class="line">		<span class="keyword">int</span> n = <span class="number">4</span>;<span class="comment">//(int)Math.sqrt(length);</span></span><br><span class="line">		<span class="keyword">int</span> m = (<span class="keyword">int</span>)Math.ceil((length*<span class="number">1.0</span>)/n);</span><br><span class="line">		BlockInfo[] blocks = <span class="keyword">new</span> BlockInfo[m];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">			BlockInfo block = <span class="keyword">new</span> BlockInfo();</span><br><span class="line">			block.blockBeginIndex = i*n;</span><br><span class="line">			<span class="keyword">if</span>(i*n+n-<span class="number">1</span> &lt; length-<span class="number">1</span>)</span><br><span class="line">				block.blockEndIndex = i*n+n-<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				block.blockEndIndex = length-<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">int</span> maxValue = data[block.blockBeginIndex];</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = block.blockBeginIndex;j&lt;=block.blockEndIndex;j++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(maxValue &lt; data[j])&#123;</span><br><span class="line">					maxValue = data[j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			block.blockMaxValue = maxValue;</span><br><span class="line">			blocks[i] = block;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> blocks;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//查找</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">blockSearch</span><span class="params">(<span class="keyword">int</span>[] data,<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"key:"</span>+key);</span><br><span class="line">		BlockInfo[] blocks = getBlockArray(data);</span><br><span class="line">		<span class="keyword">for</span>(BlockInfo s:blocks)&#123;</span><br><span class="line">			System.out.println(<span class="string">"s.data"</span>+s.blockMaxValue);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> blockindex = -<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;blocks.length;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(key&lt;=blocks[i].blockMaxValue)&#123;</span><br><span class="line">				blockindex = i;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(blockindex!=-<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="keyword">int</span> index = blocks[blockindex].blockBeginIndex;</span><br><span class="line">			<span class="keyword">for</span>(;index&lt;=blocks[blockindex].blockEndIndex;index++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(key==data[index])&#123;</span><br><span class="line">					<span class="keyword">return</span> index;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>分析</strong>：如果当前的数据结构能够使用分块查找的话，它的速度要比顺序查找法快，但付出的代价<strong>增加辅助存储空间</strong>和<strong>将顺序表分块排序</strong>；比二分查找法的速度慢。</p>
+<h2 id="树查找技术"><a href="#树查找技术" class="headerlink" title="树查找技术"></a>树查找技术</h2><p>若想提高动态查找表的效率，可采用特殊的二叉树：二叉排序树作为表的存储结构，因为该数据结构在前面已经介绍过了，所以就不再多说，不清楚的请点击这里：<a href="https://x1aolin.com/数据结构-二叉排序树/" target="_blank" rel="noopener">数据结构-二叉排序树</a>。</p>
+<h2 id="哈希表查找技术"><a href="#哈希表查找技术" class="headerlink" title="哈希表查找技术"></a>哈希表查找技术</h2><p><strong><code>hashCode()</code>作用</strong>：计算哈希码，是一个整数，根据哈希码可以计算出数据在哈希表中的存储位置。</p>
+<p><strong><code>equals</code>作用</strong>：添加时出现了冲突，需要通过<code>equals</code>进行比较，判断是否相同。查询时也需要<code>equals</code>进行比较，判断是否相同。</p>
+
       
     </div>
     
@@ -527,7 +518,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://www.x1aolin.com/数据结构-二叉平衡树/" title="数据结构-平衡二叉树">http://www.x1aolin.com/数据结构-二叉平衡树/</a>
+    <a href="http://www.x1aolin.com/数据结构-查找/" title="数据结构-查找">http://www.x1aolin.com/数据结构-查找/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -560,18 +551,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/红黑树/" rel="tag"><i class="fa fa-tag"></i>红黑树</a>
-          
-            <a href="/tags/AVL树/" rel="tag"><i class="fa fa-tag"></i>AVL树</a>
-          
-            <a href="/tags/Treap树/" rel="tag"><i class="fa fa-tag"></i>Treap树</a>
-          
-            <a href="/tags/伸展树/" rel="tag"><i class="fa fa-tag"></i>伸展树</a>
-          
-        </div>
-      
 
       
       
@@ -581,8 +560,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/数据结构-二叉搜索树/" rel="next" title="数据结构-二叉搜索树">
-                <i class="fa fa-chevron-left"></i> 数据结构-二叉搜索树
+              <a href="/数据结构-排序概述/" rel="next" title="数据结构-排序概述">
+                <i class="fa fa-chevron-left"></i> 数据结构-排序概述
               </a>
             
           </div>
@@ -591,8 +570,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/数据结构-LeetCode树相关题目/" rel="prev" title="数据结构-LeetCode树相关题目">
-                数据结构-LeetCode树相关题目 <i class="fa fa-chevron-right"></i>
+              <a href="/数据结构-插入排序/" rel="prev" title="数据结构-插入排序">
+                数据结构-插入排序 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -676,7 +655,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -687,7 +666,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -698,7 +677,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -781,7 +760,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#平衡二叉树"><span class="nav-number">1.</span> <span class="nav-text">平衡二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优势"><span class="nav-number">1.2.</span> <span class="nav-text">优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#种类"><span class="nav-number">1.3.</span> <span class="nav-text">种类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树"><span class="nav-number">2.</span> <span class="nav-text">红黑树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#红黑树自平衡"><span class="nav-number">2.1.</span> <span class="nav-text">红黑树自平衡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#红黑树查找"><span class="nav-number">2.2.</span> <span class="nav-text">红黑树查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#红黑树插入"><span class="nav-number">2.3.</span> <span class="nav-text">红黑树插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#红黑树删除"><span class="nav-number">2.4.</span> <span class="nav-text">红黑树删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AVL树"><span class="nav-number">3.</span> <span class="nav-text">AVL树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SBT树"><span class="nav-number">4.</span> <span class="nav-text">SBT树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Treap树"><span class="nav-number">5.</span> <span class="nav-text">Treap树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伸展树"><span class="nav-number">6.</span> <span class="nav-text">伸展树</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#认识查找"><span class="nav-number">1.</span> <span class="nav-text">认识查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性表查找"><span class="nav-number">2.</span> <span class="nav-text">线性表查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序查找"><span class="nav-number">2.1.</span> <span class="nav-text">顺序查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二分查找"><span class="nav-number">2.2.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分块查找"><span class="nav-number">2.3.</span> <span class="nav-text">分块查找</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#树查找技术"><span class="nav-number">3.</span> <span class="nav-text">树查找技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希表查找技术"><span class="nav-number">4.</span> <span class="nav-text">哈希表查找技术</span></a></li></ol></div>
             
 
           </div>
