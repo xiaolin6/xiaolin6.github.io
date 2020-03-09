@@ -118,7 +118,7 @@
 <meta property="og:description" content="JavaSE必备知识点—杂七杂八">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.sxt.cn/360shop/Public/admin/UEditor/20170524/1495609352295957.png">
-<meta property="og:updated_time" content="2020-02-27T08:47:32.467Z">
+<meta property="og:updated_time" content="2020-03-06T13:48:20.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaSE必备知识点3">
 <meta name="twitter:description" content="JavaSE必备知识点—杂七杂八">
@@ -488,6 +488,51 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestMath</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//取整相关操作</span></span><br><span class="line">        System.out.println(Math.ceil(<span class="number">3.2</span>));</span><br><span class="line">        System.out.println(Math.floor(<span class="number">3.2</span>));</span><br><span class="line">        System.out.println(Math.round(<span class="number">3.2</span>));  <span class="comment">//四舍五入</span></span><br><span class="line">        System.out.println(Math.round(<span class="number">3.8</span>));  <span class="comment">//四舍五入</span></span><br><span class="line">        <span class="comment">//绝对值、开方、a的b次幂等操作</span></span><br><span class="line">        System.out.println(Math.abs(-<span class="number">45</span>));</span><br><span class="line">        System.out.println(Math.sqrt(<span class="number">64</span>));</span><br><span class="line">        System.out.println(Math.pow(<span class="number">5</span>, <span class="number">2</span>));</span><br><span class="line">        System.out.println(Math.pow(<span class="number">2</span>, <span class="number">5</span>));</span><br><span class="line">        <span class="comment">//Math类中常用的常量</span></span><br><span class="line">        System.out.println(Math.PI);</span><br><span class="line">        System.out.println(Math.E);</span><br><span class="line">        <span class="comment">//随机数</span></span><br><span class="line">        System.out.println(Math.random());<span class="comment">// [0,1)之间的随机数 double类型</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="Random类"><a href="#Random类" class="headerlink" title="Random类"></a>Random类</h3><p>Math类中虽然为我们提供了产生随机数的方法Math.random()，但是通常我们需要的随机数范围并不是[0, 1)之间的double类型的数据，这就需要对其进行一些复杂的运算。如果使用Math.random()计算过于复杂的话，我们可以使用例外一种方式得到随机数，即Random类，这个类是专门用来生成随机数的，并且Math.random()底层调用的就是Random的nextDouble()方法。 <strong>这个不是静态方法，使用时要注意！！</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestRandom</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; </span><br><span class="line">        Random rand = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="comment">//随机生成[0,1)之间的double类型的数据</span></span><br><span class="line">        System.out.println(rand.nextDouble());</span><br><span class="line">        <span class="comment">//随机生成int类型允许范围之内的整型数据</span></span><br><span class="line">        System.out.println(rand.nextInt());</span><br><span class="line">        <span class="comment">//随机生成[0,1)之间的float类型的数据</span></span><br><span class="line">        System.out.println(rand.nextFloat());</span><br><span class="line">        <span class="comment">//随机生成false或者true</span></span><br><span class="line">        System.out.println(rand.nextBoolean());</span><br><span class="line">        <span class="comment">//随机生成[0,10)之间的int类型的数据</span></span><br><span class="line">        System.out.println(rand.nextInt(<span class="number">10</span>));</span><br><span class="line">        <span class="comment">//随机生成[20,30)之间的int类型的数据</span></span><br><span class="line">        System.out.println(<span class="number">20</span> + rand.nextInt(<span class="number">10</span>));</span><br><span class="line">        <span class="comment">//随机生成[20,30)之间的int类型的数据（此种方法计算较为复杂）</span></span><br><span class="line">        System.out.print(<span class="number">20</span> + (<span class="keyword">int</span>) (rand.nextDouble() * <span class="number">10</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Arrays类"><a href="#Arrays类" class="headerlink" title="Arrays类"></a>Arrays类</h2><p>Arrays类是一个工具类，里面全部都是静态方法，构造器被private修饰，不可以进行对象声明。该工具类中包含用于操作数组的各种方法（如排序和搜索）。该类还包含一个静态工厂，可以将数组视为列表。如果指定的数组引用为空，则该类中的方法都抛出一个<code>NullPointerException</code>  ，除非另有说明。 </p>
+<p>下面将一些常用的方法陈列在下面：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><em>Arrays.toString(array)</em></strong></td>
+<td>数组转字符串</td>
+</tr>
+<tr>
+<td><strong><em>Arrays.sort(array)</em></strong></td>
+<td>数组排序</td>
+</tr>
+<tr>
+<td><strong><em>Arrays.equals(array1,array2)</em></strong></td>
+<td>比较一维数组</td>
+</tr>
+<tr>
+<td><strong><em>Arrays.deepEquals(array1,array2)</em></strong></td>
+<td>比较多维数组</td>
+</tr>
+<tr>
+<td><strong><em>Arrays.asList()</em></strong></td>
+<td>数组转为ArrayList，用toArray可转回数组</td>
+</tr>
+<tr>
+<td><strong><em>Arrays.fill()</em></strong></td>
+<td>数组填充</td>
+</tr>
+<tr>
+<td><strong><em>Arrays.copyOf()</em></strong></td>
+<td>数组拷贝</td>
+</tr>
+<tr>
+<td><strong><em>Arrays.binarySearch()</em></strong></td>
+<td>使用二进制搜索算法搜索指定值的指定字节数组。</td>
+</tr>
+</tbody>
+</table>
+<p>详细信息请查看源码或者对应的API。</p>
 <h2 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h2><p>代表文件或者目录，可用于读取文件、生成文件、删除文件、修改文件等操作。</p>
 <p> <a href="https://www.bilibili.com/video/av47088187/?p=121" target="_blank" rel="noopener">https://www.bilibili.com/video/av47088187/?p=121</a></p>
 <h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><p>Exception，就是指一些例外的情况。<strong>异常机制的本质</strong>就是当程序出现错误的时候，程序安全退出的机制。</p>
@@ -714,7 +759,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -736,7 +781,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -819,7 +864,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#时间处理相关类"><span class="nav-number">1.</span> <span class="nav-text">时间处理相关类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Date类"><span class="nav-number">1.1.</span> <span class="nav-text">Date类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DateFormat类"><span class="nav-number">1.2.</span> <span class="nav-text">DateFormat类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calendar日期类"><span class="nav-number">1.3.</span> <span class="nav-text">Calendar日期类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#综合运用：可视化日历"><span class="nav-number">1.4.</span> <span class="nav-text">综合运用：可视化日历</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Math类"><span class="nav-number">2.</span> <span class="nav-text">Math类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Random类"><span class="nav-number">2.1.</span> <span class="nav-text">Random类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File类"><span class="nav-number">3.</span> <span class="nav-text">File类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常"><span class="nav-number">4.</span> <span class="nav-text">异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时异常"><span class="nav-number">4.1.</span> <span class="nav-text">运行时异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#已检查异常"><span class="nav-number">4.2.</span> <span class="nav-text">已检查异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#捕获异常"><span class="nav-number">4.2.1.</span> <span class="nav-text">捕获异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明异常throws"><span class="nav-number">4.2.2.</span> <span class="nav-text">声明异常throws</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义异常"><span class="nav-number">4.2.3.</span> <span class="nav-text">自定义异常</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛型"><span class="nav-number">5.</span> <span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#javaBean"><span class="nav-number">6.</span> <span class="nav-text">javaBean</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#时间处理相关类"><span class="nav-number">1.</span> <span class="nav-text">时间处理相关类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Date类"><span class="nav-number">1.1.</span> <span class="nav-text">Date类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DateFormat类"><span class="nav-number">1.2.</span> <span class="nav-text">DateFormat类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calendar日期类"><span class="nav-number">1.3.</span> <span class="nav-text">Calendar日期类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#综合运用：可视化日历"><span class="nav-number">1.4.</span> <span class="nav-text">综合运用：可视化日历</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Math类"><span class="nav-number">2.</span> <span class="nav-text">Math类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Random类"><span class="nav-number">2.1.</span> <span class="nav-text">Random类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Arrays类"><span class="nav-number">3.</span> <span class="nav-text">Arrays类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File类"><span class="nav-number">4.</span> <span class="nav-text">File类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常"><span class="nav-number">5.</span> <span class="nav-text">异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时异常"><span class="nav-number">5.1.</span> <span class="nav-text">运行时异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#已检查异常"><span class="nav-number">5.2.</span> <span class="nav-text">已检查异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#捕获异常"><span class="nav-number">5.2.1.</span> <span class="nav-text">捕获异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明异常throws"><span class="nav-number">5.2.2.</span> <span class="nav-text">声明异常throws</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义异常"><span class="nav-number">5.2.3.</span> <span class="nav-text">自定义异常</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛型"><span class="nav-number">6.</span> <span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#javaBean"><span class="nav-number">7.</span> <span class="nav-text">javaBean</span></a></li></ol></div>
             
 
           </div>

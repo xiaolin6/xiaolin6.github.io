@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="x1aolin&#39;s home">
 <meta property="og:description" content="选择排序算法理解与实现">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-07T13:08:45.740Z">
+<meta property="og:updated_time" content="2020-03-06T12:55:20.374Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构-选择排序">
 <meta name="twitter:description" content="选择排序算法理解与实现">
@@ -452,7 +452,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] selectSort(<span class="keyword">int</span>[] data)&#123;</span><br><span class="line">    <span class="keyword">int</span> k,temp;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;data.length;i++)&#123;</span><br><span class="line">        k=i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;data.length;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(data[j]&lt;data[k])&#123;</span><br><span class="line">                k = j;		<span class="comment">//始终保持k = j为最小值</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(k!=i)&#123;</span><br><span class="line">        	temp = data[k];</span><br><span class="line">        	data[k] = data[i];</span><br><span class="line">       		data[i] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>时间复杂度</strong>：</p>
 <p>在直接选择排序中，第一次排序要进行<code>n-1</code>次比较，第二次排序要进行<code>n-2</code>次比较，…，第<code>n-1</code>次排序要进行1次比较，所以总的比较次数是<code>n(n-1)/2</code>，在各次排序时，记录的移动次数最好0次，最坏为3次，所以总的最坏为<code>3(n-1)</code>。因此，其复杂度为O(n<sup>2</sup>)。</p>
-<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>堆排序是在直接选择排序法的基础上借助于完全二叉树结构而形成的一种排序方法，在直接选择排序中每次排序中除了找到当前关键字最小的记录外，还产生了许多比较结果的信息，这些信息在直接选择排序算法中会被直接忽略，但在堆排序中，这些信息会被保存下来。</p>
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>堆排序是在直接选择排序法的基础上借助于完全二叉树结构而形成的一种排序方法，堆排序是完全二叉树的顺序存储结构的应用。在直接选择排序中每次排序中除了找到当前关键字最小的记录外，还产生了许多比较结果的信息，这些信息在直接选择排序算法中会被直接忽略，但在堆排序中，这些信息会被保存下来。</p>
 <p><strong>基本思想</strong>：</p>
 <p>关于堆、最大堆、最小堆的概念这里就不做介绍了，不懂的可自行百度。这里说一下堆排序的基本思想：设有n个记录，首先将这n个记录按关键码建成堆，将堆顶记录输出，得到n个记录中关键码最大（或最小）的记录；调整剩余的<code>n-1</code>个记录，使之成为一个新的堆，再输出堆顶记录；如此反复，当堆中只有一个元素数时，整个序列的排序结束，得到的序列便是原始序列的非递减或非递增序列。</p>
 <p><strong>代码实现</strong>：</p>
@@ -649,7 +649,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -671,7 +671,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
