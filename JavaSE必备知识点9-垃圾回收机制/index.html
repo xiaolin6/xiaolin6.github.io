@@ -118,7 +118,7 @@
 <meta property="og:description" content="简要了解Java的垃圾回收机制">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.sxt.cn/360shop/Public/admin/UEditor/20170516/1494926399617250.png">
-<meta property="og:updated_time" content="2020-03-08T11:15:58.570Z">
+<meta property="og:updated_time" content="2020-03-11T06:23:44.063Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaSE必备知识点9-垃圾回收机制">
 <meta name="twitter:description" content="简要了解Java的垃圾回收机制">
@@ -448,43 +448,64 @@
         <blockquote class="blockquote-center"><p>简要了解Java的垃圾回收机制</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h2><p>Java引入了垃圾回收机制，解决了令C++程序员最头疼的内存管理问题。Java程序员可以将更多的精力放到业务逻辑上而不是内存管理工作上，大大的提高了开发效率。</p>
-<h2 id="垃圾回收原理和算法"><a href="#垃圾回收原理和算法" class="headerlink" title="垃圾回收原理和算法"></a>垃圾回收原理和算法</h2><p>Java的内存管理很大程度上指的就是<strong>对象的管理，其中包括对象空间的分配和释放</strong>。</p>
-<p>对象空间的分配：使用<code>new</code>关键字创建对象即可。</p>
-<p>对象空间的释放：将对象赋值null即可。垃圾回收器将负责回收所有“不可达”对象的内存空间。</p>
-<h3 id="垃圾回收过程"><a href="#垃圾回收过程" class="headerlink" title="垃圾回收过程"></a>垃圾回收过程</h3><p>任何一种垃圾回收算法一般要做两件基本事情：</p>
-<ul>
-<li><p>发现无用的对象</p>
-</li>
-<li><p>回收无用对象占用的内存空间。</p>
-</li>
-</ul>
-<p>垃圾回收机制保证可以将“无用的对象”进行回收，<strong>无用的对象是指没有任何变量引用该对象</strong>。Java的垃圾回收器通过相关算法发现无用对象，并进行清除和整理。</p>
-<h3 id="垃圾回收算法"><a href="#垃圾回收算法" class="headerlink" title="垃圾回收算法"></a>垃圾回收算法</h3><p><strong>（一）引用计数法</strong>：</p>
-<p>堆中每个对象都有一个引用计数。被引用一次，计数加一；被引用变量值变为null，则计数减1，直到计数为0，则表示变成无用对象。<strong>优点是算法简单，缺点是无法识别“循环引用的无用对象”。</strong>就像下面：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    Student friend;</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Student s1 = <span class="keyword">new</span> Student();</span><br><span class="line">        Student s2 = <span class="keyword">new</span> Student();</span><br><span class="line">         </span><br><span class="line">        s1.friend = s2;</span><br><span class="line">        s2.friend = s1;        </span><br><span class="line">        s1 = <span class="keyword">null</span>;</span><br><span class="line">        s2 = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>（二）引用可达法★：</strong></p>
-<p>程序把所有的引用关系看作一张图，从一个节点GC ROOT开始，寻找对应的引用节点，找到这个节点以后，继续寻找这个节点的引用节点，当所有的引用节点寻找完毕之后，剩余的节点则被认为是没有被引用到的节点，即无用的节点。</p>
-<h2 id="分代垃圾回收机制"><a href="#分代垃圾回收机制" class="headerlink" title="分代垃圾回收机制"></a>分代垃圾回收机制</h2><p>分代垃圾回收机制，是基于这样一个事实：<strong>不同的对象的生命周期是不一样的。因此，不同生命周期的对象可以采取不同的回收算法，以便提高回收效率</strong>。我们将对象分为三种状态：<strong>年轻代、年老代、持久代</strong>。JVM将<strong>堆内存</strong>划分为 Eden、Survivor （放置年轻态）和 Tenured/Old （放置年老态）空间。持久代则存放在方法区当中。</p>
+<h2 id="垃圾回收系统"><a href="#垃圾回收系统" class="headerlink" title="垃圾回收系统"></a>垃圾回收系统</h2><p>垃圾回收系统是Java虚拟机的重要组成部分，<strong>垃圾回收器可以对方法区、Java堆和直接内存进行回收</strong>。其中，Java堆是垃圾收集器的工作重点。和C\C++不同，Java中所有的对象空间释放都是隐式的，也就是说，Java中没有类似<code>free()</code>或者<code>delete()</code>这样的函数释放指定的内存区域。对于不再使用的垃圾对象，垃圾回收系统会在后台默默工作、默默查找、标识并释放垃圾对象，包括完成Java堆、方法区和直接内存中的全自动化管理。</p>
+<p>Java引入了垃圾回收机制，解决了令C++程序员最头疼的内存管理问题。Java程序员可以将更多的精力放到业务逻辑上而不是内存管理工作上，大大的提高了开发效率。</p>
+<h2 id="分代垃圾回收机制"><a href="#分代垃圾回收机制" class="headerlink" title="分代垃圾回收机制"></a>分代垃圾回收机制</h2><p>分代垃圾回收机制，是基于这样一个事实：<strong>不同的对象的生命周期是不一样的。因此，不同生命周期的对象可以采取不同的回收算法，以便提高回收效率</strong>。我们将对象分为三种状态：<strong>年轻代、年老代、持久代</strong>。</p>
+<p><em>对于HotSpot虚拟机而言</em>：Java虚拟机(JVM)也正是根据对象存活的周期不同，将<strong>堆内存</strong>划分为 Eden、Survivor （放置年轻态）和 Tenured/Old （放置年老态）空间。持久代则存放在方法区当中。</p>
+<h3 id="为什么要分代？"><a href="#为什么要分代？" class="headerlink" title="为什么要分代？"></a>为什么要分代？</h3><p>上面简要说明了一下，这里详细说：<strong>堆内存是虚拟机管理的内存中最大的一块，给堆内存分代是为了提高对象内存分配和垃圾回收的效率。</strong>试想一下，如果堆内存没有划分区域，所有的新创建对象和生命周期很长的对象放在一起，随着程序的执行，堆内存需要频繁进行垃圾收集，而每次回收都要遍历所有的对象，遍历这些对象所花费的时间代价就是巨大的，会严重影响我们的GC效率。</p>
 <h3 id="对象的三代"><a href="#对象的三代" class="headerlink" title="对象的三代"></a>对象的三代</h3><p><strong>（一）年轻代</strong></p>
-<p>所有的新生对象首先都放在Eden区。年轻代的目标就是尽可能快速的收集掉那些生命周期短的对象，对应的是<strong>Minor GC</strong>，每次<strong>Minor GC</strong>会清理年轻代的内存，算法采用效率较高的复制算法，频繁的操作，但是会浪费内存空间。当“年轻代”区域存放满对象后，就将对象存放到年老代区域。</p>
-<p><strong>（二）年老代</strong></p>
-<p>在年轻代的Survivor区经历了N（默认15）次垃圾回收后仍然存活的对象，就会被放到年老代中。因此，可以认为年老代中存放的都是一些生命周期较长的对象。年老代对象越来越多（达到某个阈值），我们就需要启动<strong>Major GC</strong>。当年老代Old区满的时候，就会触发<strong>Full GC(全量回收)</strong>，来一次大扫除，全面清理年轻代区域和年老代区域。</p>
-<p><strong>（三）持久代</strong></p>
-<p>用于存放静态文件，如Java类，方法等。持久代对垃圾回收没有显著的影响。</p>
+<p>HotSpot将年轻代划分为三块，一块较大的Eden空间和两块较小的survivor空间，默认比例是8：1：1。划分的目的是因为HotSpot采用复制算法来回收新生代，设置这个比例是为了充分利用内存空间，减少浪费。一般来说，所有的新生对象首先都放在Eden区。年轻代的目标就是尽可能快速的收集掉那些生命周期短的对象，对应的是<strong>Minor GC</strong>，每次<strong>Minor GC</strong>会清理年轻代的内存，<strong>算法采用效率较高的复制算法(下面会提到)</strong>，频繁的操作，但是会浪费内存空间。当“年轻代”区域存放满对象后，就将对象存放到年老代区域。</p>
 <p><strong>Minor GC:</strong>用于清理年轻代区域。Eden区满了就会触发一次Minor GC。清理无用对象，将有用对象复制到Survivor1、Survivor2区中(这两个区，大小空间也相同，同一时刻Survivor1和Survivor2只有一个在用，一个为空)。</p>
+<p><strong>（二）年老代</strong></p>
+<p>在年轻代的Survivor区经历了N（默认15）次垃圾回收后仍然存活的对象，就会被放到年老代中。因此，可以认为年老代中存放的都是一些生命周期较长，存活率较高的对象。老年代中进行垃圾回收的频率相对而言较低，而且回收的速度也比较慢。年老代对象越来越多（达到某个阈值），我们就需要启动<strong>Major GC</strong>。当年老代Old区满的时候，就会触发<strong>Full GC(全量回收)</strong>，来一次大扫除，全面清理年轻代区域和年老代区域。</p>
 <p><strong>Major GC：</strong>用于清理老年代区域。</p>
 <p><strong>Full GC：</strong>用于清理年轻代、年老代区域。 <em>成本较高，会对系统性能产生影响。</em> 所以我们需要尽量避免使用Full GC。</p>
-<h3 id="垃圾回收过程-1"><a href="#垃圾回收过程-1" class="headerlink" title="垃圾回收过程"></a>垃圾回收过程</h3><p><img src="https://www.sxt.cn/360shop/Public/admin/UEditor/20170516/1494926399617250.png" alt="1.png"></p>
-<p>​    1、新创建的对象，绝大多数都会存储在Eden中。</p>
-<p>​    2、当Eden满了（达到一定比例）不能创建新对象，则触发垃圾回收（Minor GC），将无用对象清理掉，然后剩余对象复制到某个Survivor中，如Survivor 1，同时清空Eden区。</p>
-<p>​    3、当Eden区再次满了（达到阈值），会将Survivor 1中的不能清空的对象存到另外一个Survivor中，如Survivor 2，同时将Eden区中的不能清空的对象，也复制到Survivor 2中，保证Eden和Survivor 1，均被清空。</p>
-<p>​    4、重复多次(默认15次)Survivor中没有被清理的对象，则会复制到老年代Old(Tenured)区中。</p>
-<p>​    5、当Old区满了，则会触发一个一次完整地垃圾回收（FullGC），之前新生代的垃圾回收称为（minorGC）。</p>
+<p><strong>（三）持久代</strong></p>
+<p>用于存放静态文件，如Java类信息、常量、静态变量、即时编译器编译后的代码等数据。对于这一区域而言，Java虚拟机规范指出可以不进行垃圾收集，因此持久代对垃圾回收没有显著的影响。</p>
+<p>该区域会再JDK后续版本中慢慢的被移除，因此不是重点。</p>
+<h3 id="垃圾回收过程"><a href="#垃圾回收过程" class="headerlink" title="垃圾回收过程"></a>垃圾回收过程</h3><p><img src="https://www.sxt.cn/360shop/Public/admin/UEditor/20170516/1494926399617250.png" alt="1.png"></p>
+<p>1、新创建的对象，绝大多数都会存储在Eden中。</p>
+<p>2、当Eden满了（达到一定比例）不能创建新对象，则触发垃圾回收（Minor GC），将无用对象清理掉，然后剩余对象复制到某个Survivor中，如Survivor 1，同时清空Eden区。</p>
+<p>3、当Eden区再次满了（达到阈值），会将Survivor 1中的不能清空的对象复制到另外一个Survivor中（按照连续空间进行复制），如Survivor 2，同时将Eden区中的不能清空的对象，也复制到Survivor 2中，保证Eden和Survivor 1，均被清空。</p>
+<p>4、重复多次(默认15次)Survivor中没有被清理的对象，则会复制到老年代Old(Tenured)区中。</p>
+<p>5、当Old区满了，则会触发一个一次完整地垃圾回收（FullGC），之前新生代的垃圾回收称为（minorGC）。</p>
+<p><strong>注意</strong>：当执行完Minor GC后，出现剩余的存活对象过多，一个Survivor区域放不下时，就会需要依赖老年代进行分配担保，将这些对象存放在老年代中。</p>
 <h3 id="Full-GC调用条件"><a href="#Full-GC调用条件" class="headerlink" title="Full GC调用条件"></a>Full GC调用条件</h3><p>1、年老代被写满。</p>
 <p>2、持久代被写满。</p>
 <p>3、System.gc()被显式调用（程序建议GC启动，而不是直接调用GC）。</p>
 <p>4、上一次GC之后Heap的各域分配策略动态变化。</p>
+<h2 id="垃圾回收原理和算法"><a href="#垃圾回收原理和算法" class="headerlink" title="垃圾回收原理和算法"></a>垃圾回收原理和算法</h2><p>Java的内存管理很大程度上指的就是<strong>对象的管理，其中包括对象空间的分配和释放</strong>。</p>
+<p>对象空间的分配：使用<code>new</code>关键字创建对象即可。</p>
+<p>对象空间的释放：将对象赋值null即可。垃圾回收器将负责回收所有“不可达”对象的内存空间。</p>
+<h3 id="垃圾回收过程-1"><a href="#垃圾回收过程-1" class="headerlink" title="垃圾回收过程"></a>垃圾回收过程</h3><p>任何一种垃圾回收算法一般要做两件基本事情：</p>
+<ul>
+<li>发现无用的对象</li>
+<li>回收无用对象占用的内存空间。</li>
+</ul>
+<p>垃圾回收机制保证可以将“无用的对象”进行回收，<strong>无用的对象是指没有任何变量引用该对象</strong>。Java的垃圾回收器通过相关算法发现无用对象，并进行清除和整理。</p>
+<h3 id="常见垃圾回收算法"><a href="#常见垃圾回收算法" class="headerlink" title="常见垃圾回收算法"></a>常见垃圾回收算法</h3><p><strong>（一）引用计数法</strong>：</p>
+<p>堆中每个对象都有一个引用计数。被引用一次，计数加一；被引用变量值变为null，则计数减1，直到计数为0，则表示变成无用对象。<strong>优点是算法简单，缺点是无法识别“循环引用的无用对象”。</strong>就像下面：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    Student friend;</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Student s1 = <span class="keyword">new</span> Student();</span><br><span class="line">        Student s2 = <span class="keyword">new</span> Student();</span><br><span class="line">         </span><br><span class="line">        s1.friend = s2;</span><br><span class="line">        s2.friend = s1;        </span><br><span class="line">        s1 = <span class="keyword">null</span>;</span><br><span class="line">        s2 = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>（二）引用可达法★：</strong></p>
+<p>程序把所有的引用关系看作一张图，从一个节点GC ROOT开始，寻找对应的引用节点，找到这个节点以后，继续寻找这个节点的引用节点，当所有的引用节点寻找完毕之后，剩余的节点则被认为是没有被引用到的节点，即无用的节点。</p>
+<p><strong>（三）复制算法：</strong></p>
+<p>此算法把内存空间划分为两个相等的区域，每次只使用其中的一个区域。垃圾回收时，遍历当前使用区域，把正在使用的对象复制到另外一个区域。<strong>该算法每次只处理正在使用中的对象，因此复制成本比较小，同时复制过去以后还能进行相应的内存整理，不会出现“碎片”问题。当然，此算法的缺点也是很明显的，就是需要两倍内存空间。</strong></p>
+<p><strong>（四）标记整理算法：</strong></p>
+<p>此算法将标记的回收之后，还会进行内存的整理，这样就不会产生过多的碎片。</p>
+<h2 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h2><p>我们这里所说的垃圾回收器有两大类，一类是对年轻代进行垃圾收集，另一类是对年老代进行的垃圾收集器。在我们oracle sun公司名为HotSpot的JVM里，一共提供了七个垃圾回收器，其中三个针对年轻代、三个针对年老代，最后一个是对年轻代和年老代都提供支持。</p>
+<p><strong>年轻代收集器</strong>：<code>serial</code>、<code>ParNew</code>、<code>parallel scavenge</code>。</p>
+<p><strong>年老代收集器</strong>：<code>CMS(coucurrent Mark sweep)</code>、<code>Serial Old</code>、<code>Parallel Old</code></p>
+<p>最后一个：<code>G1(gabage first)</code>。</p>
+<h3 id="serial串行收集器"><a href="#serial串行收集器" class="headerlink" title="serial串行收集器"></a>serial串行收集器</h3><p>该收集器特点是：<strong>只用一个CPU/一条收集线程去完成GC工作，即单线程收集</strong>，且在进行垃圾收集时必须暂停其他所有的工作线程（Stop The World） 。</p>
+<p> 新生代使用复制算法，老年代使用标记–整理算法。</p>
+<h3 id="ParNew并行收集器"><a href="#ParNew并行收集器" class="headerlink" title="ParNew并行收集器"></a>ParNew并行收集器</h3><p>就是在serial的基础上变成了多线程收集器，也是采用了复制算法。而且也并不是变成多线程收集器就会提高效率，在某些单核（只有一个CPU）的机器上，多线程效率 反而可能会低于serial。</p>
+<h3 id="Parallel-scavenge收集器"><a href="#Parallel-scavenge收集器" class="headerlink" title="Parallel scavenge收集器"></a>Parallel scavenge收集器</h3><p>与ParNew类似，Parallel scavenge 也是使用复制算法，也是<strong>并行多线程收集器</strong>，但与其他收集器关注尽可能缩短垃圾收集时间不同，Parallel scavenge更关注系统吞吐量。</p>
+<p>系统吞吐量 = 运行用户代码时间/（运行用户代码时间 + 垃圾收集时间）。</p>
+<h3 id="Serial-Old收集器"><a href="#Serial-Old收集器" class="headerlink" title="Serial Old收集器"></a>Serial Old收集器</h3><p>Serial Old 是Serial收集器的年老代版本，同样是<strong>单线程收集器，使用标记-整理算法。</strong>在做垃圾回收的同时，会进行内存对象的整理，不会产生过多的碎片。</p>
+<p>可以和年轻代的任何一个收集器进行搭配使用。</p>
+<h3 id="Parallel-Old收集器"><a href="#Parallel-Old收集器" class="headerlink" title="Parallel Old收集器"></a>Parallel Old收集器</h3><p>Parallel Old是Parallel 收集器的年老代版本，也是标记整理算法，吞吐量优先。</p>
+<h3 id="CMS收集器"><a href="#CMS收集器" class="headerlink" title="CMS收集器"></a>CMS收集器</h3><p>CMS是一个并发收集器。能和serial 和 parNew收集器进行组合。</p>
+<h3 id="G1收集器"><a href="#G1收集器" class="headerlink" title="G1收集器"></a>G1收集器</h3><p>G1是一款面想服务端应用的收集器，主要目标用于配备多颗CPU的服务器治理大内存。   G1中虽然还保留着新生代和年老代的概念，但不在是物理上的隔离，而是逻辑上的区别。</p>
 
       
     </div>
@@ -593,6 +614,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/JavaSE必备知识点10-JVM讲解/" rel="prev" title="JavaSE必备知识点10-JVM讲解">
+                JavaSE必备知识点10-JVM讲解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -674,7 +699,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-count">71</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -779,7 +804,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾回收机制"><span class="nav-number">1.</span> <span class="nav-text">垃圾回收机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾回收原理和算法"><span class="nav-number">2.</span> <span class="nav-text">垃圾回收原理和算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收过程"><span class="nav-number">2.1.</span> <span class="nav-text">垃圾回收过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收算法"><span class="nav-number">2.2.</span> <span class="nav-text">垃圾回收算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分代垃圾回收机制"><span class="nav-number">3.</span> <span class="nav-text">分代垃圾回收机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象的三代"><span class="nav-number">3.1.</span> <span class="nav-text">对象的三代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收过程-1"><span class="nav-number">3.2.</span> <span class="nav-text">垃圾回收过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Full-GC调用条件"><span class="nav-number">3.3.</span> <span class="nav-text">Full GC调用条件</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾回收系统"><span class="nav-number">1.</span> <span class="nav-text">垃圾回收系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分代垃圾回收机制"><span class="nav-number">2.</span> <span class="nav-text">分代垃圾回收机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要分代？"><span class="nav-number">2.1.</span> <span class="nav-text">为什么要分代？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象的三代"><span class="nav-number">2.2.</span> <span class="nav-text">对象的三代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收过程"><span class="nav-number">2.3.</span> <span class="nav-text">垃圾回收过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Full-GC调用条件"><span class="nav-number">2.4.</span> <span class="nav-text">Full GC调用条件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾回收原理和算法"><span class="nav-number">3.</span> <span class="nav-text">垃圾回收原理和算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收过程-1"><span class="nav-number">3.1.</span> <span class="nav-text">垃圾回收过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见垃圾回收算法"><span class="nav-number">3.2.</span> <span class="nav-text">常见垃圾回收算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾收集器"><span class="nav-number">4.</span> <span class="nav-text">垃圾收集器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#serial串行收集器"><span class="nav-number">4.1.</span> <span class="nav-text">serial串行收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ParNew并行收集器"><span class="nav-number">4.2.</span> <span class="nav-text">ParNew并行收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parallel-scavenge收集器"><span class="nav-number">4.3.</span> <span class="nav-text">Parallel scavenge收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serial-Old收集器"><span class="nav-number">4.4.</span> <span class="nav-text">Serial Old收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parallel-Old收集器"><span class="nav-number">4.5.</span> <span class="nav-text">Parallel Old收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMS收集器"><span class="nav-number">4.6.</span> <span class="nav-text">CMS收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#G1收集器"><span class="nav-number">4.7.</span> <span class="nav-text">G1收集器</span></a></li></ol></li></ol></div>
             
 
           </div>
